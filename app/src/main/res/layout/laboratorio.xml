@@ -1,0 +1,172 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    tool:contetext=".Encuesta"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:divider="?android:dividerHorizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="¿Qué tipo de premios les entrega los laboratorios que los visitan?"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:visibility="visible"
+                    style="@style/TextLogin"
+
+                    android:lines="10"
+                    android:scrollHorizontally="false"
+                    android:scrollbars="vertical"
+                    android:textSize="15sp"
+                    android:id="@+id/etComent1" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=" ¿Qué laboratorios?"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:visibility="visible"
+                    style="@style/TextLogin"
+
+                    android:lines="10"
+                    android:scrollHorizontally="false"
+                    android:scrollbars="vertical"
+                    android:textSize="15sp"
+                    android:id="@+id/etComent2" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="¿Cada cuánto tiempo?"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:visibility="visible"
+                    style="@style/TextLogin"
+
+                    android:lines="10"
+                    android:scrollHorizontally="false"
+                    android:scrollbars="vertical"
+                    android:textSize="15sp"
+                    android:id="@+id/etComent3" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUARDAR"
+                android:id="@+id/btGuardar"
+                style="@style/BottonBase" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

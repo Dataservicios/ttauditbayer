@@ -1,0 +1,278 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    tool:contetext=".Encuesta"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:divider="?android:dividerHorizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Dosis de recomendación de Panadol 500mg"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RadioGroup
+                    android:id="@+id/rgOpt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_above="@+id/fbplacename"
+                    android:visibility="visible"
+                    android:clickable="true">
+
+                    <RadioButton
+                        android:id="@+id/rbA1"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Tomar las 2 tabletas en el mismo momento del dolor (1 dosis)," />
+
+                    <RadioButton
+                        android:id="@+id/rbB1"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Usar 1 tableta y luego la otra (2 dosis)"
+                        android:enabled="true" />
+
+
+                    <RadioButton
+                        android:id="@+id/rbC1"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Otra recomendación" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:enabled="true"
+                        android:visibility="visible"
+                        style="@style/TextLogin"
+
+                        android:lines="10"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:textSize="15sp"
+                        android:id="@+id/etComent1" />
+
+
+
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Dosis de recomendación de Panadol Forte"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RadioGroup
+                    android:id="@+id/rgOpt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_above="@+id/fbplacename"
+                    android:visibility="visible"
+                    android:clickable="true">
+
+                    <RadioButton
+                        android:id="@+id/rbA2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Tomar las 2 tabletas en el mismo momento del dolor (1 dosis)" />
+
+
+
+
+                    <RadioButton
+                        android:id="@+id/rbB2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Usar 1 tableta y luego la otra (2 dosis)"
+                        android:enabled="true" />
+
+
+                    <RadioButton
+                        android:id="@+id/rbC2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Otra recomendación" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:enabled="true"
+                        android:visibility="visible"
+                        style="@style/TextLogin"
+
+                        android:lines="10"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:textSize="15sp"
+                        android:id="@+id/etComent2" />
+
+
+
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Dosis de recomendación de Aspirina 500mg"
+
+                    android:textSize="@dimen/general"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <RadioGroup
+                    android:id="@+id/rgOpt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_above="@+id/fbplacename"
+                    android:visibility="visible"
+                    android:clickable="true">
+
+                    <RadioButton
+                        android:id="@+id/rbA3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tomar 1 tableta en el momento del dolor (1 dosis)" />
+
+
+                    <RadioButton
+                        android:id="@+id/rbB3"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Otra recomendación"
+                        android:enabled="true" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:enabled="true"
+                        android:visibility="visible"
+                        style="@style/TextLogin"
+
+                        android:lines="10"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:textSize="15sp"
+                        android:id="@+id/etComent3" />
+
+
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUARDAR"
+                android:id="@+id/btGuardar"
+                style="@style/BottonBase" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

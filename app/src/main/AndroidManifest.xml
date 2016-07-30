@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dataservicios.com.ttauditbayer" >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- The following two permissions are not required to use
+
+         Google Maps Android API v2, but are recommended. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- PERMISO PARA HACER LLAMADA DESDE LA APP A UN PHONO-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <application
+        android:allowBackup="true"
+        android:name="dataservicios.com.ttauditbayer.app.AppController"
+        android:icon="@drawable/ic_agente"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--<activity-->
+            <!--android:name=".AuditoriaBayer.Apronax275"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:theme="@style/AppThemeAdminPanel">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.LOGIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.MapaRuta"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.MAPARUTAS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--<activity-->
+        <!--android:name="dataservicios.com.ttauditbayer.ListAgenteActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:label="Mis Agentes"-->
+        <!--android:theme="@style/AppThemeAdminPanel"-->
+
+        <!-->-->
+        <!--<intent-filter>-->
+        <!--<action android:name="dataservicios.com.ttauditbayer.LISTGENTE" />-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity
+            android:name="dataservicios.com.ttauditbayer.PanelAdmin"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.PANELADMIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.PuntosVenta"
+            android:screenOrientation="portrait"
+            android:label="PDVs del día"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.PUNTOSVENTA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.DetallePdv"
+            android:screenOrientation="portrait"
+            android:label="Detalle PDV"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.DETALLEPDV" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Product"
+            android:screenOrientation="portrait"
+            android:label="Presencia de Producto"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.AUDITORIAPRODUCTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.BayerPoll"
+            android:screenOrientation="portrait"
+            android:label="Presencia de Material Publicitario"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.BAYERPOLL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--<activity-->
+            <!--android:name="dataservicios.com.ttauditbayer.AditoriaColgate.DetailPublicity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:label="Presencia de Material Publicitario"-->
+            <!--android:theme="@style/AppThemeAdminPanel"-->
+            <!-->-->
+            <!--<intent-filter>-->
+                <!--<action android:name="dataservicios.com.ttauditbayer.DETAIPUBLICITY" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.BayerOpenClose"
+            android:screenOrientation="portrait"
+            android:label="Presencia de Material Publicitario"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.BAYEROPEMCLOSE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.Premiacion"
+            android:screenOrientation="portrait"
+            android:label="Presencia de Material Publicitario"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+            <intent-filter>
+                <action android:name="dataservicios.com.ttauditbayer.PREMIACION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.PremiacionFoto"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:theme="@style/AppThemeAdminPanel"
+            >
+
+        </activity>
+
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AndroidCustomGalleryActivity"
+            android:screenOrientation="portrait"
+            android:label="Galeria de Agente"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <!-- ABOUT-->
+        <activity
+            android:name="dataservicios.com.ttauditbayer.About"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.ABOUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Exhibicion"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Exhibicion" />
+                <category android:name="android.intent.category.EXHIBICION" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Apronax"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Apronax" />
+                <category android:name="android.intent.category.APRONAX" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Aspirina"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Aspirina" />
+                <category android:name="android.intent.category.ASPIRINA" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.AspirinaQuinientos"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
+            android:name=".AuditoriaBayer.Redoxon"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Redexon" />
+                <category android:name="android.intent.category.REDOXON" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Berocca"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Berocca" />
+                <category android:name="android.intent.category.BEROCCA" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Gynocanesten"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Gynocanesten" />
+                <category android:name="android.intent.category.GYNOCANESTEN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Bepanthen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+
+        </activity>
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Supradyn"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Supradyn" />
+                <category android:name="android.intent.category.SUPRADYN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AuditoriaBayer.SupradynPronatal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Precio"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.DosisRecomendacion"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+        <activity
+            android:name=".AuditoriaBayer.Apronax275"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
+            android:name=".AuditoriaBayer.AspirinaForte"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
+            android:name=".AuditoriaBayer.MaterialPromocional"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
+            android:name=".AuditoriaBayer.Laboratorio"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+
+        <activity
+            android:name=".EditStore"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <uses-library android:name="com.google.android.maps" android:required="false" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- Key api Google Mode RELEASE-->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCS2ww-t9B0d5msYOytbya5S9pfD4LkjiQ"/>
+
+
+        <!--Key api Google Mode DEBUG-->
+        <!--<meta-data-->
+        <!--android:name="com.google.android.maps.v2.API_KEY"-->
+        <!--android:value="AIzaSyAugOj7lXip5xCpCkiqo36bIOpRM4ygQyQ"/>-->
+
+
+        <service android:name="dataservicios.com.ttauditbayer.Services.UploadService" android:label="@string/app_name">
+        </service>
+    </application>
+
+</manifest>

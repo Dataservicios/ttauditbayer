@@ -1,0 +1,308 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    tool:contetext=".Encuesta"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lyControles">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/tvPregunta" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvSeEncuentra"
+                    android:layout_marginTop="1dip"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:id="@+id/swRecomienda"
+                    android:text=""
+                    android:textOn="@string/sw_si"
+                    android:textOff="@string/sw_no"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Que recomienda"
+                    android:id="@+id/tvQueRecomienda" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/lyChkSi">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apronax"
+                        android:padding="5dp"
+                        android:id="@+id/cbA" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aspirina 500"
+                        android:padding="5dp"
+                        android:id="@+id/cbB" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Supradyn"
+                        android:padding="5dp"
+                        android:id="@+id/cbC" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gynocanesten"
+                        android:padding="5dp"
+                        android:id="@+id/cbD" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aspirina 100"
+                        android:padding="5dp"
+                        android:id="@+id/cbE" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Redoxon"
+                        android:padding="5dp"
+                        android:id="@+id/cbF" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Berocca"
+                        android:padding="5dp"
+                        android:id="@+id/cbG" />
+
+                    <!--<CheckBox-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Afrin"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:id="@+id/cbH" />-->
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:padding="5dp"
+                    android:id="@+id/lyChkNo">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porque Bayer no paga por exhibición"
+                        android:padding="5dp"
+                        android:id="@+id/cbH" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Porque Bayer no propone exhibiciones"
+                        android:padding="5dp"
+                        android:id="@+id/cbI" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porque la competencia paga exhibiciones en efectivo"
+                        android:padding="5dp"
+                        android:id="@+id/cbJ" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porque la competencia paga en Vales"
+                        android:padding="5dp"
+                        android:id="@+id/cbK" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/lyStock">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¿Tiene Stock?"/>
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvSeEncuentra"
+                            android:layout_marginTop="1dip"
+                            android:layout_toRightOf="@+id/thumbnail"
+                            android:id="@+id/swStock"
+                            android:text=""
+                            android:textOn="@string/sw_si"
+                            android:textOff="@string/sw_no"
+                            />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="10dp">-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/common_action_bar_splitter"-->
+                <!--android:layout_alignBottom="@+id/tvCategoryName"-->
+                <!--android:layout_toRightOf="@+id/thumbnail"-->
+                <!--android:layout_toEndOf="@+id/thumbnail"-->
+                <!--android:id="@+id/vwSeparator"/>-->
+
+
+
+            <!--<Switch-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/tvSeEncuentra"-->
+                <!--android:layout_marginTop="1dip"-->
+                <!--android:layout_toRightOf="@+id/thumbnail"-->
+                <!--android:id="@+id/swExhibidor"-->
+                <!--android:text="¿Tiene exhibición Gratis?"-->
+                <!--android:textOn="@string/sw_si"-->
+                <!--android:textOff="@string/sw_no"-->
+                <!--/>-->
+
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!-->-->
+                <!--<Button-->
+                    <!--android:id="@+id/btPhoto"-->
+                    <!--android:enabled="false"-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:drawableBottom="@drawable/ic_photo"-->
+                    <!--android:layout_below="@+id/widget110"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:layout_gravity="center" />-->
+
+            <!--</LinearLayout>-->
+
+
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Comentario"
+                android:textSize="@dimen/general"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:enabled="true"
+                android:visibility="visible"
+                style="@style/TextLogin"
+                android:lines="20"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                android:textSize="15sp"
+                android:id="@+id/etComentario" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUARDAR ENCUESTA"
+                android:id="@+id/btGuardar"
+                android:drawableRight="@drawable/ic_sync"
+                style="@style/BottonBase" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+

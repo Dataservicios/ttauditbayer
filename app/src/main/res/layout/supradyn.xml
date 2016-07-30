@@ -1,0 +1,412 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    tool:contetext=".Encuesta"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lyControles">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/tvPregunta" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="406dp"
+                    android:padding="5dp"
+                    android:id="@+id/lyProductos"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Que recomienda"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="8dp"
+                        android:id="@+id/tvQueRecomienda" />
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Supradyn"
+                            android:padding="5dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginRight="8dp"
+                            android:id="@+id/cbProducto" />
+
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:text="0"
+                            android:enabled="false"
+                            android:id="@+id/etProducto"
+
+                            android:layout_toRightOf="@+id/cbProducto"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="XXXXXX"
+                            android:padding="5dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginRight="8dp"
+                            android:id="@+id/cbTienda" />
+
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:text="0"
+                            android:id="@+id/etTienda"
+                            android:enabled="false"
+
+                            android:layout_toRightOf="@+id/cbTienda"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vitathon"
+                            android:padding="5dp"
+                            android:id="@+id/cbA" />
+
+
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etA"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbA"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Centrum"
+                            android:padding="5dp"
+                            android:id="@+id/cbB" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etB"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbB"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Centrum Silver"
+                            android:padding="5dp"
+                            android:id="@+id/cbC" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etC"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbC"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pharmaton"
+                            android:padding="5dp"
+                            android:id="@+id/cbD" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etD"
+                            android:enabled="false"
+                            android:text="0"
+
+                            android:layout_toRightOf="@+id/cbD"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Otros"
+                            android:padding="5dp"
+                            android:id="@+id/cbE" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etE"
+                            android:enabled="false"
+                            android:text="0"
+
+                            android:layout_toRightOf="@+id/cbE"
+                            />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Comentario"
+                            android:visibility="invisible"
+                            android:id="@+id/tvComentarioOtros"
+                            android:textSize="@dimen/general"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        >
+
+                        <EditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:inputType="textMultiLine"
+                            android:ems="10"
+                            android:enabled="true"
+                            android:visibility="invisible"
+                            style="@style/TextLogin"
+
+                            android:lines="10"
+                            android:scrollHorizontally="false"
+                            android:scrollbars="vertical"
+                            android:textSize="15sp"
+                            android:id="@+id/etComentarioOtros" />
+                    </LinearLayout>
+
+                    <!--<CheckBox-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Naproxeno (genérico)"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:id="@+id/cbD" />-->
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/lyStock">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvStock"
+                            android:text="¿Tiene Stock Supradyn?"/>
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvSeEncuentra"
+                            android:layout_marginTop="1dip"
+                            android:layout_toRightOf="@+id/thumbnail"
+                            android:id="@+id/swStock"
+                            android:text=""
+                            android:textOn="@string/sw_si"
+                            android:textOff="@string/sw_no"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginBottom="10dp">-->
+
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/common_action_bar_splitter"-->
+        <!--android:layout_alignBottom="@+id/tvCategoryName"-->
+        <!--android:layout_toRightOf="@+id/thumbnail"-->
+        <!--android:layout_toEndOf="@+id/thumbnail"-->
+        <!--android:id="@+id/vwSeparator"/>-->
+
+
+
+        <!--<Switch-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/tvSeEncuentra"-->
+        <!--android:layout_marginTop="1dip"-->
+        <!--android:layout_toRightOf="@+id/thumbnail"-->
+        <!--android:id="@+id/swExhibidor"-->
+        <!--android:text="¿Tiene exhibición Gratis?"-->
+        <!--android:textOn="@string/sw_si"-->
+        <!--android:textOff="@string/sw_no"-->
+        <!--/>-->
+
+        <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!-->-->
+        <!--<Button-->
+        <!--android:id="@+id/btPhoto"-->
+        <!--android:enabled="false"-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableBottom="@drawable/ic_photo"-->
+        <!--android:layout_below="@+id/widget110"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_gravity="center" />-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Comentario"
+                android:textSize="@dimen/general"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:enabled="true"
+                android:visibility="visible"
+
+                android:lines="20"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                android:textSize="15sp"
+                android:id="@+id/etComentario" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUARDAR ENCUESTA"
+                android:id="@+id/btGuardar"
+                android:drawableRight="@drawable/ic_sync"
+                style="@style/BottonBase" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+
