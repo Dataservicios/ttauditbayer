@@ -144,9 +144,9 @@ public class AspirinaForte extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 434; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 435; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 436; //STOcK
+        poll_id = 443; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 444; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 445; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);

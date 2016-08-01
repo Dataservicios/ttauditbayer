@@ -126,7 +126,7 @@ public class Exhibicion extends Activity{
         fechaRuta = bundle.getString("fechaRuta");
         audit_id = bundle.getInt("idAuditoria");
         product_id =bundle.getInt("product_id");
-        poll_id = 433 ;
+        poll_id = 442 ;
 
 
         pDialog = new ProgressDialog(MyActivity);

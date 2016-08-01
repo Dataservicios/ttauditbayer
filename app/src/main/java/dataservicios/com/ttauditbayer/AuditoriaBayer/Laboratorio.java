@@ -111,9 +111,9 @@ public class Laboratorio extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 438; //¿Qué tipo de premios les entrega los laboratorios que los visitan?
-        poll_id_2 = 439; //¿Qué laboratorios?
-        poll_id_3 = 440; //¿Cada cuánto tiempo?
+        poll_id = 447; //¿Qué tipo de premios les entrega los laboratorios que los visitan?
+        poll_id_2 = 448; //¿Qué laboratorios?
+        poll_id_3 = 449; //¿Cada cuánto tiempo?
 
 
 

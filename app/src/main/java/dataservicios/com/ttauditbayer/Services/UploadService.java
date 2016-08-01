@@ -64,7 +64,8 @@ public class UploadService extends IntentService {
     private Context context = this;
 
     ArrayList<String> names_file = new ArrayList<String>();
-    private static final String url_upload_image = GlobalConstant.dominio + "/uploadImagesAuditPrueba";
+    private static final String url_upload_image = GlobalConstant.dominio + "/uploadImagesAuditBayer";
+   // private static final String url_upload_image = GlobalConstant.dominio + "/uploadImagesAuditPrueba";
     // private static final String url_insert_image = GlobalConstant.dominio + "/insertImagesPublicities";
     private String url_insert_image ;
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
