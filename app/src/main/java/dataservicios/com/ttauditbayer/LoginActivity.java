@@ -3,6 +3,7 @@ package dataservicios.com.ttauditbayer;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -214,4 +215,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
 
     }
+
+
 }

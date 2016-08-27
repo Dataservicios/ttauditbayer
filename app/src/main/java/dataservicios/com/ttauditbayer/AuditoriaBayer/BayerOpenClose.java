@@ -87,7 +87,7 @@ public class BayerOpenClose extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 441;
+        poll_id = 481; //¿Se encuentra abierto el establecimiento?
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -306,8 +306,6 @@ public class BayerOpenClose extends Activity {
         try {
 
             HashMap<String, String> params = new HashMap<>();
-
-
             params.put("poll_id", String.valueOf(poll_id));
             params.put("store_id", String.valueOf(store_id));
             params.put("product_id", "0");

@@ -41,7 +41,7 @@ import dataservicios.com.ttauditbayer.util.SessionManager;
 public class Laboratorio extends Activity {
 
     private Activity MyActivity = this ;
-    private static final String LOG_TAG = "Aspirina";
+    private static final String LOG_TAG = "Laboratorio";
     private SessionManager session;
 
     private Switch sw_recomienda, sw_stock ;
@@ -70,7 +70,7 @@ public class Laboratorio extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.laboratorio);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle("Dosis");
+        getActionBar().setTitle("Información");
 
 
 
@@ -93,7 +93,7 @@ public class Laboratorio extends Activity {
 
         etComent1=(EditText) findViewById(R.id.etComent1);
         etComent2=(EditText) findViewById(R.id.etComent2);
-        etComent3=(EditText) findViewById(R.id.etComent3);
+        //etComent3=(EditText) findViewById(R.id.etComent3);
 
         bt_guardar = (Button) findViewById(R.id.btGuardar);
 
@@ -111,9 +111,9 @@ public class Laboratorio extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 447; //¿Qué tipo de premios les entrega los laboratorios que los visitan?
-        poll_id_2 = 448; //¿Qué laboratorios?
-        poll_id_3 = 449; //¿Cada cuánto tiempo?
+        poll_id = 487; //¿De 10 clientes que vienen a comprar algún medicamento para dolor muscular, cuantos te piden tu recomendación?
+        poll_id_2 = 488; //¿De 10 clientes que vienen a comprar algún medicamento para dolor de cabeza, cuantos te piden tu recomendación?
+        //poll_id_3 = 449; //¿Cada cuánto tiempo?
 
 
 
@@ -148,7 +148,7 @@ public class Laboratorio extends Activity {
 
                         coment1 = String.valueOf(etComent1.getText()).trim() ;
                         coment2 = String.valueOf(etComent2.getText()).trim() ;
-                        coment3 = String.valueOf(etComent3.getText()).trim() ;
+                       // coment3 = String.valueOf(etComent3.getText()).trim() ;
 
                         new auditPoll().execute();
 
@@ -219,7 +219,7 @@ public class Laboratorio extends Activity {
 
             InsertAuditPollsProduct(poll_id,0,0,coment1);
             InsertAuditPollsProduct(poll_id_2,0,0,coment2);
-            InsertAuditPollsProduct(poll_id_3,0,0,coment3);
+           // InsertAuditPollsProduct(poll_id_3,0,0,coment3);
 
             return true;
         }

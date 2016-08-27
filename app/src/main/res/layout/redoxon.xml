@@ -72,6 +72,7 @@
 
                     </RelativeLayout>
 
+
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -79,28 +80,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="XXXXXX"
-                            android:padding="5dp"
-                            android:id="@+id/cbTienda" />
-                        <EditText
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:inputType="number"
-                            android:ems="10"
-                            android:text="0"
-                            android:enabled="false"
-                            android:id="@+id/etTienda"
-                            android:layout_toRightOf="@+id/cbTienda"
-                            />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        >
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Crevet"
+                            android:text="Genfar"
                             android:padding="5dp"
                             android:id="@+id/cbA" />
                         <EditText
@@ -121,7 +101,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ecotrin"
+                            android:text="efer - C"
                             android:padding="5dp"
                             android:id="@+id/cbB" />
                         <EditText
@@ -142,7 +122,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cebion"
+                            android:text="Redoxvit"
                             android:padding="5dp"
                             android:id="@+id/cbC" />
                         <EditText
@@ -164,10 +144,9 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Otros"
+                            android:text="Redoxinc"
                             android:padding="5dp"
                             android:id="@+id/cbD" />
-
                         <EditText
                             android:layout_width="42dp"
                             android:layout_height="42dp"
@@ -177,6 +156,51 @@
                             android:enabled="false"
                             android:id="@+id/etD"
                             android:layout_toRightOf="@+id/cbD"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Efervit C"
+                            android:padding="5dp"
+                            android:id="@+id/cbE" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:text="0"
+                            android:enabled="false"
+                            android:id="@+id/etE"
+                            android:layout_toRightOf="@+id/cbE"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Otros"
+                            android:padding="5dp"
+                            android:id="@+id/cbF" />
+
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:text="0"
+                            android:enabled="false"
+                            android:id="@+id/etF"
+                            android:layout_toRightOf="@+id/cbF"
                             />
                     </RelativeLayout>
 

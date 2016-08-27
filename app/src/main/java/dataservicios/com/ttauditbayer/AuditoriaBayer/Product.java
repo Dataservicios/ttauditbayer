@@ -172,6 +172,11 @@ public class Product extends Activity {
                     intent = new Intent(MyActivity, AspirinaForte.class);
                 }
 
+                //BEROCCA + SUPRADYN
+                if (product_id.equals("645")){
+                    intent = new Intent(MyActivity, BeroccaSupradyn.class);
+                }
+
                 //Intent intent = new Intent(MyActivity, BayerPoll.class);
                 intent.putExtras(argPDV);
                 startActivity(intent);

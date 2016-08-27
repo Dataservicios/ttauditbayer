@@ -15,12 +15,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,33 +35,28 @@ import dataservicios.com.ttauditbayer.R;
 import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParser;
-import dataservicios.com.ttauditbayer.util.JSONParserX;
 import dataservicios.com.ttauditbayer.util.SessionManager;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 /**
- * Created by Jaime on 27/02/2016.
+ * Created by Jaime on 12/08/2016.
  */
-public class Apronax extends Activity {
+public class BeroccaSupradyn extends Activity {
 
     private Activity MyActivity = this ;
-    private static final String LOG_TAG = "Apronax";
+    private static final String LOG_TAG = "Berocca + Supradyn";
     private SessionManager session;
 
     private Switch sw_recomienda, sw_stock ;
-    private LinearLayout ly_stock,ly_productos,lyNoRecomienda;
+    private LinearLayout ly_stock,ly_productos;
 
     private Button bt_photo, bt_guardar;
-    private EditText et_Comentario, et_ComentarioOtros, etComentNoRecomienda, etProducto ,etTienda, etA,etB,etC,etD,etE,etF,etG,etH;
+    private EditText et_Comentario, et_ComentarioOtros, etProducto , etA,etB,etC, etD,etE,etF,etG,etH,etI;
     private TextView tv_ComentarioOtros;
-    private TextView tv_Pregunta , tvStock;
-    private CheckBox cbTienda,cbProducto , cbA,cbB,cbC,cbD,cbE,cbF,cbG,cbH;
-    private RadioGroup rgOpt1;
-    private RadioButton rbA,rbB,rbC,rbD,rbE,rbF;
+    private TextView tv_Pregunta, tvStock;
+    private CheckBox cbProducto , cbA,cbB,cbC,cbD,cbE ,cbF,cbG,cbH,cbI;
 
-    private String tipo,cadenaruc,fechaRuta, comentario="" ,comentarioOtros="" , comentNoRecomienda="";
-    private Integer user_id, company_id,store_id,rout_id,audit_id, product_id, poll_id, poll_id_2,poll_id_3, poll_id_4;
+    private String tipo,cadenaruc,fechaRuta, comentario="" ,comentarioOtros="";
+    private Integer user_id, company_id,store_id,rout_id,audit_id, product_id, poll_id, poll_id_2,poll_id_3;
 
     int  is_exhibidor=0, is_recomieda =0 , stock=0;
 
@@ -69,31 +64,30 @@ public class Apronax extends Activity {
 
     private ProgressDialog pDialog;
 
-    String totalOption="",opt1="";
+    String totalOption="";
     int totalValores ;
-    int vTienda=0,vProducto=0,vA=0,vB=0,vC=0,vD=0,vE=0,vF=0,vG=0,vH=0;
-    String oTienda="",oProducto="",oA="",oB="",oC="",oD="" ,oE="",oF="",oG="",oH="";
-    String pTienda="",pProducto="",pA="",pB="",pC="",pD="" ,pE="",pF="",pG="",pH="" ;
+    int vProducto=0,vA=0,vB=0,vC=0,vD=0,vE=0,vF=0,vG=0,vH=0,vI=0;
+    String oProducto="",oA="",oB="",oC="",oD="", oE="", oF="", oG="", oH="", oI="";
+    String pProducto="",pA="",pB="",pC="",pD="", pE="", pF="", pG="", pH="", pI="";
 
     private EditText[] editTextArray;
     private CheckBox[] checkBoxArray;
-    private RadioButton[] radioButton1Array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.apronax);
+        setContentView(R.layout.berocca_supradyn);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle("Apronax");
+        getActionBar().setTitle("Berocca Supradyn");
 
 
         sw_recomienda = (Switch) findViewById(R.id.swRecomienda);
         sw_stock = (Switch) findViewById(R.id.swStock);
         tvStock = (TextView) findViewById(R.id.tvStock);
 
-        cbTienda = (CheckBox) findViewById(R.id.cbTienda);
         cbProducto = (CheckBox) findViewById(R.id.cbProducto);
+
         cbA = (CheckBox) findViewById(R.id.cbA);
         cbB = (CheckBox) findViewById(R.id.cbB);
         cbC = (CheckBox) findViewById(R.id.cbC);
@@ -102,9 +96,10 @@ public class Apronax extends Activity {
         cbF = (CheckBox) findViewById(R.id.cbF);
         cbG = (CheckBox) findViewById(R.id.cbG);
         cbH = (CheckBox) findViewById(R.id.cbH);
+        cbI = (CheckBox) findViewById(R.id.cbI);
 
-        etTienda = (EditText) findViewById(R.id.etTienda);
         etProducto = (EditText) findViewById(R.id.etProducto);
+
         etA = (EditText) findViewById(R.id.etA);
         etB = (EditText) findViewById(R.id.etB);
         etC = (EditText) findViewById(R.id.etC);
@@ -113,21 +108,10 @@ public class Apronax extends Activity {
         etF = (EditText) findViewById(R.id.etF);
         etG = (EditText) findViewById(R.id.etG);
         etH = (EditText) findViewById(R.id.etH);
-
-//        lyNoRecomienda= (LinearLayout) findViewById(R.id.lyNoRecomienda);
-//        rgOpt1 = (RadioGroup) findViewById(R.id.rgOpt1);
-//        rbA =(RadioButton) findViewById(R.id.rbA);
-//        rbB =(RadioButton) findViewById(R.id.rbB);
-//        rbC =(RadioButton) findViewById(R.id.rbC);
-//        rbD =(RadioButton) findViewById(R.id.rbD);
-//        rbE =(RadioButton) findViewById(R.id.rbE);
-//        rbF =(RadioButton) findViewById(R.id.rbF);
-
-//        etComentNoRecomienda = (EditText) findViewById(R.id.etComentNoRecomienda);
-
+        etI = (EditText) findViewById(R.id.etI);
 
         editTextArray = new EditText[] {
-                (EditText) findViewById(R.id.etTienda),
+
                 (EditText) findViewById(R.id.etProducto),
                 (EditText) findViewById(R.id.etA),
                 (EditText) findViewById(R.id.etB),
@@ -137,9 +121,10 @@ public class Apronax extends Activity {
                 (EditText) findViewById(R.id.etF),
                 (EditText) findViewById(R.id.etG),
                 (EditText) findViewById(R.id.etH),
+                (EditText) findViewById(R.id.etI),
         };
         checkBoxArray = new CheckBox[] {
-                (CheckBox) findViewById(R.id.cbTienda),
+
                 (CheckBox) findViewById(R.id.cbProducto),
                 (CheckBox) findViewById(R.id.cbA),
                 (CheckBox) findViewById(R.id.cbB),
@@ -149,28 +134,8 @@ public class Apronax extends Activity {
                 (CheckBox) findViewById(R.id.cbF),
                 (CheckBox) findViewById(R.id.cbG),
                 (CheckBox) findViewById(R.id.cbH),
+                (CheckBox) findViewById(R.id.cbI),
         };
-
-//        radioButton1Array = new RadioButton[] {
-//                (RadioButton) findViewById(R.id.rbA),
-//                (RadioButton) findViewById(R.id.rbB),
-//                (RadioButton) findViewById(R.id.rbC),
-//                (RadioButton) findViewById(R.id.rbD),
-//                (RadioButton) findViewById(R.id.rbE),
-//                (RadioButton) findViewById(R.id.rbF),
-//        };
-
-        for (int x = 0; x < editTextArray.length; x++) {
-//            editTextArray[x].setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // DO stuff here........................
-//                }
-//            });
-     //       editTextArray[]
-        }
-
-
 
         ly_stock = (LinearLayout) findViewById(R.id.lyStock);
         ly_productos = (LinearLayout) findViewById(R.id.lyProductos);
@@ -203,8 +168,6 @@ public class Apronax extends Activity {
         poll_id_2 = 484; //QUE PRODUCTO RECOMENDO
         poll_id_3 = 485; //STOcK
 
-       // poll_id_4 = 200; //¿POR QUÉ NO RECOMIENDA APRONAX?
-
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -229,39 +192,99 @@ public class Apronax extends Activity {
         if(tipo.equals("CADENA")) {
 
             if(cadenaruc.equals("INKAFARMA")){
-                cbTienda.setText("Dologyna");
+                cbA.setText("Oramin ");
+                cbB.setText("Biocord");
+                cbC.setVisibility(View.INVISIBLE);
+                cbD.setVisibility(View.INVISIBLE);
+                cbE.setVisibility(View.INVISIBLE);
+                cbF.setVisibility(View.INVISIBLE);
+                cbG.setVisibility(View.INVISIBLE);
+                cbH.setVisibility(View.INVISIBLE);
+                //cbI.setVisibility(View.INVISIBLE);
+
+               // etB.setVisibility(View.INVISIBLE);
+                etC.setVisibility(View.INVISIBLE);
+                etD.setVisibility(View.INVISIBLE);
+                etE.setVisibility(View.INVISIBLE);
+                etF.setVisibility(View.INVISIBLE);
+                etG.setVisibility(View.INVISIBLE);
+                etH.setVisibility(View.INVISIBLE);
+               // etI.setVisibility(View.INVISIBLE);
+
             }
             if(cadenaruc.equals("Fasa-Mifarma")){
-                cbTienda.setText("Iraxen");
+                cbA.setText("Oramin ");
+                cbB.setText("Infor");
+                cbC.setVisibility(View.INVISIBLE);
+                cbD.setVisibility(View.INVISIBLE);
+                cbE.setVisibility(View.INVISIBLE);
+                cbF.setVisibility(View.INVISIBLE);
+                cbG.setVisibility(View.INVISIBLE);
+                cbH.setVisibility(View.INVISIBLE);
+               // cbI.setVisibility(View.INVISIBLE);
+
+
+                etC.setVisibility(View.INVISIBLE);
+                etD.setVisibility(View.INVISIBLE);
+                etE.setVisibility(View.INVISIBLE);
+                etF.setVisibility(View.INVISIBLE);
+                etG.setVisibility(View.INVISIBLE);
+                etH.setVisibility(View.INVISIBLE);
+               // etI.setVisibility(View.INVISIBLE);
 
             }
             if(cadenaruc.equals("ARCANGEL")){
-                cbTienda.setText("Sanaprox");
+                cbA.setText("Nutrastres ");
+                cbB.setText("Infor");
+                cbC.setVisibility(View.INVISIBLE);
+                cbD.setVisibility(View.INVISIBLE);
+                cbE.setVisibility(View.INVISIBLE);
+                cbF.setVisibility(View.INVISIBLE);
+                cbG.setVisibility(View.INVISIBLE);
+                cbH.setVisibility(View.INVISIBLE);
+               // cbI.setVisibility(View.INVISIBLE);
+
+
+                etC.setVisibility(View.INVISIBLE);
+                etD.setVisibility(View.INVISIBLE);
+                etE.setVisibility(View.INVISIBLE);
+                etF.setVisibility(View.INVISIBLE);
+                etG.setVisibility(View.INVISIBLE);
+                etH.setVisibility(View.INVISIBLE);
+               // etI.setVisibility(View.INVISIBLE);
             }
 
             if(cadenaruc.equals("B&S")){
-                cbTienda.setText("Maxiflam Forte");
+                cbA.setText("Energy Forte ");
+                cbB.setText("Vitaenergy");
+                cbC.setVisibility(View.INVISIBLE);
+                cbD.setVisibility(View.INVISIBLE);
+                cbE.setVisibility(View.INVISIBLE);
+                cbF.setVisibility(View.INVISIBLE);
+                cbG.setVisibility(View.INVISIBLE);
+                cbH.setVisibility(View.INVISIBLE);
+               // cbI.setVisibility(View.INVISIBLE);
+
+
+                etC.setVisibility(View.INVISIBLE);
+                etD.setVisibility(View.INVISIBLE);
+                etE.setVisibility(View.INVISIBLE);
+                etF.setVisibility(View.INVISIBLE);
+                etG.setVisibility(View.INVISIBLE);
+                etH.setVisibility(View.INVISIBLE);
+               // etI.setVisibility(View.INVISIBLE);
             }
 
-//            etTienda.setText("0");
-//            etTienda.setEnabled(false);
-//            etTienda.setVisibility(View.VISIBLE);
+
 
         } else if(tipo.equals("HORIZONTAL")) {
 
 //            cbTienda.setEnabled(false);
 //            cbTienda.setVisibility(View.INVISIBLE);
-
+//
 //            etTienda.setText("0");
 //            etTienda.setEnabled(false);
 //            etTienda.setVisibility(View.INVISIBLE);
-
-            cbTienda.setText("Flogodistan");
-            cbF.setText("Doloaproxol");
-            cbG.setText("Dioxaflex");
-
-
-
         }
 
         cbProducto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -275,21 +298,12 @@ public class Apronax extends Activity {
 
                     etProducto.setText("1");
                     etProducto.setEnabled(true);
-                   // etProducto.setFocusable(true);
-//                    rgOpt1.clearCheck();
-//                    etComentNoRecomienda.setText("");
-//                    lyNoRecomienda.setVisibility(View.INVISIBLE);
-
+                    // etProducto.setFocusable(true);
                     etProducto.requestFocus();
-
                 } else{
                     tvStock.setVisibility(View.VISIBLE);
                     sw_stock.setEnabled(true);
                     sw_stock.setVisibility(View.VISIBLE);
-
-//                    lyNoRecomienda.setVisibility(View.VISIBLE);
-//                    rgOpt1.clearCheck();
-//                    etComentNoRecomienda.setText("");
 
                     etProducto.setText("0");
                     etProducto.setEnabled(false);
@@ -297,39 +311,7 @@ public class Apronax extends Activity {
             }
         });
 
-//        rgOpt1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                if(rbF.isChecked())
-//                {
-//                    etComentNoRecomienda.setEnabled(true);
-//                    etComentNoRecomienda.setVisibility(View.VISIBLE);
-//                    etComentNoRecomienda.setText("");
-//                }
-//                else
-//                {
-//                    etComentNoRecomienda.setEnabled(false);
-//                    etComentNoRecomienda.setVisibility(View.INVISIBLE);
-//                    etComentNoRecomienda.setText("");
-//                }
-//            }
-//        });
 
-        cbTienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if ( isChecked )
-                {
-                    etTienda.setText("1");
-                    etTienda.setEnabled(true);
-                    etTienda.requestFocus();
-                } else{
-                    etTienda.setText("0");
-                    etTienda.setEnabled(false);
-                }
-            }
-        });
 
         cbA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -391,6 +373,7 @@ public class Apronax extends Activity {
             }
         });
 
+
         cbE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -406,7 +389,6 @@ public class Apronax extends Activity {
             }
         });
 
-
         cbF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -421,7 +403,6 @@ public class Apronax extends Activity {
                 }
             }
         });
-
 
         cbG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -443,10 +424,27 @@ public class Apronax extends Activity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if ( isChecked )
                 {
-
                     etH.setText("1");
                     etH.setEnabled(true);
                     etH.requestFocus();
+                } else{
+                    etH.setText("0");
+                    etH.setEnabled(false);
+                }
+            }
+        });
+
+
+
+        cbI.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if ( isChecked )
+                {
+
+                    etI.setText("1");
+                    etI.setEnabled(true);
+                    etI.requestFocus();
                     // perform logic
                     tv_ComentarioOtros.setVisibility(View.VISIBLE);
                     et_ComentarioOtros.setEnabled(true);
@@ -455,8 +453,8 @@ public class Apronax extends Activity {
 
 
                 } else{
-                    etH.setText("0");
-                    etH.setEnabled(false);
+                    etI.setText("0");
+                    etI.setEnabled(false);
 
                     tv_ComentarioOtros.setVisibility(View.INVISIBLE);
                     et_ComentarioOtros.setEnabled(false);
@@ -480,12 +478,16 @@ public class Apronax extends Activity {
             }
         });
 
-
+//        bt_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                takePhoto();
+//            }
+//        });
 
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 //------------Verificando que haya seleccionado 1 elemento o max 3
                 int contado_control=0;
@@ -531,81 +533,24 @@ public class Apronax extends Activity {
                     }
                 }
 
-
-
-
-
                 if (cbProducto.isChecked()) {
                     int prioridad=0;
-
                     prioridad = Integer.valueOf(etProducto.getText().toString());
                     if(etProducto.getText().equals("")){
                         Toast toast;
                         toast = Toast.makeText(MyActivity, "Debe marcar almenos una opción", Toast.LENGTH_LONG);
                         toast.show();
                         return;
-                    } else if (prioridad == 1 ||prioridad == 2 || prioridad == 3) {
+                    }else if (prioridad == 1 ||prioridad == 2 || prioridad == 3) {
                         is_recomieda=1;
                         vProducto = 1;
-                        oProducto = String.valueOf(poll_id_2) + "a" + "-" + etProducto.getText().toString();  //Apronax
+                        oProducto = String.valueOf(poll_id_2) + "z" + "-" + etProducto.getText().toString(); //Berocca/Supradyn
                         //pProducto = etProducto.getText().toString();
                     }
 
                 }
-//                else {
-//                    comentNoRecomienda = etComentNoRecomienda.getText().toString();
-//                    long id1 = rgOpt1.getCheckedRadioButtonId();
-//                    if (id1 == -1){
-//                        Toast.makeText(MyActivity,"Debe seleccionar una opción en la pregunta  por que no recomienda apronax?" , Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    else{
-//                        for (int x = 0; x < radioButton1Array.length; x++) {
-//                            if(id1 ==  radioButton1Array[x].getId())  opt1 = poll_id_4.toString() + radioButton1Array[x].getTag();
-//                        }
-//
-//                    }
-//                }
 
 
-                if (cbTienda.isChecked()) {
-                    if(cbTienda.getText().equals("")){
-                        Toast toast;
-                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }else  {
-                        if(tipo.equals("CADENA")) {
-                            if(cadenaruc.equals("INKAFARMA")){
-                                vTienda = 1;
-                                oTienda = String.valueOf(poll_id_2) + "b"; //Dologyna
-
-                            }
-                            if(cadenaruc.equals("Fasa-Mifarma")){
-                                vTienda = 1;
-                                oTienda = String.valueOf(poll_id_2) + "c"; //Iraxen
-
-                            }
-                            if(cadenaruc.equals("ARCANGEL")){
-                                vTienda = 1;
-                                oTienda = String.valueOf(poll_id_2) + "d"; //Sanaprox
-                            }
-
-                            if(cadenaruc.equals("B&S")){
-                                vTienda = 1;
-                                oTienda = String.valueOf(poll_id_2) + "e"; //Maxiflam Forte
-                            }
-                        } else if(tipo.equals("HORIZONTAL")) {
-
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "bo"; //FlogoDistan
-
-                        }
-
-
-                        oTienda = oTienda + "-" +  etTienda.getText().toString();
-                    }
-                }
 
                 if (cbA.isChecked()) {
                     if(etA.getText().equals("")){
@@ -615,7 +560,15 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vA = 1;
-                        oA = String.valueOf(poll_id_2) + "f" + "-" + etA.getText().toString(); //Dolocordralan Extra Fuerte
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oA = String.valueOf(poll_id_2) + "aa" + "-" + etA.getText().toString(); //Aolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oA = String.valueOf(poll_id_2) + "ab" + "-" + etA.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANDEL")) oA = String.valueOf(poll_id_2) + "ac" + "-" + etA.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oA = String.valueOf(poll_id_2) + "ad" + "-" + etA.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oA = String.valueOf(poll_id_2) + "ae" + "-" + etA.getText().toString(); //Migrax
+                        }
+                        pA = etA.getText().toString();
                     }
                 }
                 if (cbB.isChecked()) {
@@ -626,7 +579,14 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vB = 1;
-                        oB = String.valueOf(poll_id_2) + "g"  + "-" + etB.getText().toString(); // Doloflam Extra Fuerte
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oB = String.valueOf(poll_id_2) + "dq" + "-" + etB.getText().toString(); //
+                            if(cadenaruc.equals("Fasa-Mifarma")) oB = String.valueOf(poll_id_2) + "da" + "-" + etB.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANDEL")) oB = String.valueOf(poll_id_2) + "da" + "-" + etB.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oB = String.valueOf(poll_id_2) + "db" + "-" + etB.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oB = String.valueOf(poll_id_2) + "af" + "-" + etB.getText().toString(); //Migrax
+                        }
                         pB = etB.getText().toString();
                     }
 
@@ -639,7 +599,12 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vC = 1;
-                        oC = String.valueOf(poll_id_2) + "h" + "-" + etC.getText().toString(); //Naproxeno
+                        if(tipo.equals("CADENA")) {
+
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oC = String.valueOf(poll_id_2) + "ag" + "-" + etC.getText().toString(); //Migrax
+                        }
                         pC = etC.getText().toString();
                     }
 
@@ -653,10 +618,14 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "bi" + "-" + etD.getText().toString(); //Naproxeno
+                        if(tipo.equals("CADENA")) {
+
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oD = String.valueOf(poll_id_2) + "ah" + "-" + etD.getText().toString(); //Migrax
+                        }
                         pD = etD.getText().toString();
                     }
-
                 }
 
                 if (cbE.isChecked()) {
@@ -667,11 +636,16 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vE = 1;
-                        oE = String.valueOf(poll_id_2) + "bj" + "-" + etE.getText().toString(); //Naproxeno
+                        if(tipo.equals("CADENA")) {
+
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oE = String.valueOf(poll_id_2) + "dc" + "-" + etE.getText().toString(); //Migrax
+                        }
                         pE = etE.getText().toString();
                     }
-
                 }
+
 
                 if (cbF.isChecked()) {
                     if(etF.getText().equals("")){
@@ -682,16 +656,14 @@ public class Apronax extends Activity {
                     }else  {
                         vF = 1;
                         if(tipo.equals("CADENA")) {
-                            oF = String.valueOf(poll_id_2) + "bk" + "-" + etF.getText().toString(); //Naproxeno
-                        } else if(tipo.equals("HORIZONTAL")) {
-                            oF = String.valueOf(poll_id_2) + "bm" + "-" + etF.getText().toString(); //Doloaproxol
-                        }
 
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oF = String.valueOf(poll_id_2) + "de" + "-" + etF.getText().toString(); //Migrax
+                        }
                         pF = etF.getText().toString();
                     }
-
                 }
-
 
                 if (cbG.isChecked()) {
                     if(etG.getText().equals("")){
@@ -702,14 +674,13 @@ public class Apronax extends Activity {
                     }else  {
                         vG = 1;
                         if(tipo.equals("CADENA")) {
-                            oG = String.valueOf(poll_id_2) + "bl" + "-" + etG.getText().toString(); //breflex
-                        } else if(tipo.equals("HORIZONTAL")) {
-                            oG = String.valueOf(poll_id_2) + "bn" + "-" + etG.getText().toString(); //dioxaflex
-                        }
 
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oG = String.valueOf(poll_id_2) + "df" + "-" + etG.getText().toString(); //Migrax
+                        }
                         pG = etG.getText().toString();
                     }
-
                 }
 
 
@@ -721,13 +692,32 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vH = 1;
-                        oH = String.valueOf(poll_id_2) + "ai" + "-" + etH.getText().toString();  //otros
+                        if(tipo.equals("CADENA")) {
+
+
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oH = String.valueOf(poll_id_2) + "dg" + "-" + etH.getText().toString(); //Migrax
+                        }
                         pH = etH.getText().toString();
                     }
                 }
 
-                totalValores = vProducto + vTienda + vA + vB + vC + vD + vE + vF + vG + vH;
-                totalOption = oProducto + "|" + oTienda + "|" + oA + "|" + oB + "|" + oC + "|" + oD + "|" +  oE + "|" +  oF + "|" +  oG + "|" +  oH ;
+
+                if (cbI.isChecked()) {
+                    if(etI.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vI = 1;
+                        oI = String.valueOf(poll_id_2) + "ai" + "-" + etI.getText().toString(); //otros
+                        pI = etI.getText().toString();
+                    }
+                }
+
+                totalValores = vProducto +  vA + vB + vC + vD + vE  + vF + vG + vH + vI;
+                totalOption = oProducto + "|" + oA + "|" + oB + "|" + oC + "|" + oD + "|" + oE + "|" + oF + "|" + oG + "|" + oH + "|" + oI;
 
                 if(is_recomieda==0){
                     if(totalValores==0){
@@ -739,6 +729,7 @@ public class Apronax extends Activity {
                     }
                 }
 
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyActivity);
                 builder.setTitle("Guardar Encuesta");
                 builder.setMessage("Está seguro de guardar todas las encuestas: ");
@@ -747,25 +738,21 @@ public class Apronax extends Activity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         comentario = String.valueOf(et_Comentario.getText()) ;
                         comentarioOtros = String.valueOf(et_ComentarioOtros.getText()) ;
                         new loadPoll71().execute();
                         db.updateProductActive(product_id, 1);
 
+                        ProductScore ps = new ProductScore();
+                        if(is_recomieda==1) {
 
+                            ps = db.getProductScoreForStore(store_id);
+                            int total_products = 0 ;
+                            total_products = 1  + ps.getTotalProducts();
+                            db.updateProductScoreForTotalProducts(store_id,total_products);
+                        }
 
-
-//                        ***************************** inicio modificado ***********************
-//                          ProductScore ps = new ProductScore();
-//                        if(is_recomieda==1) {
-//
-//                            ps = db.getProductScoreForStore(store_id);
-//                            int total_products = 0 ;
-//                            total_products = 1  + ps.getTotalProducts();
-//                            db.updateProductScoreForTotalProducts(store_id,total_products);
-//                        }
-//
-//                      *******************************end ********************************
 //                        if(is_exhibidor==1) {
 //
 //                            ps = db.getProductScoreForStore(store_id);
@@ -777,6 +764,7 @@ public class Apronax extends Activity {
                         List<ProductScore> listProductScore = new ArrayList<ProductScore>();
                         listProductScore = db.getAllProductsScore();
                         Log.d(LOG_TAG, String.valueOf(listProductScore));
+
                     }
                 });
 
@@ -786,11 +774,19 @@ public class Apronax extends Activity {
                         dialog.dismiss();
                     }
                 });
+
                 builder.show();
                 builder.setCancelable(false);
 
+
+
+
             }
         });
+
+
+
+
 
     }
 
@@ -834,7 +830,7 @@ public class Apronax extends Activity {
         //return super.onOptionsItemSelected(item);
     }
 
-//    @Override
+    //    @Override
 //    public boolean onKeyDown(int keyCode, KeyEvent event) {
 //        if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
@@ -878,16 +874,25 @@ public class Apronax extends Activity {
             // TODO Auto-generated method stub
             //cargaTipoPedido();
 
-           if(!InsertAuditPollsProduct(poll_id,0,is_recomieda,comentario)) return false;
-           if(!InsertAuditPollsOtions(poll_id_2,product_id,1,0,0,totalOption,comentarioOtros)) return false;
-            if(is_recomieda==0){
-                //Enviando por defecto estock segun el swich que marco
-                if(!InsertAuditPollsProduct(poll_id_3, 0, stock, "")) return false;
-            } else if(is_recomieda==1) {
-                //Enviando por defecto estock 1
-                if(!InsertAuditPollsProduct(poll_id_3,0,1,"")) return  false;
-            }
+            InsertAuditPollsProduct(String.valueOf(poll_id),"0",String.valueOf(is_recomieda),comentario);
 
+            InsertAuditPollsOtions(String.valueOf(poll_id_2), "0", "0", "");
+            if(is_recomieda==0){
+
+
+                //Enviando por defecto estock segun el swich que marco
+                InsertAuditPollsProduct(String.valueOf(poll_id_3), "0", String.valueOf(stock), "");
+            } else if(is_recomieda==1) {
+
+
+                //Enviando por defecto estock 1
+                InsertAuditPollsProduct(String.valueOf(poll_id_3),"0","1","");
+
+
+            }
+//            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
+//            startActivity(intent);
+//            finish();
             return true;
         }
         /**
@@ -895,132 +900,111 @@ public class Apronax extends Activity {
          * **/
         protected void onPostExecute(Boolean result) {
             // dismiss the dialog once product deleted
-            hidepDialog();
+
             if (result){
                 // loadLoginActivity();
                 //new loadPoll72().execute();
-                //                        ***************************** inicio modificado ***********************
-                         ProductScore ps = new ProductScore();
-                        if(is_recomieda==1) {
-
-                            ps = db.getProductScoreForStore(store_id);
-                            int total_products = 0 ;
-                            total_products = 1  + ps.getTotalProducts();
-                            db.updateProductScoreForTotalProducts(store_id,total_products);
-                        }
-//
-//                      *******************************end ********************************
 
                 finish();
-            } else {
-                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente",Toast.LENGTH_LONG).show();
-            }
 
+            }
         }
     }
 
 
 
-    private boolean InsertAuditPollsProduct(int poll_id, int status , int result,String comentario) {
+
+    private void InsertAuditPollsProduct(String poll_id, String status , String result,String comentario) {
         int success;
         try {
 
-            HashMap<String, String> params = new HashMap<>();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("poll_id", poll_id));
+            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
+            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
+            params.add(new BasicNameValuePair("sino", "1"));
+            params.add(new BasicNameValuePair("coment", String.valueOf(comentario)));
+            params.add(new BasicNameValuePair("result", result));
+            params.add(new BasicNameValuePair("company_id", String.valueOf(GlobalConstant.company_id)));
+            params.add(new BasicNameValuePair("idroute", String.valueOf(rout_id)));
+            params.add(new BasicNameValuePair("idaudit", String.valueOf(audit_id)));
+            params.add(new BasicNameValuePair("status", status));
 
-             params.put("poll_id", String.valueOf(poll_id));
-             params.put("store_id", String.valueOf(store_id));
-             params.put("product_id", String.valueOf(product_id));
-             params.put("sino", "1");
-             params.put("coment", String.valueOf(comentario));
-             params.put("result", String.valueOf(result));
-             params.put("company_id", String.valueOf(GlobalConstant.company_id));
-             params.put("idroute", String.valueOf(rout_id));
-             params.put("idaudit", String.valueOf(audit_id));
-             params.put("status", String.valueOf(status));
 
-
-            JSONParserX jsonParser = new JSONParserX();
+            JSONParser jsonParser = new JSONParser();
             // getting product details by making HTTP request
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPollsProduct" ,"POST", params);
             // check your log for json response
-            if (json == null) {
-                Log.d(LOG_TAG, "Está en nullo");
-                return false;
-            } else{
-                success = json.getInt("success");
-                if (success == 1) {
-                    Log.d(LOG_TAG, "Se insertó registro correctamente");
-                }else{
-                    Log.d(LOG_TAG, "no insertó registro, registro duplicado");
-                    // return json.getString("message");
-                    // return false;
-                }
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            success = json.getInt("success");
+            if (success == 1) {
+                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
+            }else{
+                Log.d(LOG_TAG, json.getString("message"));
+                // return json.getString("message");
             }
-        } catch (Exception e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            Log.d(LOG_TAG, " Error " + Log.getStackTraceString(e));
-            return false;
         }
 
-        return true;
     }
 
 
 
-    private boolean InsertAuditPollsOtions(int poll_id,int product_id, int product_type, int status,int result,String options,String comentario) {
+    private void InsertAuditPollsOtions(String poll_id, String status,String result,String comentario) {
         int success;
         try {
 
-            HashMap<String, String> params = new HashMap<>();
-            params.put("poll_id", String.valueOf(poll_id));
-            params.put("poll_id", String.valueOf(poll_id));
-            params.put("store_id", String.valueOf(store_id));
-            params.put("options", "1");
-            params.put("limits", "0");
-            params.put("media", "0");
-            params.put("coment", "1");
-            params.put("coment_options", "0");
-            params.put("comentario_options", "");
-            params.put("limite", "");
-            params.put("opcion", options);
-            params.put("sino", "0");
-            params.put("product", String.valueOf(product_type));
-            params.put("comentario", String.valueOf(comentario));
-            params.put("result",  String.valueOf(result));
-            params.put("idCompany", String.valueOf(GlobalConstant.company_id));
-            params.put("idRuta", String.valueOf(rout_id));
-            params.put("idAuditoria", String.valueOf(audit_id));
-            params.put("product_id", String.valueOf(product_id));
-            params.put("status",  String.valueOf(status));
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("poll_id", poll_id));
+            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
+
+            params.add(new BasicNameValuePair("options", "1"));
+            params.add(new BasicNameValuePair("limits", "0"));
+
+            params.add(new BasicNameValuePair("media", "0"));
 
 
+            params.add(new BasicNameValuePair("coment", "1"));
+            params.add(new BasicNameValuePair("coment_options", "0"));
+            // params.add(new BasicNameValuePair("coment_options", "0"));
+            params.add(new BasicNameValuePair("comentario_options", ""));
+            params.add(new BasicNameValuePair("limite", ""));
+            params.add(new BasicNameValuePair("opcion", totalOption));
+
+            params.add(new BasicNameValuePair("sino", "0"));
+            params.add(new BasicNameValuePair("product", "1"));
 
 
+            params.add(new BasicNameValuePair("comentario", String.valueOf(comentarioOtros)));
+            params.add(new BasicNameValuePair("result", result));
+            params.add(new BasicNameValuePair("idCompany", String.valueOf(GlobalConstant.company_id)));
+            params.add(new BasicNameValuePair("idRuta", String.valueOf(rout_id)));
+            params.add(new BasicNameValuePair("idAuditoria", String.valueOf(audit_id)));
 
-            JSONParserX jsonParser = new JSONParserX();
+            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
+            params.add(new BasicNameValuePair("status", status));
+
+
+            JSONParser jsonParser = new JSONParser();
             // getting product details by making HTTP request
             //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPolls" ,"POST", params);
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditBayer" ,"POST", params);
             // check your log for json response
-            if (json == null) {
-                Log.d(LOG_TAG, "Está en nullo");
-                return false;
-            } else{
-                success = json.getInt("success");
-                if (success == 1) {
-                    Log.d(LOG_TAG, "Se insertó registro correctamente");
-                }else{
-                    Log.d(LOG_TAG, "no insertó registro, registro duplicado");
-                    // return json.getString("message");
-                    // return false;
-                }
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            success = json.getInt("success");
+            if (success == 1) {
+                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
+            }else{
+                Log.d(LOG_TAG, json.getString("message"));
+                // return json.getString("message");
             }
-        } catch (Exception e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            Log.d(LOG_TAG, " Error " + Log.getStackTraceString(e));
-            return false;
         }
-
-        return true;
     }
 }
+

@@ -40,7 +40,7 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="360dp"
+                    android:layout_height="520dp"
                     android:padding="5dp"
                     android:id="@+id/lyProductos"
                     android:weightSum="1">
@@ -167,6 +167,91 @@
                                 android:layout_toRightOf="@+id/cbC"
                                 />
                     </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Miopres Forte"
+                            android:padding="5dp"
+                            android:id="@+id/cbD" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etD"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbD"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Miodel"
+                            android:padding="5dp"
+                            android:id="@+id/cbE" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etE"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbE"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dolgramin"
+                            android:padding="5dp"
+                            android:id="@+id/cbF" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etF"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbF"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Breflex"
+                            android:padding="5dp"
+                            android:id="@+id/cbG" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/etG"
+                            android:enabled="false"
+                            android:text="0"
+                            android:layout_toRightOf="@+id/cbG"
+                            />
+                    </RelativeLayout>
+
+
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -175,17 +260,17 @@
                                 android:layout_height="wrap_content"
                                 android:text="Otros"
                                 android:padding="5dp"
-                                android:id="@+id/cbD" />
+                                android:id="@+id/cbH" />
                             <EditText
                                 android:layout_width="42dp"
                                 android:layout_height="42dp"
                                 android:inputType="number"
                                 android:ems="10"
-                                android:id="@+id/etD"
+                                android:id="@+id/etH"
                                 android:enabled="false"
                                 android:text="0"
 
-                                android:layout_toRightOf="@+id/cbD"
+                                android:layout_toRightOf="@+id/cbH"
                                 />
                     </RelativeLayout>
 
@@ -230,110 +315,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <!--<LinearLayout-->
-                    <!--android:orientation="vertical"-->
-                    <!--android:layout_width="fill_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/lyNoRecomienda">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:orientation="vertical"-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:padding="5dp">-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                            <!--android:text="¿ Por qué no recomienda apronax?"-->
-                            <!--android:visibility="visible"-->
-                            <!--android:textSize="@dimen/general"-->
-                            <!--/>-->
-
-                    <!--</LinearLayout>-->
-
-                    <!--<LinearLayout-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:padding="5dp"-->
-                        <!--android:id="@+id/lyOpenClose">-->
-
-                        <!--<RadioGroup-->
-                            <!--android:id="@+id/rgOpt1"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:orientation="vertical"-->
-                            <!--android:layout_alignParentLeft="true"-->
-                            <!--android:layout_above="@+id/fbplacename"-->
-                            <!--android:visibility="visible"-->
-                            <!--android:clickable="true">-->
-
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbA"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:tag="a"-->
-                                <!--android:text="No es rentable / no tiene buen margen" />-->
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbB"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text=" La competencia me da premios"-->
-                                <!--android:tag="b"-->
-                                <!--android:enabled="true" />-->
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbC"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:tag="c"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="Se vende solo" />-->
-
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbD"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:tag="d"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="Precio alto al consumidor" />-->
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbE"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:tag="e"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="Necesita receta," />-->
-                            <!--<RadioButton-->
-                                <!--android:id="@+id/rbF"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:tag="f"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="Otros" />-->
-                        <!--</RadioGroup>-->
-
-                    <!--</LinearLayout>-->
-                    <!--<LinearLayout-->
-                        <!--android:orientation="vertical"-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="50dp"-->
-                        <!--&gt;-->
-
-                        <!--<EditText-->
-                            <!--android:layout_width="fill_parent"-->
-                            <!--android:layout_height="fill_parent"-->
-                            <!--android:inputType="textMultiLine"-->
-                            <!--android:ems="10"-->
-                            <!--android:enabled="true"-->
-                            <!--android:visibility="invisible"-->
-                            <!--style="@style/TextLogin"-->
-
-                            <!--android:lines="10"-->
-                            <!--android:scrollHorizontally="false"-->
-                            <!--android:scrollbars="vertical"-->
-                            <!--android:textSize="15sp"-->
-                            <!--android:id="@+id/etComentNoRecomienda" />-->
-                    <!--</LinearLayout>-->
-                <!--</LinearLayout>-->
 
 
 
@@ -409,7 +390,8 @@
                 android:scrollHorizontally="false"
                 android:scrollbars="vertical"
                 android:textSize="15sp"
-                android:id="@+id/etComentario" />
+                android:id="@+id/etComentario"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout

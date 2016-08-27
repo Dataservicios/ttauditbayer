@@ -428,6 +428,18 @@ public class MainActivity extends Activity {
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
+
+        //645 Berocca + Supradyn
+        pd.setIdProduct(645);
+        pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(645);
+        pd.setTypeStore("CADENA");
+        pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
+        db.createPollProductStore(pd);
+
         List<PollProductStore> lispollProductStore =  new ArrayList<PollProductStore>();
         lispollProductStore = db.getAllPollProductStore();
 

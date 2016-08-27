@@ -262,6 +262,12 @@
         </activity>
 
         <activity
+            android:name=".AuditoriaBayer.BeroccaSupradyn"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
+        <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Gynocanesten"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">

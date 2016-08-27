@@ -45,10 +45,10 @@ public class AspirinaForte extends Activity {
     private Switch sw_recomienda, sw_stock ;
     private LinearLayout ly_stock,ly_productos;
     private Button bt_photo, bt_guardar;
-    private EditText et_Comentario, et_ComentarioOtros, etProducto ,etTienda, etA,etB,etC, etD ,etE;;
+    private EditText et_Comentario, et_ComentarioOtros, etProducto , etA,etB,etC, etD ,etE ,etF ,etG ,etH;
     private TextView tv_ComentarioOtros;
     private TextView tv_Pregunta,tvStock;
-    private CheckBox cbProducto, cbTienda , cbA,cbB,cbC,cbD,cbE ;
+    private CheckBox cbProducto,  cbA,cbB,cbC,cbD,cbE,cbF,cbG,cbH ;
 
     private String tipo,cadenaruc,fechaRuta, comentario="" ,comentarioOtros="";
     private Integer user_id, company_id,store_id,rout_id,audit_id, product_id, poll_id, poll_id_2,poll_id_3;
@@ -61,9 +61,9 @@ public class AspirinaForte extends Activity {
 
     String totalOption="";
     int totalValores ;
-    int vProducto=0,vTienda=0,vA=0,vB=0,vC=0,vD=0, vE=0;
-    String oProducto="",oTienda="",oA="",oB="",oC="",oD="",oE="";
-    String pTienda="",pProducto="",pA="",pB="",pC="",pD="",pE="";
+    int vProducto=0,vA=0,vB=0,vC=0,vD=0, vE=0, vF=0, vG=0, vH=0;
+    String oProducto="",oA="",oB="",oC="",oD="",oE="",oF="",oG="",oH="";
+    String pProducto="",pA="",pB="",pC="",pD="",pE="",pF="",pG="",pH="";
 
     private EditText[] editTextArray;
     private CheckBox[] checkBoxArray;
@@ -82,39 +82,51 @@ public class AspirinaForte extends Activity {
         tvStock =(TextView) findViewById(R.id.tvStock);
         sw_stock = (Switch) findViewById(R.id.swStock);
 
-        cbTienda = (CheckBox) findViewById(R.id.cbTienda);
+
         cbProducto = (CheckBox) findViewById(R.id.cbProducto);
         cbA = (CheckBox) findViewById(R.id.cbA);
         cbB = (CheckBox) findViewById(R.id.cbB);
         cbC = (CheckBox) findViewById(R.id.cbC);
         cbD = (CheckBox) findViewById(R.id.cbD);
         cbE = (CheckBox) findViewById(R.id.cbE);
+        cbF = (CheckBox) findViewById(R.id.cbF);
+        cbG = (CheckBox) findViewById(R.id.cbG);
+        cbH = (CheckBox) findViewById(R.id.cbH);
 
-        etTienda = (EditText) findViewById(R.id.etTienda);
+        //etTienda = (EditText) findViewById(R.id.etTienda);
         etProducto = (EditText) findViewById(R.id.etProducto);
         etA = (EditText) findViewById(R.id.etA);
         etB = (EditText) findViewById(R.id.etB);
         etC = (EditText) findViewById(R.id.etC);
         etD = (EditText) findViewById(R.id.etD);
         etE = (EditText) findViewById(R.id.etE);
+        etF = (EditText) findViewById(R.id.etF);
+        etG = (EditText) findViewById(R.id.etG);
+        etH = (EditText) findViewById(R.id.etH);
 
         editTextArray = new EditText[] {
-                (EditText) findViewById(R.id.etTienda),
+
                 (EditText) findViewById(R.id.etProducto),
                 (EditText) findViewById(R.id.etA),
                 (EditText) findViewById(R.id.etB),
                 (EditText) findViewById(R.id.etC),
                 (EditText) findViewById(R.id.etD),
                 (EditText) findViewById(R.id.etE),
+                (EditText) findViewById(R.id.etF),
+                (EditText) findViewById(R.id.etG),
+                (EditText) findViewById(R.id.etH),
         };
         checkBoxArray = new CheckBox[] {
-                (CheckBox) findViewById(R.id.cbTienda),
+
                 (CheckBox) findViewById(R.id.cbProducto),
                 (CheckBox) findViewById(R.id.cbA),
                 (CheckBox) findViewById(R.id.cbB),
                 (CheckBox) findViewById(R.id.cbC),
                 (CheckBox) findViewById(R.id.cbD),
                 (CheckBox) findViewById(R.id.cbE),
+                (CheckBox) findViewById(R.id.cbF),
+                (CheckBox) findViewById(R.id.cbG),
+                (CheckBox) findViewById(R.id.cbH),
         };
 
         ly_stock = (LinearLayout) findViewById(R.id.lyStock);
@@ -144,9 +156,9 @@ public class AspirinaForte extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 443; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 444; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 445; //STOcK
+        poll_id = 483; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 484; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 485; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -171,34 +183,35 @@ public class AspirinaForte extends Activity {
         if(tipo.equals("CADENA")) {
 
             if(cadenaruc.equals("INKAFARMA")){
-                cbTienda.setText("Dolofac");
+                cbE.setText("Dolgramin");
+                cbF.setText("Migratapcin");
+                cbG.setText("Dolofac");
             }
             if(cadenaruc.equals("Fasa-Mifarma")){
-                // cbTienda.setText("Cor Asa 100mg");
-                cbTienda.setEnabled(false);
-                cbTienda.setVisibility(View.INVISIBLE);
+                cbE.setText("Cefadol");
+                cbF.setText("Digravin");
+                cbG.setText("Migralivia");
 
             }
             if(cadenaruc.equals("ARCANGEL")){
-                cbTienda.setText("Mifralivio");
+                cbE.setText("Cefadol");
+                cbF.setText("Digravin");
+                cbG.setText("Miolene");
             }
 
             if(cadenaruc.equals("B&S")){
-                cbTienda.setText("Migrapac");
+                cbE.setText("Cefadol");
+                cbF.setText("Digravin");
+                cbG.setText("Migrapac");
             }
 
-            etTienda.setText("0");
-            etTienda.setEnabled(false);
-            etTienda.setVisibility(View.VISIBLE);
+
 
         } else if(tipo.equals("HORIZONTAL")) {
 
-            cbTienda.setEnabled(false);
-            cbTienda.setVisibility(View.INVISIBLE);
-
-            etTienda.setText("0");
-            etTienda.setEnabled(false);
-            etTienda.setVisibility(View.INVISIBLE);
+            cbE.setText("Migrax");
+            cbF.setText("Migralivia");
+            cbG.setText("Migrodorixina");
         }
 
         cbProducto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -226,20 +239,7 @@ public class AspirinaForte extends Activity {
             }
         });
 
-        cbTienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if ( isChecked )
-                {
-                    etTienda.setText("1");
-                    etTienda.setEnabled(true);
-                    etTienda.requestFocus();
-                } else{
-                    etTienda.setText("0");
-                    etTienda.setEnabled(false);
-                }
-            }
-        });
+
 
         cbA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -302,31 +302,64 @@ public class AspirinaForte extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-
                     etD.setText("1");
                     etD.setEnabled(true);
                     etD.requestFocus();
-
-
                 } else {
                     etD.setText("0");
                     etD.setEnabled(false);
-
-
                 }
-
             }
         });
 
         cbE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if ( isChecked )
-                {
+                if (isChecked) {
                     etE.setText("1");
                     etE.setEnabled(true);
                     etE.requestFocus();
-                    // perform logic
+                } else {
+                    etE.setText("0");
+                    etE.setEnabled(false);
+                }
+            }
+        });
+        cbF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etF.setText("1");
+                    etF.setEnabled(true);
+                    etF.requestFocus();
+                } else {
+                    etF.setText("0");
+                    etF.setEnabled(false);
+                }
+            }
+        });
+        cbG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etG.setText("1");
+                    etG.setEnabled(true);
+                    etG.requestFocus();
+                } else {
+                    etG.setText("0");
+                    etG.setEnabled(false);
+                }
+            }
+        });
+
+        cbH.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if ( isChecked )
+                {
+                    etH.setText("1");
+                    etH.setEnabled(true);
+                    etH.requestFocus();
                     tv_ComentarioOtros.setVisibility(View.VISIBLE);
                     et_ComentarioOtros.setEnabled(true);
                     et_ComentarioOtros.setVisibility(View.VISIBLE);
@@ -335,7 +368,6 @@ public class AspirinaForte extends Activity {
 
                     etE.setText("0");
                     etE.setEnabled(false);
-
                     tv_ComentarioOtros.setVisibility(View.INVISIBLE);
                     et_ComentarioOtros.setEnabled(false);
                     et_ComentarioOtros.setVisibility(View.INVISIBLE);
@@ -344,71 +376,7 @@ public class AspirinaForte extends Activity {
             }
         });
 
-//        cbE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if ( isChecked )
-//                {
-//                    etE.setText("1");
-//                    etE.setEnabled(true);
-//                    etE.requestFocus();
-//                    // perform logic
-//                    tv_ComentarioOtros.setVisibility(View.VISIBLE);
-//                    et_ComentarioOtros.setEnabled(true);
-//                    et_ComentarioOtros.setVisibility(View.VISIBLE);
-//
-//                } else{
-//
-//                    etE.setText("0");
-//                    etE.setEnabled(false);
-//
-//                    tv_ComentarioOtros.setVisibility(View.INVISIBLE);
-//                    et_ComentarioOtros.setEnabled(false);
-//                    et_ComentarioOtros.setVisibility(View.INVISIBLE);
-//                }
-//
-//            }
-//        });
 
-
-
-//        sw_recomienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    is_recomieda = 1;
-//                    ly_stock.setEnabled(false);
-//                    ly_stock.setVisibility(View.INVISIBLE);
-//
-//                    ly_productos.setVisibility(View.INVISIBLE);
-//                    ly_productos.setEnabled(false);
-//
-//                    cbTienda.setChecked(false);
-//                    cbA.setChecked(false);
-//                    cbB.setChecked(false);
-//                    cbC.setChecked(false);
-//                    cbD.setChecked(false);
-//                    cbE.setChecked(false);
-//
-//                } else {
-//                    is_recomieda = 0;
-//                    //if(product_id == 534){
-//                    ly_stock.setEnabled(true);
-//                    ly_stock.setVisibility(View.VISIBLE);
-//                    //}
-//
-//                    ly_productos.setVisibility(View.VISIBLE);
-//                    ly_productos.setEnabled(true);
-//
-//                    cbTienda.setChecked(false);
-//                    cbA.setChecked(false);
-//                    cbB.setChecked(false);
-//                    cbC.setChecked(false);
-//                    cbD.setChecked(false);
-//                    cbE.setChecked(false);
-//                }
-//            }
-//        });
 
 
 
@@ -496,44 +464,11 @@ public class AspirinaForte extends Activity {
                     }else if (prioridad == 1 ||prioridad == 2 || prioridad == 3) {
                         is_recomieda=1;
                         vProducto = 1;
-                        oProducto = String.valueOf(poll_id_2) + "r" + "-" + etProducto.getText().toString();
+                        oProducto = String.valueOf(poll_id_2) + "p" + "-" + etProducto.getText().toString(); //Aspirina Forte
                         //pProducto = etProducto.getText().toString();
                     }
 
                 }
-
-                if (cbTienda.isChecked()) {
-                    if(cbTienda.getText().equals("")){
-                        Toast toast;
-                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }else  {
-                        if(cadenaruc.equals("INKAFARMA")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "k";
-                        }
-//                    if(cadenaruc.equals("MIFARMA")){
-//                        vTienda = 1;
-//                        oTienda = String.valueOf(poll_id_2) + "j";
-//
-//                    }
-                        if(cadenaruc.equals("ARCANGEL")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "l";
-                        }
-
-                        if(cadenaruc.equals("B&S")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "m";
-                        }
-
-                        oTienda = oTienda + "-" +  etTienda.getText().toString();
-                    }
-                }
-
-
-
 
 
                 if (cbA.isChecked()) {
@@ -544,7 +479,7 @@ public class AspirinaForte extends Activity {
                         return;
                     }else  {
                         vA = 1;
-                        oA = String.valueOf(poll_id_2) + "n" + "-" + etA.getText().toString();
+                        oA = String.valueOf(poll_id_2) + "l" + "-" + etA.getText().toString(); //Panadol
                     }
 
                 }
@@ -556,7 +491,7 @@ public class AspirinaForte extends Activity {
                         return;
                     }else  {
                         vB = 1;
-                        oB = String.valueOf(poll_id_2) + "o"  + "-" + etB.getText().toString();
+                        oB = String.valueOf(poll_id_2) + "m"  + "-" + etB.getText().toString(); //Panadol Forte
                         pB = etB.getText().toString();
                     }
                 }
@@ -568,7 +503,7 @@ public class AspirinaForte extends Activity {
                         return;
                     }else  {
                         vC = 1;
-                        oC = String.valueOf(poll_id_2) + "p" + "-" + etC.getText().toString();
+                        oC = String.valueOf(poll_id_2) + "n" + "-" + etC.getText().toString(); //Kitadol
                         pC = etC.getText().toString();
                     }
                 }
@@ -581,7 +516,7 @@ public class AspirinaForte extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "q" + "-" + etD.getText().toString();
+                        oD = String.valueOf(poll_id_2) + "o" + "-" + etD.getText().toString(); //Acido Acetilsalicilico
                         pD = etD.getText().toString();
                     }
                 }
@@ -594,15 +529,75 @@ public class AspirinaForte extends Activity {
                         return;
                     }else  {
                         vE = 1;
-                        oE = String.valueOf(poll_id_2) + "ab" + "-" + etE.getText().toString();
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "cq" + "-" + etE.getText().toString(); //Dolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANGEL")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oE = String.valueOf(poll_id_2) + "cu" + "-" + etE.getText().toString(); //Migrax
+                        }
                         pE = etE.getText().toString();
+                    }
+                }
+
+                if (cbF.isChecked()) {
+                    if(etF.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vF = 1;
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oF = String.valueOf(poll_id_2) + "cw" + "-" + etF.getText().toString(); //Dolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANGEL")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oF = String.valueOf(poll_id_2) + "ct" + "-" + etF.getText().toString(); //Migrax
+                        }
+                        pF = etF.getText().toString();
+                    }
+                }
+
+                if (cbG.isChecked()) {
+                    if(etG.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vG = 1;
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oG = String.valueOf(poll_id_2) + "i" + "-" + etG.getText().toString(); //Dolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oG = String.valueOf(poll_id_2) + "ct" + "-" + etG.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANGEL")) oG = String.valueOf(poll_id_2) + "j" + "-" + etG.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oG = String.valueOf(poll_id_2) + "k" + "-" + etG.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oG = String.valueOf(poll_id_2) + "cv" + "-" + etG.getText().toString(); //Migrax
+                        }
+                        pG = etG.getText().toString();
+                    }
+                }
+
+                if (cbH.isChecked()) {
+                    if(etH.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vH = 1;
+                        oH = String.valueOf(poll_id_2) + "ai" + "-" + etH.getText().toString(); //otros
+                        pH = etH.getText().toString();
                     }
                 }
 
 
 
-                totalValores = vTienda + vA + vB + vC + vD + vE ;
-                totalOption = oProducto + "|" + oTienda + "|" + oA + "|" + oB + "|" + oC + "|" + oD + "|" + oE;
+                totalValores = vProducto + vA + vB + vC + vD + vE + vF+ vG+ vH;
+                totalOption = oProducto + "|"  + oA + "|" + oB + "|" + oC + "|" + oD + "|" + oE+ "|" + oF+ "|" + oG+ "|" + oH;
 
                 if(is_recomieda==0){
                     if(totalValores==0){

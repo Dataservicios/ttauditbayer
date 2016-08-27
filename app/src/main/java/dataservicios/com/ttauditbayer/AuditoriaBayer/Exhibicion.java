@@ -126,7 +126,8 @@ public class Exhibicion extends Activity{
         fechaRuta = bundle.getString("fechaRuta");
         audit_id = bundle.getInt("idAuditoria");
         product_id =bundle.getInt("product_id");
-        poll_id = 442 ;
+
+        poll_id = 482 ; //¿Tiene exhibición Bayer?
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -284,8 +285,6 @@ public class Exhibicion extends Activity{
                 }
 
 
-
-
                 if (cbA.isChecked()) {
                     vA = 1;
                     oA = String.valueOf(poll_id) + "a";
@@ -314,7 +313,6 @@ public class Exhibicion extends Activity{
                     vG = 1;
                     oG = String.valueOf(poll_id) + "g";
                 }
-
                 //Se repite la "k" por que es otros para SI
                 if (cbH.isChecked()) {
                     vH = 1;

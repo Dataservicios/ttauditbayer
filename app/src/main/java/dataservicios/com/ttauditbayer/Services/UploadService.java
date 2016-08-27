@@ -170,9 +170,9 @@ public class UploadService extends IntentService {
         bbicon= BitmapFactory.decodeFile(String.valueOf(file));
         Bitmap scaledBitmap;
         if(Build.MODEL.equals("MotoG3")){
-             scaledBitmap = rotateImage(scaleDown(bbicon, 450 , true),0);
+             scaledBitmap = rotateImage(scaleDown(bbicon, 410 , true),0);
         } else {
-             scaledBitmap = rotateImage(scaleDown(bbicon, 450 , true),90);
+             scaledBitmap = rotateImage(scaleDown(bbicon, 410 , true),90);
         }
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -231,6 +231,7 @@ public class UploadService extends IntentService {
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return  false;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

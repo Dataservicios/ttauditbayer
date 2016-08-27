@@ -50,10 +50,10 @@ public class Redoxon extends Activity {
     private Switch sw_recomienda, sw_stock ;
     private LinearLayout ly_stock,ly_productos;
     private Button bt_photo, bt_guardar;
-    private EditText et_Comentario, et_ComentarioOtros, etProducto ,etTienda, etA,etB,etC, etD ,etE;;
+    private EditText et_Comentario, et_ComentarioOtros, etProducto , etA,etB,etC, etD ,etE,etF;
     private TextView tv_ComentarioOtros;
     private TextView tv_Pregunta,tvStock;
-    private CheckBox cbProducto, cbTienda , cbA,cbB,cbC,cbD,cbE ;
+    private CheckBox cbProducto , cbA,cbB,cbC,cbD,cbE,cbF ;
 
     private String tipo,cadenaruc,fechaRuta, comentario="" ,comentarioOtros="";
     private Integer user_id, company_id,store_id,rout_id,audit_id, product_id, poll_id, poll_id_2,poll_id_3;
@@ -66,9 +66,9 @@ public class Redoxon extends Activity {
 
     String totalOption="";
     int totalValores ;
-    int vProducto=0,vTienda=0,vA=0,vB=0,vC=0,vD=0, vE=0;
-    String oProducto="",oTienda="",oA="",oB="",oC="",oD="",oE="";
-    String pTienda="",pProducto="",pA="",pB="",pC="",pD="",pE="";
+    int vProducto=0,vA=0,vB=0,vC=0,vD=0, vE=0, vF=0;
+    String oProducto="", oA="",oB="",oC="",oD="",oE="",oF="";
+    String  pProducto="",pA="",pB="",pC="",pD="",pE="",pF="";
 
     private EditText[] editTextArray;
     private CheckBox[] checkBoxArray;
@@ -84,37 +84,43 @@ public class Redoxon extends Activity {
         tvStock =(TextView) findViewById(R.id.tvStock);
         sw_stock = (Switch) findViewById(R.id.swStock);
 
-        cbTienda = (CheckBox) findViewById(R.id.cbTienda);
+
         cbProducto = (CheckBox) findViewById(R.id.cbProducto);
         cbA = (CheckBox) findViewById(R.id.cbA);
         cbB = (CheckBox) findViewById(R.id.cbB);
         cbC = (CheckBox) findViewById(R.id.cbC);
         cbD = (CheckBox) findViewById(R.id.cbD);
-        //cbE = (CheckBox) findViewById(R.id.cbE);
+        cbE = (CheckBox) findViewById(R.id.cbE);
+        cbF = (CheckBox) findViewById(R.id.cbF);
 
-        etTienda = (EditText) findViewById(R.id.etTienda);
+
         etProducto = (EditText) findViewById(R.id.etProducto);
         etA = (EditText) findViewById(R.id.etA);
         etB = (EditText) findViewById(R.id.etB);
         etC = (EditText) findViewById(R.id.etC);
         etD = (EditText) findViewById(R.id.etD);
-        // etE = (EditText) findViewById(R.id.etE);
+         etE = (EditText) findViewById(R.id.etE);
+         etF = (EditText) findViewById(R.id.etF);
 
         editTextArray = new EditText[] {
-                (EditText) findViewById(R.id.etTienda),
+
                 (EditText) findViewById(R.id.etProducto),
                 (EditText) findViewById(R.id.etA),
                 (EditText) findViewById(R.id.etB),
                 (EditText) findViewById(R.id.etC),
                 (EditText) findViewById(R.id.etD),
+                (EditText) findViewById(R.id.etE),
+                (EditText) findViewById(R.id.etF),
         };
         checkBoxArray = new CheckBox[] {
-                (CheckBox) findViewById(R.id.cbTienda),
+
                 (CheckBox) findViewById(R.id.cbProducto),
                 (CheckBox) findViewById(R.id.cbA),
                 (CheckBox) findViewById(R.id.cbB),
                 (CheckBox) findViewById(R.id.cbC),
                 (CheckBox) findViewById(R.id.cbD),
+                (CheckBox) findViewById(R.id.cbE),
+                (CheckBox) findViewById(R.id.cbF),
         };
 
         ly_stock = (LinearLayout) findViewById(R.id.lyStock);
@@ -144,9 +150,9 @@ public class Redoxon extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 443; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 444; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 445; //STOcK
+        poll_id = 483; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 484; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 485; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -171,33 +177,42 @@ public class Redoxon extends Activity {
         if(tipo.equals("CADENA")) {
 
             if(cadenaruc.equals("INKAFARMA")){
-                cbTienda.setText("Mi vic");
+                cbA.setText("Easylife");
+                cbB.setText("Sunlife");
+                cbC.setText("Redoxvit");
+                cbD.setText("Easy Vit C");
+                cbE.setText("Mi Vit C");
             }
             if(cadenaruc.equals("Fasa-Mifarma")){
-                cbTienda.setText("Redoxin");
-
-
+                cbA.setText("Easylife");
+                cbB.setText("Sunlife");
+                cbC.setText("Redoxvit");
+                cbD.setText("Redozinc");
+                cbE.setText(" Vitamina C");
             }
             if(cadenaruc.equals("ARCANGEL")){
-                cbTienda.setText("Efervit -C");
+                cbA.setText("Easylife");
+                cbB.setText("Sunlife");
+                cbC.setText("Redoxvit");
+                cbD.setText("Efervit-C");
+                cbE.setText("Sunvit");
             }
 
             if(cadenaruc.equals("B&S")){
-                cbTienda.setText("Redo-C");
+                cbA.setText("Easylife");
+                cbB.setText("Sunlife");
+                cbC.setText("Redoxvit");
+                cbD.setText("Redomax");
+                cbE.setText("Sunvit");
             }
-
-            etTienda.setText("0");
-            etTienda.setEnabled(false);
-            etTienda.setVisibility(View.VISIBLE);
 
         } else if(tipo.equals("HORIZONTAL")) {
 
-            cbTienda.setEnabled(false);
-            cbTienda.setVisibility(View.INVISIBLE);
-
-            etTienda.setText("0");
-            etTienda.setEnabled(false);
-            etTienda.setVisibility(View.INVISIBLE);
+            cbA.setText("Genfar");
+            cbB.setText("Efer-C");
+            cbC.setText("Redoxvit");
+            cbD.setText("Redozinc");
+            cbE.setText("Efervit-C");
         }
 
         cbProducto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -225,20 +240,7 @@ public class Redoxon extends Activity {
             }
         });
 
-        cbTienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if ( isChecked )
-                {
-                    etTienda.setText("1");
-                    etTienda.setEnabled(true);
-                    etTienda.requestFocus();
-                } else{
-                    etTienda.setText("0");
-                    etTienda.setEnabled(false);
-                }
-            }
-        });
+
 
         cbA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -283,28 +285,44 @@ public class Redoxon extends Activity {
             }
         });
 
-        cbC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    etC.setText("1");
-                    etC.setEnabled(true);
-                    etC.requestFocus();
+                    etD.setText("1");
+                    etD.setEnabled(true);
+                    etD.requestFocus();
                 } else {
-                    etC.setText("0");
-                    etC.setEnabled(false);
+                    etD.setText("0");
+                    etD.setEnabled(false);
                 }
             }
         });
 
-        cbD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etE.setText("1");
+                    etE.setEnabled(true);
+                    etE.requestFocus();
+                } else {
+                    etE.setText("0");
+                    etE.setEnabled(false);
+                }
+            }
+        });
+
+
+
+        cbF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if ( isChecked )
                 {
-                    etD.setText("1");
-                    etD.setEnabled(true);
-                    etD.requestFocus();
+                    etF.setText("1");
+                    etF.setEnabled(true);
+                    etF.requestFocus();
                     // perform logic
                     tv_ComentarioOtros.setVisibility(View.VISIBLE);
                     et_ComentarioOtros.setEnabled(true);
@@ -312,8 +330,8 @@ public class Redoxon extends Activity {
 
                 } else{
 
-                    etD.setText("0");
-                    etD.setEnabled(false);
+                    etF.setText("0");
+                    etF.setEnabled(false);
 
                     tv_ComentarioOtros.setVisibility(View.INVISIBLE);
                     et_ComentarioOtros.setEnabled(false);
@@ -397,41 +415,13 @@ public class Redoxon extends Activity {
                     }else if (prioridad == 1 ||prioridad == 2 || prioridad == 3) {
                         is_recomieda=1;
                         vProducto = 1;
-                        oProducto = String.valueOf(poll_id_2) + "s" + "-" + etProducto.getText().toString();
+                        oProducto = String.valueOf(poll_id_2) + "q" + "-" + etProducto.getText().toString();
                         //pProducto = etProducto.getText().toString();
                     }
 
                 }
 
-                if (cbTienda.isChecked()) {
-                    if(cbTienda.getText().equals("")){
-                        Toast toast;
-                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }else  {
-                        if(cadenaruc.equals("INKAFARMA")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "t";
-                        }
-                    if(cadenaruc.equals("Fasa-Mifarma")){
-                        vTienda = 1;
-                        oTienda = String.valueOf(poll_id_2) + "u";
 
-                    }
-                        if(cadenaruc.equals("ARCANGEL")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "w";
-                        }
-
-                        if(cadenaruc.equals("B&S")){
-                            vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "x";
-                        }
-
-                        oTienda = oTienda + "-" +  etTienda.getText().toString();
-                    }
-                }
 
                 if (cbA.isChecked()) {
                     if(etA.getText().equals("")){
@@ -441,7 +431,12 @@ public class Redoxon extends Activity {
                         return;
                     }else  {
                         vA = 1;
-                        oA = String.valueOf(poll_id_2) + "y" + "-" + etA.getText().toString();
+                        if(tipo.equals("CADENA")) {
+                            oA = String.valueOf(poll_id_2) + "dh" + "-" + etA.getText().toString(); //Easylife
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oA = String.valueOf(poll_id_2) + "w" + "-" + etA.getText().toString(); //Genfar
+                        }
+                        pA = etA.getText().toString();
                     }
 
                 }
@@ -453,7 +448,11 @@ public class Redoxon extends Activity {
                         return;
                     }else  {
                         vB = 1;
-                        oB = String.valueOf(poll_id_2) + "z"  + "-" + etB.getText().toString();
+                        if(tipo.equals("CADENA")) {
+                            oB = String.valueOf(poll_id_2) + "di" + "-" + etB.getText().toString(); //Sunlife
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oB = String.valueOf(poll_id_2) + "dj" + "-" + etB.getText().toString(); //Efer-C
+                        }
                         pB = etB.getText().toString();
                     }
                 }
@@ -465,7 +464,7 @@ public class Redoxon extends Activity {
                         return;
                     }else  {
                         vC = 1;
-                        oC = String.valueOf(poll_id_2) + "aa" + "-" + etC.getText().toString();
+                        oC = String.valueOf(poll_id_2) + "dk" + "-" + etC.getText().toString(); //dk
                         pC = etC.getText().toString();
                     }
                 }
@@ -478,28 +477,55 @@ public class Redoxon extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "ab" + "-" + etD.getText().toString();
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oD = String.valueOf(poll_id_2) + "dl" + "-" + etD.getText().toString(); //Dolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oD = String.valueOf(poll_id_2) + "dn" + "-" + etD.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANDEL")) oD = String.valueOf(poll_id_2) + "t" + "-" + etD.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oD = String.valueOf(poll_id_2) + "dm" + "-" + etD.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oD = String.valueOf(poll_id_2) + "dn" + "-" + etD.getText().toString(); //Migrax
+                        }
                         pD = etD.getText().toString();
                     }
                 }
 
-//                if (cbE.isChecked()) {
-//                    if(etE.getText().equals("")){
-//                        Toast toast;
-//                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
-//                        toast.show();
-//                        return;
-//                    }else  {
-//                        vE = 1;
-//                        oE = String.valueOf(poll_id_2) + "ag" + "-" + etE.getText().toString();
-//                        pE = etE.getText().toString();
-//                    }
-//                }
+                if (cbE.isChecked()) {
+                    if(etE.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vE = 1;
+                        if(tipo.equals("CADENA")) {
+                            if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "r" + "-" + etE.getText().toString(); //Dolgramin
+                            if(cadenaruc.equals("Fasa-Mifarma")) oE = String.valueOf(poll_id_2) + "do" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("ARCANDEL")) oE = String.valueOf(poll_id_2) + "dp" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("B&S")) oE = String.valueOf(poll_id_2) + "dp" + "-" + etE.getText().toString(); //Cefadol
+                        } else if(tipo.equals("HORIZONTAL")) {
+                            oE = String.valueOf(poll_id_2) + "t" + "-" + etE.getText().toString(); //Migrax
+                        }
+                        pE = etE.getText().toString();
+                    }
+                }
+
+                if (cbF.isChecked()) {
+                    if(etF.getText().equals("")){
+                        Toast toast;
+                        toast = Toast.makeText(MyActivity, "Debe ingresar un valor numérico", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }else  {
+                        vF = 1;
+                        oF = String.valueOf(poll_id_2) + "ai" + "-" + etF.getText().toString(); //Otros
+                        pF = etD.getText().toString();
+                    }
+                }
 
 
 
-                totalValores = vTienda + vA + vB + vC + vD + vE ;
-                totalOption = oProducto + "|" + oTienda + "|" + oA + "|" + oB + "|" + oC + "|" + oD + "|" + oE;
+                totalValores = vProducto + vA + vB + vC + vD + vE + vF;
+                totalOption = oProducto + "|" +  oA + "|" + oB + "|" + oC + "|" + oD + "|" + oE + "|" + oF;
 
                 if(is_recomieda==0){
                     if(totalValores==0){
