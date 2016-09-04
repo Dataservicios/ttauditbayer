@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -186,6 +185,22 @@ public class Product extends Activity {
         bt_finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                int totalItems=listView.getAdapter().getCount();
+                String[] items = new String[totalItems];
+                for(int i = 0; i < totalItems; i++){
+                    items[i] = listView.getAdapter().getItem(i).toString();
+                    dataservicios.com.ttauditbayer.Model.Product pd  =  new dataservicios.com.ttauditbayer.Model.Product();
+                    pd = (dataservicios.com.ttauditbayer.Model.Product) adapter.getItem(i);
+
+                    if(pd.getActive()==0) {
+
+                        String nombre = pd.getName();
+                        Toast.makeText(MyActivity,"Está pendiente para auditar " + nombre ,Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyActivity);
                 builder.setTitle("Finalizar");
