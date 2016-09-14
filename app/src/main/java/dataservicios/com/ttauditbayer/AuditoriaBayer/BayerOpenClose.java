@@ -87,7 +87,7 @@ public class BayerOpenClose extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 481; //¿Se encuentra abierto el establecimiento?
+        poll_id = 518; //¿Se encuentra abierto el establecimiento?
 
 
         pDialog = new ProgressDialog(MyActivity);

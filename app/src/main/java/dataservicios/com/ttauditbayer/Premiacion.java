@@ -76,7 +76,7 @@ public class Premiacion extends Activity {
         Bundle bundle = getIntent().getExtras();
         store_id = bundle.getInt("store_id");
         road_id = bundle.getInt("road_id");
-        poll_id = 486; //¿Recibio Premio? o acepto premio
+        poll_id = 523; //¿Recibio Premio? o acepto premio
         audit_id = 14;
         db =  new DatabaseHelper(MyActivity);
 

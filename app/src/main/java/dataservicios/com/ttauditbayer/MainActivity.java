@@ -320,15 +320,48 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(534);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("Tengo dolor en la espalda, me duele y siento que está inflamado ¿Qué me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(534);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Tengo dolor en la espalda, me duele y siento que está inflamado ¿Qué me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(534);
+        pd.setTypeStore("MC");
+        pd.setQuestion("Tengo dolor en la espalda, me duele y siento que está inflamado ¿Qué me recomiendas?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(534);
         pd.setTypeStore("CADENA");
         pd.setQuestion("¿Tengo una lesión en la pierna por jugar futbol, que pastilla me recomiendas que me desinflame?");
         db.createPollProductStore(pd);
 
         //535 ASPIRINA 500
+
         pd.setIdProduct(535);
         pd.setTypeStore("HORIZONTAL");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
+
+        pd.setIdProduct(535);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(535);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(535);
+        pd.setTypeStore("MC");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
 
         pd.setIdProduct(535);
         pd.setTypeStore("CADENA");
@@ -341,6 +374,25 @@ public class MainActivity extends Activity {
         pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
         db.createPollProductStore(pd);
 
+
+        pd.setIdProduct(537);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(537);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(537);
+        pd.setTypeStore("MC");
+        pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
+        db.createPollProductStore(pd);
+
+
         pd.setIdProduct(537);
         pd.setTypeStore("CADENA");
         pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
@@ -350,6 +402,21 @@ public class MainActivity extends Activity {
         //536 Supradyn
         pd.setIdProduct(536);
         pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(536);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(536);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(536);
+        pd.setTypeStore("MC");
         pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -366,13 +433,45 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(539);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(539);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(539);
+        pd.setTypeStore("MC");
+        pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(539);
         pd.setTypeStore("CADENA");
         pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
         db.createPollProductStore(pd);
 
         // 540 Berocca
+
         pd.setIdProduct(540);
         pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(540);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(540);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(540);
+        pd.setTypeStore("MC");
         pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
         db.createPollProductStore(pd);
 
@@ -383,8 +482,24 @@ public class MainActivity extends Activity {
 
 
         //538 ASPIRINA 100
+
         pd.setIdProduct(538);
         pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(538);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(538);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(538);
+        pd.setTypeStore("MC");
         pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
         db.createPollProductStore(pd);
 
@@ -395,8 +510,27 @@ public class MainActivity extends Activity {
 
 
         //640 BEPANTHEN CREMA X 30
+
         pd.setIdProduct(640);
         pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(640);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(640);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(640);
+        pd.setTypeStore("MC");
         pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
         db.createPollProductStore(pd);
 
@@ -406,10 +540,31 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         //642 Supradyn Pro natal
+
         pd.setIdProduct(642);
         pd.setTypeStore("HORIZONTAL");
         pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
         db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(642);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(642);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(642);
+        pd.setTypeStore("MC");
+        pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
+        db.createPollProductStore(pd);
+
+
 
         pd.setIdProduct(642);
         pd.setTypeStore("CADENA");
@@ -424,14 +579,47 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(644);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(644);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(644);
+        pd.setTypeStore("MC");
+        pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(644);
         pd.setTypeStore("CADENA");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
 
         //645 Berocca + Supradyn
+
+
         pd.setIdProduct(645);
         pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(645);
+        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(645);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
+        db.createPollProductStore(pd);
+
+        pd.setIdProduct(645);
+        pd.setTypeStore("MC");
         pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
         db.createPollProductStore(pd);
 

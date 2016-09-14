@@ -127,7 +127,7 @@ public class Exhibicion extends Activity{
         audit_id = bundle.getInt("idAuditoria");
         product_id =bundle.getInt("product_id");
 
-        poll_id = 482 ; //¿Tiene exhibición Bayer?
+        poll_id = 519 ; //¿Tiene exhibición Bayer?
 
 
         pDialog = new ProgressDialog(MyActivity);

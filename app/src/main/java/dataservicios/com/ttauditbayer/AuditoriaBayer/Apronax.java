@@ -199,9 +199,9 @@ public class Apronax extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 483; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 484; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 485; //STOcK
+        poll_id = 520; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 521; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 522; //STOcK
 
        // poll_id_4 = 200; //¿POR QUÉ NO RECOMIENDA APRONAX?
 
@@ -231,7 +231,7 @@ public class Apronax extends Activity {
             if(cadenaruc.equals("INKAFARMA")){
                 cbTienda.setText("Dologyna");
             }
-            if(cadenaruc.equals("Fasa-Mifarma")){
+            if(cadenaruc.equals("INKAFARMA")){
                 cbTienda.setText("Iraxen");
 
             }
@@ -247,7 +247,7 @@ public class Apronax extends Activity {
 //            etTienda.setEnabled(false);
 //            etTienda.setVisibility(View.VISIBLE);
 
-        } else if(tipo.equals("HORIZONTAL")) {
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR") ) {
 
 //            cbTienda.setEnabled(false);
 //            cbTienda.setVisibility(View.INVISIBLE);
@@ -581,7 +581,7 @@ public class Apronax extends Activity {
                                 oTienda = String.valueOf(poll_id_2) + "b"; //Dologyna
 
                             }
-                            if(cadenaruc.equals("Fasa-Mifarma")){
+                            if(cadenaruc.equals("INKAFARMA")){
                                 vTienda = 1;
                                 oTienda = String.valueOf(poll_id_2) + "c"; //Iraxen
 
@@ -595,7 +595,7 @@ public class Apronax extends Activity {
                                 vTienda = 1;
                                 oTienda = String.valueOf(poll_id_2) + "e"; //Maxiflam Forte
                             }
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
 
                             vTienda = 1;
                             oTienda = String.valueOf(poll_id_2) + "bo"; //FlogoDistan
@@ -683,7 +683,7 @@ public class Apronax extends Activity {
                         vF = 1;
                         if(tipo.equals("CADENA")) {
                             oF = String.valueOf(poll_id_2) + "bk" + "-" + etF.getText().toString(); //Naproxeno
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
                             oF = String.valueOf(poll_id_2) + "bm" + "-" + etF.getText().toString(); //Doloaproxol
                         }
 
@@ -703,7 +703,7 @@ public class Apronax extends Activity {
                         vG = 1;
                         if(tipo.equals("CADENA")) {
                             oG = String.valueOf(poll_id_2) + "bl" + "-" + etG.getText().toString(); //breflex
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")  || tipo.equals("SUBDISTRIBUIDOR")) {
                             oG = String.valueOf(poll_id_2) + "bn" + "-" + etG.getText().toString(); //dioxaflex
                         }
 

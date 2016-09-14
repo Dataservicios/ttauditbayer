@@ -156,9 +156,9 @@ public class AspirinaForte extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 483; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 484; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 485; //STOcK
+        poll_id = 520; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 521; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 522; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -187,7 +187,7 @@ public class AspirinaForte extends Activity {
                 cbF.setText("Migratapcin");
                 cbG.setText("Dolofac");
             }
-            if(cadenaruc.equals("Fasa-Mifarma")){
+            if(cadenaruc.equals("INKAFARMA")){
                 cbE.setText("Cefadol");
                 cbF.setText("Digravin");
                 cbG.setText("Migralivia");
@@ -207,7 +207,7 @@ public class AspirinaForte extends Activity {
 
 
 
-        } else if(tipo.equals("HORIZONTAL")) {
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
 
             cbE.setText("Migrax");
             cbF.setText("Migralivia");
@@ -531,10 +531,10 @@ public class AspirinaForte extends Activity {
                         vE = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "cq" + "-" + etE.getText().toString(); //Dolgramin
-                            if(cadenaruc.equals("Fasa-Mifarma")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oE = String.valueOf(poll_id_2) + "cr" + "-" + etE.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
                             oE = String.valueOf(poll_id_2) + "cu" + "-" + etE.getText().toString(); //Migrax
                         }
                         pE = etE.getText().toString();
@@ -551,10 +551,10 @@ public class AspirinaForte extends Activity {
                         vF = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oF = String.valueOf(poll_id_2) + "cw" + "-" + etF.getText().toString(); //Dolgramin
-                            if(cadenaruc.equals("Fasa-Mifarma")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("INKAFARMA")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oF = String.valueOf(poll_id_2) + "cs" + "-" + etF.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
                             oF = String.valueOf(poll_id_2) + "ct" + "-" + etF.getText().toString(); //Migrax
                         }
                         pF = etF.getText().toString();
@@ -571,10 +571,10 @@ public class AspirinaForte extends Activity {
                         vG = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oG = String.valueOf(poll_id_2) + "i" + "-" + etG.getText().toString(); //Dolgramin
-                            if(cadenaruc.equals("Fasa-Mifarma")) oG = String.valueOf(poll_id_2) + "ct" + "-" + etG.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("INKAFARMA")) oG = String.valueOf(poll_id_2) + "ct" + "-" + etG.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oG = String.valueOf(poll_id_2) + "j" + "-" + etG.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oG = String.valueOf(poll_id_2) + "k" + "-" + etG.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
                             oG = String.valueOf(poll_id_2) + "cv" + "-" + etG.getText().toString(); //Migrax
                         }
                         pG = etG.getText().toString();

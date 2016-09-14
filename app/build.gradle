@@ -8,8 +8,8 @@ android {
         applicationId "dataservicios.com.ttauditbayer"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 37
-        versionName "5.9"
+        versionCode 40
+        versionName "6.2"
         multiDexEnabled true
     }
     buildTypes {

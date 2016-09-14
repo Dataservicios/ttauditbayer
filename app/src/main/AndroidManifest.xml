@@ -30,17 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".AuditoriaBayer.Apronax275"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/AppThemeAdminPanel">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
         <activity
             android:name="dataservicios.com.ttauditbayer.LoginActivity"
             android:screenOrientation="portrait"
@@ -63,18 +52,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-        <!--android:name="dataservicios.com.ttauditbayer.ListAgenteActivity"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:label="Mis Agentes"-->
-        <!--android:theme="@style/AppThemeAdminPanel"-->
 
-        <!-->-->
-        <!--<intent-filter>-->
-        <!--<action android:name="dataservicios.com.ttauditbayer.LISTGENTE" />-->
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
         <activity
             android:name="dataservicios.com.ttauditbayer.PanelAdmin"
             android:screenOrientation="portrait"
@@ -137,19 +115,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <!--<activity-->
-            <!--android:name="dataservicios.com.ttauditbayer.AditoriaColgate.DetailPublicity"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:label="Presencia de Material Publicitario"-->
-            <!--android:theme="@style/AppThemeAdminPanel"-->
-            <!-->-->
-            <!--<intent-filter>-->
-                <!--<action android:name="dataservicios.com.ttauditbayer.DETAIPUBLICITY" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
         <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.BayerOpenClose"
             android:screenOrientation="portrait"
@@ -180,19 +145,13 @@
             android:label=""
             android:theme="@style/AppThemeAdminPanel"
             >
-
         </activity>
-
-
-
         <activity
             android:name="dataservicios.com.ttauditbayer.AndroidCustomGalleryActivity"
             android:screenOrientation="portrait"
             android:label="Galeria de Agente"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
-        <!-- ABOUT-->
         <activity
             android:name="dataservicios.com.ttauditbayer.About"
             android:screenOrientation="portrait"
@@ -281,10 +240,7 @@
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Bepanthen"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
-
         </activity>
-
-
         <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Supradyn"
             android:screenOrientation="portrait"
@@ -294,20 +250,16 @@
                 <category android:name="android.intent.category.SUPRADYN" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AuditoriaBayer.SupradynPronatal"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
-
         <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Precio"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
         <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.DosisRecomendacion"
             android:screenOrientation="portrait"
@@ -318,26 +270,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
         <activity
             android:name=".AuditoriaBayer.AspirinaForte"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
         <activity
             android:name=".AuditoriaBayer.MaterialPromocional"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
         <activity
             android:name=".AuditoriaBayer.Laboratorio"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
-
-
         <activity
             android:name=".EditStore"
             android:screenOrientation="portrait"
@@ -353,12 +300,10 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCS2ww-t9B0d5msYOytbya5S9pfD4LkjiQ"/>
 
-
         <!--Key api Google Mode DEBUG-->
         <!--<meta-data-->
         <!--android:name="com.google.android.maps.v2.API_KEY"-->
         <!--android:value="AIzaSyAugOj7lXip5xCpCkiqo36bIOpRM4ygQyQ"/>-->
-
 
         <service android:name="dataservicios.com.ttauditbayer.Services.UploadService" android:label="@string/app_name">
         </service>

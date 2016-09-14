@@ -111,8 +111,8 @@ public class Laboratorio extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 487; //¿De 10 clientes que vienen a comprar algún medicamento para dolor muscular, cuantos te piden tu recomendación?
-        poll_id_2 = 488; //¿De 10 clientes que vienen a comprar algún medicamento para dolor de cabeza, cuantos te piden tu recomendación?
+        poll_id = 524; //¿De 10 clientes que vienen a comprar algún medicamento para dolor muscular, cuantos te piden tu recomendación?
+        poll_id_2 = 525; //¿De 10 clientes que vienen a comprar algún medicamento para dolor de cabeza, cuantos te piden tu recomendación?
         //poll_id_3 = 449; //¿Cada cuánto tiempo?
 
 

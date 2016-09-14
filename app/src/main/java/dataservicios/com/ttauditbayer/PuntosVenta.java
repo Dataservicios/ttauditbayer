@@ -201,6 +201,7 @@ public class PuntosVenta extends Activity {
         });
         listView.setAdapter(adapter);
         pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
