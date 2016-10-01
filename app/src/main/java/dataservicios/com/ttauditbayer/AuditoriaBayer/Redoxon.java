@@ -183,7 +183,7 @@ public class Redoxon extends Activity {
                 cbD.setText("Easy Vit C");
                 cbE.setText("Mi Vit C");
             }
-            if(cadenaruc.equals("INKAFARMA")){
+            if(cadenaruc.equals("MIFARMA")){
                 cbA.setText("Easylife");
                 cbB.setText("Sunlife");
                 cbC.setText("Redoxvit");
@@ -206,7 +206,7 @@ public class Redoxon extends Activity {
                 cbE.setText("Sunvit");
             }
 
-        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
 
             cbA.setText("Genfar");
             cbB.setText("Efer-C");
@@ -433,7 +433,7 @@ public class Redoxon extends Activity {
                         vA = 1;
                         if(tipo.equals("CADENA")) {
                             oA = String.valueOf(poll_id_2) + "dh" + "-" + etA.getText().toString(); //Easylife
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oA = String.valueOf(poll_id_2) + "w" + "-" + etA.getText().toString(); //Genfar
                         }
                         pA = etA.getText().toString();
@@ -450,7 +450,7 @@ public class Redoxon extends Activity {
                         vB = 1;
                         if(tipo.equals("CADENA")) {
                             oB = String.valueOf(poll_id_2) + "di" + "-" + etB.getText().toString(); //Sunlife
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oB = String.valueOf(poll_id_2) + "dj" + "-" + etB.getText().toString(); //Efer-C
                         }
                         pB = etB.getText().toString();
@@ -479,10 +479,10 @@ public class Redoxon extends Activity {
                         vD = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oD = String.valueOf(poll_id_2) + "dl" + "-" + etD.getText().toString(); //Dolgramin
-                            if(cadenaruc.equals("INKAFARMA")) oD = String.valueOf(poll_id_2) + "dn" + "-" + etD.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("MIFARMA")) oD = String.valueOf(poll_id_2) + "dn" + "-" + etD.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oD = String.valueOf(poll_id_2) + "t" + "-" + etD.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oD = String.valueOf(poll_id_2) + "dm" + "-" + etD.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oD = String.valueOf(poll_id_2) + "dn" + "-" + etD.getText().toString(); //Migrax
                         }
                         pD = etD.getText().toString();
@@ -499,10 +499,10 @@ public class Redoxon extends Activity {
                         vE = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "r" + "-" + etE.getText().toString(); //Dolgramin
-                            if(cadenaruc.equals("INKAFARMA")) oE = String.valueOf(poll_id_2) + "do" + "-" + etE.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("MIFARMA")) oE = String.valueOf(poll_id_2) + "do" + "-" + etE.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oE = String.valueOf(poll_id_2) + "dp" + "-" + etE.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oE = String.valueOf(poll_id_2) + "dp" + "-" + etE.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oE = String.valueOf(poll_id_2) + "t" + "-" + etE.getText().toString(); //Migrax
                         }
                         pE = etE.getText().toString();

@@ -1,5 +1,6 @@
 package dataservicios.com.ttauditbayer;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,6 +9,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Window;
 import android.widget.ProgressBar;
@@ -35,6 +38,7 @@ import dataservicios.com.ttauditbayer.util.JSONParser;
 public class MainActivity extends Activity {
     // Logcat tag
     private static final String LOG_TAG = "Load Activity";
+    private static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
 
     private int splashTime = 3000;
     private Thread thread;
@@ -106,8 +110,10 @@ public class MainActivity extends Activity {
                 db.deleteAllPresenseProduct();
 
 
+
                 new loadProducts().execute();
             }
+
 
         }else  {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -194,7 +200,8 @@ public class MainActivity extends Activity {
             if (result){
                // loadLoginActivity();
                 //new loadPublicity().execute();
-                loadLoginActivity();
+                //loadLoginActivity();
+                if(checkAndRequestPermissions()) loadLoginActivity();
             }
         }
     }
@@ -320,7 +327,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(534);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("Tengo dolor en la espalda, me duele y siento que está inflamado ¿Qué me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -330,7 +337,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(534);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("Tengo dolor en la espalda, me duele y siento que está inflamado ¿Qué me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -348,7 +355,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(535);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
@@ -358,7 +365,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(535);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
@@ -376,7 +383,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(537);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
         db.createPollProductStore(pd);
 
@@ -388,7 +395,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(537);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("¿Tengo ardor, picazón,  en la zona vaginal, que me recomiendas para eso?");
         db.createPollProductStore(pd);
 
@@ -406,7 +413,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(536);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -416,7 +423,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(536);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("¿Qué multivitaminico que me de energía me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -433,7 +440,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(539);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
         db.createPollProductStore(pd);
 
@@ -443,7 +450,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(539);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("¿Que vitamina recomiendas para mejorar mis defensas y no resfriarme?");
         db.createPollProductStore(pd);
 
@@ -461,7 +468,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(540);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
         db.createPollProductStore(pd);
 
@@ -471,7 +478,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(540);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("Y vitaminas para estar más concentrado en el trabajo...");
         db.createPollProductStore(pd);
 
@@ -489,7 +496,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(538);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
         db.createPollProductStore(pd);
 
@@ -499,7 +506,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(538);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("Doctor/a estoy teniendo fuertes punzadas en el pecho, tengo un ritmo de vida desordenada, y he oído que puedo tener riesgo de infarto, ¿Que podría hacer para evitarlo? ");
         db.createPollProductStore(pd);
 
@@ -518,7 +525,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(640);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
         db.createPollProductStore(pd);
 
@@ -530,7 +537,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(640);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion(" ¿Qué crema me recomienda para regenerar la piel dañada?");
         db.createPollProductStore(pd);
 
@@ -548,7 +555,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(642);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
         db.createPollProductStore(pd);
 
@@ -560,7 +567,7 @@ public class MainActivity extends Activity {
 
 
         pd.setIdProduct(642);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("¿Qué multivitamínico me recomienda para tomar si estoy dando de lactar?");
         db.createPollProductStore(pd);
 
@@ -572,6 +579,40 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
 
+
+        //643 CANASTEN
+
+        pd.setIdProduct(643);
+        pd.setTypeStore("HORIZONTAL");
+        pd.setQuestion("Tengo pie de atleta ¿ Que me recomienda?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(643);
+        pd.setTypeStore("SUB DISTRIBUIDOR");
+        pd.setQuestion("Tengo picazón, mal olor y enrojecimiento en los dedos del pie ¿ Que me recomienda?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(643);
+        pd.setTypeStore("DETALLISTA");
+        pd.setQuestion("Tengo picazón, mal olor y enrojecimiento en los dedos del pie ¿ Que me recomienda?");
+        db.createPollProductStore(pd);
+
+
+        pd.setIdProduct(643);
+        pd.setTypeStore("MINI CADENAS");
+        pd.setQuestion("Tengo picazón, mal olor y enrojecimiento en los dedos del pie ¿ Que me recomienda?");
+        db.createPollProductStore(pd);
+
+
+
+        pd.setIdProduct(643);
+        pd.setTypeStore("CADENA");
+        pd.setQuestion("Tengo pie de atleta ¿ Que me recomienda?");
+        db.createPollProductStore(pd);
+
+
         //644 ASPIRINA FORTE
         pd.setIdProduct(644);
         pd.setTypeStore("HORIZONTAL");
@@ -579,7 +620,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(644);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
@@ -589,7 +630,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(644);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("Tengo un dolor muy fuerte de cabeza, ¿Qué pastilla me puedes recomendar?");
         db.createPollProductStore(pd);
 
@@ -609,7 +650,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(645);
-        pd.setTypeStore("SUBDISTRIBUIDOR");
+        pd.setTypeStore("SUB DISTRIBUIDOR");
         pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -619,7 +660,7 @@ public class MainActivity extends Activity {
         db.createPollProductStore(pd);
 
         pd.setIdProduct(645);
-        pd.setTypeStore("MC");
+        pd.setTypeStore("MINI CADENAS");
         pd.setQuestion("¿Qué multivitamínico que me de energía y mejore mi concentración me recomiendas?");
         db.createPollProductStore(pd);
 
@@ -632,6 +673,74 @@ public class MainActivity extends Activity {
         lispollProductStore = db.getAllPollProductStore();
 
         Log.e(LOG_TAG, "final lista productos");
+
+    }
+
+    //  Chequeando permisos de usuario Runtime
+    private boolean checkAndRequestPermissions() {
+
+        int writepermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int callpermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.CALL_PHONE);
+        int locationpermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.ACCESS_FINE_LOCATION);
+
+        List<String> listPermissionsNeeded = new ArrayList<>();
+
+        if (locationpermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (writepermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        }
+
+        if (writepermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        if (callpermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CALL_PHONE);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(MyActivity,listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        boolean respuestas = false ;
+        if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS) {
+
+
+            if (grantResults.length > 0) {
+
+                if ( grantResults[0] == PackageManager.PERMISSION_GRANTED &&  grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED && grantResults[3] == PackageManager.PERMISSION_GRANTED) {
+                    loadLoginActivity();
+
+                }  else {
+                    alertDialogBasico();
+                }
+
+            }
+        }
+    }
+
+    public void alertDialogBasico() {
+
+        // 1. Instancia de AlertDialog.Builder con este constructor
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+
+        // 2. Encadenar varios métodos setter para ajustar las características del diálogo
+        builder.setMessage(R.string.dialog_message_permission);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                System.exit(0);
+            }
+        });
+
+        builder.show();
 
     }
 }

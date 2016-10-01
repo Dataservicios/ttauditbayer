@@ -19,6 +19,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,17 +36,15 @@ import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParser;
 import dataservicios.com.ttauditbayer.util.SessionManager;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+
 /**
- * Created by Jaime on 28/02/2016.
+ * Created by Jaime on 28/09/2016.
  */
-public class Aspirina extends Activity {
+public class Canesten extends Activity {
 
     private Activity MyActivity = this ;
-    private static final String LOG_TAG = "Aspirina 100";
+    private static final String LOG_TAG = "";
     private SessionManager session;
-
     private Switch sw_recomienda, sw_stock ;
     private LinearLayout ly_stock,ly_productos;
     private Button bt_photo, bt_guardar;
@@ -75,16 +75,16 @@ public class Aspirina extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aspirina);
+        setContentView(R.layout.canesten);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle("Aspirina");
+        getActionBar().setTitle("Canesten");
 
 
         //sw_recomienda = (Switch) findViewById(R.id.swRecomienda);
         tvStock =(TextView) findViewById(R.id.tvStock);
         sw_stock = (Switch) findViewById(R.id.swStock);
 
-       // cbTienda = (CheckBox) findViewById(R.id.cbTienda);
+        // cbTienda = (CheckBox) findViewById(R.id.cbTienda);
         cbProducto = (CheckBox) findViewById(R.id.cbProducto);
         cbA = (CheckBox) findViewById(R.id.cbA);
         cbB = (CheckBox) findViewById(R.id.cbB);
@@ -478,7 +478,7 @@ public class Aspirina extends Activity {
                     }else if (prioridad == 1 ||prioridad == 2 || prioridad == 3) {
                         is_recomieda=1;
                         vProducto = 1;
-                        oProducto = String.valueOf(poll_id_2) + "dd" + "-" + etProducto.getText().toString();
+                        oProducto = String.valueOf(poll_id_2) + "dl" + "-" + etProducto.getText().toString();
                         //pProducto = etProducto.getText().toString();
                     }
 
@@ -494,7 +494,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vA = 1;
-                        oA = String.valueOf(poll_id_2) + "dm" + "-" + etA.getText().toString();
+                        oA = String.valueOf(poll_id_2) + "de" + "-" + etA.getText().toString();
                     }
 
                 }
@@ -506,7 +506,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vB = 1;
-                        oB = String.valueOf(poll_id_2) + "cx"  + "-" + etB.getText().toString();
+                        oB = String.valueOf(poll_id_2) + "df"  + "-" + etB.getText().toString();
                         pB = etB.getText().toString();
                     }
                 }
@@ -518,7 +518,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vC = 1;
-                        oC = String.valueOf(poll_id_2) + "da" + "-" + etC.getText().toString();
+                        oC = String.valueOf(poll_id_2) + "dg" + "-" + etC.getText().toString();
                         pC = etC.getText().toString();
                     }
                 }
@@ -531,7 +531,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "cy" + "-" + etD.getText().toString();
+                        oD = String.valueOf(poll_id_2) + "dh" + "-" + etD.getText().toString();
                         pD = etD.getText().toString();
                     }
                 }
@@ -544,7 +544,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vE = 1;
-                        oE = String.valueOf(poll_id_2) + "cz" + "-" + etE.getText().toString();
+                        oE = String.valueOf(poll_id_2) + "di" + "-" + etE.getText().toString();
                         pE = etE.getText().toString();
                     }
                 }
@@ -557,7 +557,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vF = 1;
-                        oF = String.valueOf(poll_id_2) + "db" + "-" + etF.getText().toString();
+                        oF = String.valueOf(poll_id_2) + "dj" + "-" + etF.getText().toString();
                         pF = etF.getText().toString();
                     }
                 }
@@ -570,7 +570,7 @@ public class Aspirina extends Activity {
                         return;
                     }else  {
                         vG = 1;
-                        oG = String.valueOf(poll_id_2) + "dc" + "-" + etG.getText().toString();
+                        oG = String.valueOf(poll_id_2) + "dk" + "-" + etG.getText().toString();
                         pG = etG.getText().toString();
                     }
                 }
@@ -882,3 +882,4 @@ public class Aspirina extends Activity {
 
 
 }
+

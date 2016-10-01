@@ -9,6 +9,82 @@ public class Audit {
     private String name;
     private int store_id;
     private int score;
+    private int company_id;
+    private int route_id;
+    private int user_id;
+    private String time_open;
+    private String time_close;
+    private String latitude_open;
+    private String latitude_close;
+    private String longitude_open;
+    private String longitude_close;
+
+
+    public String getTime_open() {
+        return time_open;
+    }
+
+    public void setTime_open(String time_open) {
+        this.time_open = time_open;
+    }
+
+    public String getTime_close() {
+        return time_close;
+    }
+
+    public void setTime_close(String time_close) {
+        this.time_close = time_close;
+    }
+
+    public String getLatitude_open() {
+        return latitude_open;
+    }
+
+    public void setLatitude_open(String latitude_open) {
+        this.latitude_open = latitude_open;
+    }
+
+    public String getLatitude_close() {
+        return latitude_close;
+    }
+
+    public void setLatitude_close(String latitude_close) {
+        this.latitude_close = latitude_close;
+    }
+
+    public String getLongitude_open() {
+        return longitude_open;
+    }
+
+    public void setLongitude_open(String longitude_open) {
+        this.longitude_open = longitude_open;
+    }
+
+    public String getLongitude_close() {
+        return longitude_close;
+    }
+
+    public void setLongitude_close(String longitude_close) {
+        this.longitude_close = longitude_close;
+    }
+
+
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public int getRoute_id() {
+        return route_id;
+    }
+
+    public void setRoute_id(int route_id) {
+        this.route_id = route_id;
+    }
 
     /**
      * Return id the audit
@@ -80,5 +156,13 @@ public class Audit {
      */
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

@@ -47,49 +47,49 @@
                         android:layout_height="wrap_content"
                         android:text="¿ Que recomienda ?"
                         android:id="@+id/tvQueRecomienda" />
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content">
-                            <CheckBox
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Aspirina 100"
-                                android:padding="5dp"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginRight="8dp"
-                                android:id="@+id/cbProducto" />
-                            <EditText
-                                android:layout_width="42dp"
-                                android:layout_height="42dp"
-                                android:inputType="number"
-                                android:ems="10"
-                                android:text="0"
-                                android:enabled="false"
-                                android:id="@+id/etProducto"
-                                android:layout_toRightOf="@+id/cbProducto" />
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Canesten"
+                            android:padding="5dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginRight="8dp"
+                            android:id="@+id/cbProducto" />
+                        <EditText
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:text="0"
+                            android:enabled="false"
+                            android:id="@+id/etProducto"
+                            android:layout_toRightOf="@+id/cbProducto" />
 
-                        </RelativeLayout>
+                    </RelativeLayout>
 
                     <!--<RelativeLayout-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--&gt;-->
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="XXXXXX"-->
-                            <!--android:padding="5dp"-->
-                            <!--android:id="@+id/cbTienda" />-->
-                        <!--<EditText-->
-                            <!--android:layout_width="42dp"-->
-                            <!--android:layout_height="42dp"-->
-                            <!--android:inputType="number"-->
-                            <!--android:ems="10"-->
-                            <!--android:text="0"-->
-                            <!--android:enabled="false"-->
-                            <!--android:id="@+id/etTienda"-->
-                            <!--android:layout_toRightOf="@+id/cbTienda"-->
-                            <!--/>-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--&gt;-->
+                    <!--<CheckBox-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="XXXXXX"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:id="@+id/cbTienda" />-->
+                    <!--<EditText-->
+                    <!--android:layout_width="42dp"-->
+                    <!--android:layout_height="42dp"-->
+                    <!--android:inputType="number"-->
+                    <!--android:ems="10"-->
+                    <!--android:text="0"-->
+                    <!--android:enabled="false"-->
+                    <!--android:id="@+id/etTienda"-->
+                    <!--android:layout_toRightOf="@+id/cbTienda"-->
+                    <!--/>-->
                     <!--</RelativeLayout>-->
                     <RelativeLayout
                         android:layout_width="fill_parent"
@@ -98,7 +98,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cardiaspirina"
+                            android:text="LAMISIL"
                             android:padding="5dp"
                             android:id="@+id/cbA" />
                         <EditText
@@ -117,11 +117,11 @@
                         android:layout_height="wrap_content"
                         >
                         <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cor Asa"
-                        android:padding="5dp"
-                        android:id="@+id/cbB" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SILKA MEDIC"
+                            android:padding="5dp"
+                            android:id="@+id/cbB" />
                         <EditText
                             android:layout_width="42dp"
                             android:layout_height="42dp"
@@ -140,7 +140,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ASSA-81"
+                            android:text="LAFITIL"
                             android:padding="5dp"
                             android:id="@+id/cbC" />
                         <EditText
@@ -162,7 +162,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cardiopress x 100"
+                            android:text="HONGOCID"
                             android:padding="5dp"
                             android:id="@+id/cbD" />
                         <EditText
@@ -184,7 +184,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Microass x30"
+                            android:text="MICOLIS"
                             android:padding="5dp"
                             android:id="@+id/cbE" />
                         <EditText
@@ -206,7 +206,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ecotrin"
+                            android:text="ICADEN "
                             android:padding="5dp"
                             android:id="@+id/cbF" />
                         <EditText
@@ -228,7 +228,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acido Acetilsalicílico (genérico)"
+                            android:text="CLOTRIMAZOL "
                             android:padding="5dp"
                             android:id="@+id/cbG" />
                         <EditText
@@ -255,7 +255,6 @@
                             android:text="Otros"
                             android:padding="5dp"
                             android:id="@+id/cbH" />
-
                         <EditText
                             android:layout_width="42dp"
                             android:layout_height="42dp"
@@ -267,28 +266,6 @@
                             android:layout_toRightOf="@+id/cbH"
                             />
                     </RelativeLayout>
-
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!-->-->
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="Otros"-->
-                            <!--android:padding="5dp"-->
-                            <!--android:id="@+id/cbE" />-->
-                        <!--<EditText-->
-                            <!--android:layout_width="42dp"-->
-                            <!--android:layout_height="42dp"-->
-                            <!--android:inputType="number"-->
-                            <!--android:ems="10"-->
-                            <!--android:text="0"-->
-                            <!--android:enabled="false"-->
-                            <!--android:id="@+id/etE"-->
-                            <!--android:layout_toRightOf="@+id/cbE"-->
-                            <!--/>-->
-                    <!--</RelativeLayout>-->
 
                     <LinearLayout
                         android:orientation="vertical"

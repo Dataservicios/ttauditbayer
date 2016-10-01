@@ -199,9 +199,9 @@ public class Apronax extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 520; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 521; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 522; //STOcK
+        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = 560; //STOcK
 
        // poll_id_4 = 200; //¿POR QUÉ NO RECOMIENDA APRONAX?
 
@@ -231,7 +231,7 @@ public class Apronax extends Activity {
             if(cadenaruc.equals("INKAFARMA")){
                 cbTienda.setText("Dologyna");
             }
-            if(cadenaruc.equals("INKAFARMA")){
+            if(cadenaruc.equals("MIFARMA")){
                 cbTienda.setText("Iraxen");
 
             }
@@ -247,7 +247,8 @@ public class Apronax extends Activity {
 //            etTienda.setEnabled(false);
 //            etTienda.setVisibility(View.VISIBLE);
 
-        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR") ) {
+
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
 
 //            cbTienda.setEnabled(false);
 //            cbTienda.setVisibility(View.INVISIBLE);
@@ -297,24 +298,7 @@ public class Apronax extends Activity {
             }
         });
 
-//        rgOpt1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                if(rbF.isChecked())
-//                {
-//                    etComentNoRecomienda.setEnabled(true);
-//                    etComentNoRecomienda.setVisibility(View.VISIBLE);
-//                    etComentNoRecomienda.setText("");
-//                }
-//                else
-//                {
-//                    etComentNoRecomienda.setEnabled(false);
-//                    etComentNoRecomienda.setVisibility(View.INVISIBLE);
-//                    etComentNoRecomienda.setText("");
-//                }
-//            }
-//        });
+
 
         cbTienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -581,7 +565,7 @@ public class Apronax extends Activity {
                                 oTienda = String.valueOf(poll_id_2) + "b"; //Dologyna
 
                             }
-                            if(cadenaruc.equals("INKAFARMA")){
+                            if(cadenaruc.equals("MIFARMA")){
                                 vTienda = 1;
                                 oTienda = String.valueOf(poll_id_2) + "c"; //Iraxen
 
@@ -595,7 +579,7 @@ public class Apronax extends Activity {
                                 vTienda = 1;
                                 oTienda = String.valueOf(poll_id_2) + "e"; //Maxiflam Forte
                             }
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
 
                             vTienda = 1;
                             oTienda = String.valueOf(poll_id_2) + "bo"; //FlogoDistan
@@ -653,7 +637,7 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "bi" + "-" + etD.getText().toString(); //Naproxeno
+                        oD = String.valueOf(poll_id_2) + "bi" + "-" + etD.getText().toString(); //Miopress Forte
                         pD = etD.getText().toString();
                     }
 
@@ -667,7 +651,7 @@ public class Apronax extends Activity {
                         return;
                     }else  {
                         vE = 1;
-                        oE = String.valueOf(poll_id_2) + "bj" + "-" + etE.getText().toString(); //Naproxeno
+                        oE = String.valueOf(poll_id_2) + "bj" + "-" + etE.getText().toString(); //Miodel
                         pE = etE.getText().toString();
                     }
 
@@ -682,8 +666,8 @@ public class Apronax extends Activity {
                     }else  {
                         vF = 1;
                         if(tipo.equals("CADENA")) {
-                            oF = String.valueOf(poll_id_2) + "bk" + "-" + etF.getText().toString(); //Naproxeno
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                            oF = String.valueOf(poll_id_2) + "bk" + "-" + etF.getText().toString(); //Dolgramin
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oF = String.valueOf(poll_id_2) + "bm" + "-" + etF.getText().toString(); //Doloaproxol
                         }
 
@@ -703,7 +687,7 @@ public class Apronax extends Activity {
                         vG = 1;
                         if(tipo.equals("CADENA")) {
                             oG = String.valueOf(poll_id_2) + "bl" + "-" + etG.getText().toString(); //breflex
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")  || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oG = String.valueOf(poll_id_2) + "bn" + "-" + etG.getText().toString(); //dioxaflex
                         }
 
@@ -753,26 +737,6 @@ public class Apronax extends Activity {
                         db.updateProductActive(product_id, 1);
 
 
-
-
-//                        ***************************** inicio modificado ***********************
-//                          ProductScore ps = new ProductScore();
-//                        if(is_recomieda==1) {
-//
-//                            ps = db.getProductScoreForStore(store_id);
-//                            int total_products = 0 ;
-//                            total_products = 1  + ps.getTotalProducts();
-//                            db.updateProductScoreForTotalProducts(store_id,total_products);
-//                        }
-//
-//                      *******************************end ********************************
-//                        if(is_exhibidor==1) {
-//
-//                            ps = db.getProductScoreForStore(store_id);
-//                            int total_exhibidores = 0 ;
-//                            total_exhibidores = 1  + ps.getTotalExhibitions();
-//                            db.updateProductScoreForTotalExhibitions(store_id,total_exhibidores);
-//                        }
 
                         List<ProductScore> listProductScore = new ArrayList<ProductScore>();
                         listProductScore = db.getAllProductsScore();

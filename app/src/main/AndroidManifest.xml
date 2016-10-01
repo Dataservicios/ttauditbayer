@@ -237,6 +237,16 @@
         </activity>
 
         <activity
+            android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Canesten"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+            <intent-filter>
+                <action android:name="com.dataservicios.redagenteglobalapp.Canesten" />
+                <category android:name="android.intent.category.GYNOCANESTEN" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name="dataservicios.com.ttauditbayer.AuditoriaBayer.Bepanthen"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
@@ -285,6 +295,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAdminPanel">
         </activity>
+
+
+        <activity
+            android:name=".AuditoriaBayer.VariableImportante"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel">
+        </activity>
+
         <activity
             android:name=".EditStore"
             android:screenOrientation="portrait"

@@ -15,7 +15,7 @@ public final class GlobalConstant {
     public static String inicio,fin;
     public static  double latitude_open, longitude_open;
     public static  int global_close_audit =0;
-    public static int company_id = 39;
+    public static int company_id = 41;
     //public static String albunName = "BayerPhoto";
     //public static String directory_images = "/Pictures/" +  R.string.album_name;
     public static String directory_images = "/Pictures/";

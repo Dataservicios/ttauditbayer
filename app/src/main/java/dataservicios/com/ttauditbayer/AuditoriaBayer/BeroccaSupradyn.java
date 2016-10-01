@@ -212,7 +212,7 @@ public class BeroccaSupradyn extends Activity {
                // etI.setVisibility(View.INVISIBLE);
 
             }
-            if(cadenaruc.equals("INKAFARMA")){
+            if(cadenaruc.equals("MIFARMA")){
                 cbA.setText("Oramin ");
                 cbB.setText("Infor");
                 cbC.setVisibility(View.INVISIBLE);
@@ -277,7 +277,7 @@ public class BeroccaSupradyn extends Activity {
 
 
 
-        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
 
 //            cbTienda.setEnabled(false);
 //            cbTienda.setVisibility(View.INVISIBLE);
@@ -562,10 +562,10 @@ public class BeroccaSupradyn extends Activity {
                         vA = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oA = String.valueOf(poll_id_2) + "aa" + "-" + etA.getText().toString(); //Aolgramin
-                            if(cadenaruc.equals("INKAFARMA")) oA = String.valueOf(poll_id_2) + "ab" + "-" + etA.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("MIFARMA")) oA = String.valueOf(poll_id_2) + "ab" + "-" + etA.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oA = String.valueOf(poll_id_2) + "ac" + "-" + etA.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oA = String.valueOf(poll_id_2) + "ad" + "-" + etA.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oA = String.valueOf(poll_id_2) + "ae" + "-" + etA.getText().toString(); //Migrax
                         }
                         pA = etA.getText().toString();
@@ -581,10 +581,10 @@ public class BeroccaSupradyn extends Activity {
                         vB = 1;
                         if(tipo.equals("CADENA")) {
                             if(cadenaruc.equals("INKAFARMA")) oB = String.valueOf(poll_id_2) + "dq" + "-" + etB.getText().toString(); //
-                            if(cadenaruc.equals("INKAFARMA")) oB = String.valueOf(poll_id_2) + "da" + "-" + etB.getText().toString(); //Cefadol
+                            if(cadenaruc.equals("MIFARMA")) oB = String.valueOf(poll_id_2) + "da" + "-" + etB.getText().toString(); //Cefadol
                             if(cadenaruc.equals("ARCANGEL")) oB = String.valueOf(poll_id_2) + "da" + "-" + etB.getText().toString(); //Cefadol
                             if(cadenaruc.equals("B&S")) oB = String.valueOf(poll_id_2) + "db" + "-" + etB.getText().toString(); //Cefadol
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oB = String.valueOf(poll_id_2) + "af" + "-" + etB.getText().toString(); //Migrax
                         }
                         pB = etB.getText().toString();
@@ -602,7 +602,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oC = String.valueOf(poll_id_2) + "ag" + "-" + etC.getText().toString(); //Migrax
                         }
                         pC = etC.getText().toString();
@@ -621,7 +621,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oD = String.valueOf(poll_id_2) + "ah" + "-" + etD.getText().toString(); //Migrax
                         }
                         pD = etD.getText().toString();
@@ -639,7 +639,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oE = String.valueOf(poll_id_2) + "dc" + "-" + etE.getText().toString(); //Migrax
                         }
                         pE = etE.getText().toString();
@@ -658,7 +658,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oF = String.valueOf(poll_id_2) + "de" + "-" + etF.getText().toString(); //Migrax
                         }
                         pF = etF.getText().toString();
@@ -676,7 +676,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oG = String.valueOf(poll_id_2) + "df" + "-" + etG.getText().toString(); //Migrax
                         }
                         pG = etG.getText().toString();
@@ -695,7 +695,7 @@ public class BeroccaSupradyn extends Activity {
                         if(tipo.equals("CADENA")) {
 
 
-                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MC")   || tipo.equals("SUBDISTRIBUIDOR")) {
+                        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
                             oH = String.valueOf(poll_id_2) + "dg" + "-" + etH.getText().toString(); //Migrax
                         }
                         pH = etH.getText().toString();

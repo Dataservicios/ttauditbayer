@@ -3,6 +3,7 @@ package dataservicios.com.ttauditbayer;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,6 +39,7 @@ import dataservicios.com.ttauditbayer.Model.ProductScore;
 import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.adapter.PdvsAdapter;
 import dataservicios.com.ttauditbayer.app.AppController;
+import dataservicios.com.ttauditbayer.util.AuditUtil;
 import dataservicios.com.ttauditbayer.util.GPSTracker;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.SessionManager;
@@ -200,119 +202,83 @@ public class PuntosVenta extends Activity {
             }
         });
         listView.setAdapter(adapter);
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+
+        new loadStores().execute();
+    }
+
+    class loadStores extends AsyncTask<Void, Integer, ArrayList<Pdv>> {
+        /**
+         * Antes de comenzar en el hilo determinado, Mostrar progresión
+         */
+        boolean failure = false;
+
+        @Override
+        protected void onPreExecute() {
+            //tvCargando.setText("Cargando Product...");
+
+            pDialog = new ProgressDialog(MyActivity);
+            pDialog.setMessage("Cargando...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected ArrayList<Pdv> doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+
+            ArrayList<Pdv> listPdv = new ArrayList<Pdv>();
+            listPdv = AuditUtil.getLisStores(IdRuta, GlobalConstant.company_id);
+            return listPdv;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         **/
+        protected void onPostExecute(ArrayList<Pdv> pdvs) {
+            // dismiss the dialog once product deleted
 
 
+            if (pdvs.isEmpty()) {
+//                Toast.makeText(TimelineActivity.this, getResources().getString(R.string.label_tweets_not_found),
+//                        Toast.LENGTH_SHORT).show();
+
+                //pdvList.addAll(pdvs);
+            } else {
+//                updateListView(tweets);
+//                Toast.makeText(TimelineActivity.this, getResources().getString(R.string.label_tweets_downloaded),
+//                        Toast.LENGTH_SHORT).show();
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST , GlobalConstant.dominio + "/JsonRoadsDetail" ,params,
-                new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response)
-                    {
-                        Log.d("DATAAAA", response.toString());
-                        //adapter.notifyDataSetChanged();
-                        try {
-                            //String agente = response.getString("agentes");
-                            int success =  response.getInt("success");
-                            float contadorPDVS =0 ;
-                            float auditadosPDV =0;
-                            if (success == 1) {
-//
-                                JSONArray ObjJson;
-                                ObjJson = response.getJSONArray("roadsDetail");
-                                // looping through All Products
-                                if(ObjJson.length() > 0) {
-
-                                    contadorPDVS = contadorPDVS + Integer.valueOf(response.getString("pdvs"));
-                                    auditadosPDV =  auditadosPDV + Integer.valueOf(response.getString("auditados"));
-
-                                    for (int i = 0; i < ObjJson.length(); i++) {
-//                                    JSONObject obj = agentesObjJson.getJSONObject(i);
-//                                    // Storing each json item in variable
-//                                    String idAuditoria = obj.getString("id");
-//                                    String auditoria = obj.getString("auditoria");
-//                                    int status = obj.getInt("status");
-                                        try {
-
-//                                            JSONObject obj = agentesObjJson.getJSONObject(i);
-//                                            contadorPDVS = contadorPDVS + Integer.valueOf(obj.getString("pdvs"));
-//                                            auditadosPDV =  auditadosPDV + Integer.valueOf(obj.getString("auditados"));
-//                                            Ruta ruta = new Ruta();
-//                                            ruta.setId(obj.getInt("id"));
-//                                            ruta.setRutaDia(obj.getString("fullname"));
-//                                            ruta.setPdvs(Integer.valueOf(obj.getString("pdvs")) );
-//                                            ruta.setPorcentajeAvance(Integer.valueOf(obj.getString("auditados")));
-//                                            // adding movie to movies array
-//                                            rutaList.add(ruta);
-                                            JSONObject obj = ObjJson.getJSONObject(i);
-                                            Pdv pdv = new Pdv();
-                                            pdv.setId(Integer.valueOf(obj.getString("id")));
-                                            pdv.setPdv(obj.getString("fullname"));
-                                            //pdv.setThumbnailUrl(obj.getString("image"));
-                                            pdv.setDireccion(obj.getString("address"));
-                                            pdv.setDistrito(obj.getString("district"));
-                                            pdv.setType(obj.getString("type"));
-                                            pdv.setCadenaRuc(obj.getString("cadenaRuc"));
-                                            pdv.setStatus(obj.getInt("status"));
+                float contadorStore = pdvs.size();
+                float auditadosStore = 0;
 
 
-//                                            int idpuntoventa=Integer.valueOf(obj.getString("id"));
-//                                            if(idpuntoventa==29){
-//                                                pdv.setStatus(1);
-//                                            } else if(idpuntoventa==34){
-//                                                pdv.setStatus(1);
-//                                            } else{
-//                                                pdv.setStatus(0);
-//                                            }
-                                            // adding movie to movies array
-                                            pdvList.add(pdv);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
+                for (int i = 0; i < pdvs.size(); i++) {
 
-                                    }
-
-
-
-                                    pdvs1.setText(String.valueOf(contadorPDVS)) ;
-                                    pdvsAuditados1.setText(String.valueOf(auditadosPDV));
-
-                                    float porcentajeAvance=(auditadosPDV / contadorPDVS) *100;
-                                    BigDecimal big = new BigDecimal(porcentajeAvance);
-                                    big = big.setScale(2, RoundingMode.HALF_UP);
-                                    porcentajeAvance1.setText( String.valueOf(big) + " % ");
-                                }
-
-
-
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        adapter.notifyDataSetChanged();
-                        hidePDialog();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //VolleyLog.d(TAG, "Error: " + error.getMessage());
-                        hidePDialog();
+                    if(pdvs.get(i).getStatus() == 1) {
+                        auditadosStore ++;
                     }
                 }
-        );
 
-        AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+                pdvs1.setText(String.valueOf(contadorStore)) ;
+                pdvsAuditados1.setText(String.valueOf(auditadosStore));
+
+                float porcentajeAvance=(auditadosStore / contadorStore) *100;
+                BigDecimal big = new BigDecimal(porcentajeAvance);
+                big = big.setScale(2, RoundingMode.HALF_UP);
+                porcentajeAvance1.setText( String.valueOf(big) + " % ");
+
+                pdvList.addAll(pdvs);
+                adapter.notifyDataSetChanged();
+            }
+
+
+            hidePDialog();
+        }
     }
+
 
     @Override
     public void onDestroy() {

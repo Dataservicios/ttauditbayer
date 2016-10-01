@@ -32,6 +32,7 @@ import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.adapter.ProductsAdapter;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParser;
+import dataservicios.com.ttauditbayer.util.JSONParserX;
 import dataservicios.com.ttauditbayer.util.SessionManager;
 
 /**
@@ -131,10 +132,10 @@ public class Product extends Activity {
 //                    intent = new Intent(MyActivity, AspirinaQuinientos.class);
 //                }
 
-//                //Aspirina 100
-//                if (product_id.equals("538")){
-//                    intent = new Intent(MyActivity, Aspirina.class);
-//                }
+                //Aspirina 100
+                if (product_id.equals("538")){
+                    intent = new Intent(MyActivity, Aspirina.class);
+                }
 
                 //Gynocanasten
 //                if (product_id.equals("537")){
@@ -165,6 +166,11 @@ public class Product extends Activity {
 //                if (product_id.equals("642")){
 //                    intent = new Intent(MyActivity, SupradynPronatal.class);
 //                }
+
+                //Canesten
+                if (product_id.equals("643")){
+                    intent = new Intent(MyActivity, Canesten.class);
+                }
 
                 ////ASPIRINA FORTE 644
                 if (product_id.equals("644")){
@@ -293,9 +299,12 @@ public class Product extends Activity {
             // TODO Auto-generated method stub
             //cargaTipoPedido();
             InsertAuditPollsProduct("0","1","0","");
-//            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
-//            startActivity(intent);
-//            finish();
+
+            if (awards == 1) {
+                //new saveScore().execute();
+                saveScoreStoreBayer(company_id, audit_id, store_id, user_id);
+            }
+
             return true;
         }
         /**
@@ -305,13 +314,11 @@ public class Product extends Activity {
             // dismiss the dialog once product deleted
 
             if (result){
-                // loadLoginActivity();
-                //new loadPublicity().execute();
-                //Intent intent = new Intent(MyActivity, LoginActivity.class);
-                //startActivity(intent);
-                if (awards == 1) {
-                    new saveScore().execute();
-                } else {
+
+//                if (awards == 1) {
+//                    new saveScore().execute();
+//
+//                } else {
                     hidepDialog();
 
                     Bundle argPDV = new Bundle();
@@ -324,90 +331,38 @@ public class Product extends Activity {
                     argPDV.putString("fechaRuta", fechaRuta);
                     argPDV.putInt("audit_id", audit_id);
                     //Intent intent = new Intent(MyActivity, Apronax275.class);
-                    Intent intent = new Intent(MyActivity, Laboratorio.class);
+                    Intent intent = new Intent(MyActivity, VariableImportante.class);
                     intent.putExtras(argPDV);
                     startActivity(intent);
 
 
                     finish();
-                }
+//                }
 
             }
         }
     }
 
-
-    class saveScore extends AsyncTask<Void, Integer , Boolean> {
-        /**
-         * Antes de comenzar en el hilo determinado, Mostrar progresión
-         * */
-        boolean failure = false;
-        @Override
-        protected void onPreExecute() {
-            //tvCargando.setText("Cargando Product...");
-
-            super.onPreExecute();
-        }
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO Auto-generated method stub
-            //cargaTipoPedido();
-            saveScoreStoreBayer(company_id, audit_id, store_id, user_id);
-//            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
-//            startActivity(intent);
-//            finish();
-            return true;
-        }
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(Boolean result) {
-            // dismiss the dialog once product deleted
-            hidepDialog();
-            if (result){
-
-
-
-
-
-                Bundle argPDV = new Bundle();
-                argPDV.putInt("store_id", Integer.valueOf(store_id));
-                argPDV.putInt("company_id", Integer.valueOf(company_id));
-                argPDV.putInt("rout_id", Integer.valueOf(rout_id));
-                argPDV.putString("tipo", String.valueOf(tipo));
-                argPDV.putString("cadenaruc", String.valueOf(cadenaruc));
-                //argPDV.putInt("product_id", Integer.valueOf(product_id));
-                argPDV.putString("fechaRuta", fechaRuta);
-                argPDV.putInt("audit_id", audit_id);
-                //Intent intent = new Intent(MyActivity, Apronax275.class);
-                Intent intent = new Intent(MyActivity, Laboratorio.class);
-                intent.putExtras(argPDV);
-                startActivity(intent);
-
-                finish();
-
-            }
-        }
-    }
 
     private void InsertAuditPollsProduct(String poll_id, String status , String result,String comentario) {
         int success;
         try {
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("poll_id", "0"));
-            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
-            params.add(new BasicNameValuePair("product_id", "0"));
-            params.add(new BasicNameValuePair("sino", "1"));
-            params.add(new BasicNameValuePair("coment", String.valueOf(comentario)));
-            params.add(new BasicNameValuePair("result", result));
-            params.add(new BasicNameValuePair("company_id", String.valueOf(GlobalConstant.company_id)));
-            params.add(new BasicNameValuePair("idroute", String.valueOf(rout_id)));
-            params.add(new BasicNameValuePair("idaudit", String.valueOf(audit_id)));
-            params.add(new BasicNameValuePair("status", status));
+
+            HashMap<String, String> params = new HashMap<>();
+            params.put("poll_id", "0");
+            params.put("store_id", String.valueOf(store_id));
+            params.put("product_id", "0");
+            params.put("sino", "1");
+            params.put("coment", String.valueOf(comentario));
+            params.put("result", result);
+            params.put("company_id", String.valueOf(GlobalConstant.company_id));
+            params.put("idroute", String.valueOf(rout_id));
+            params.put("idaudit", String.valueOf(audit_id));
+            params.put("status", status);
 
 
-            JSONParser jsonParser = new JSONParser();
+            JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPollsProduct" ,"POST", params);
             // check your log for json response
@@ -430,14 +385,16 @@ public class Product extends Activity {
     private void saveScoreStoreBayer( int company_id , int audit_id ,int store_id , int user_id) {
         int success;
         try {
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
-            params.add(new BasicNameValuePair("company_id", String.valueOf(company_id)));
-            params.add(new BasicNameValuePair("audit_id", String.valueOf(audit_id)));
-            params.add(new BasicNameValuePair("user_id", String.valueOf(user_id)));
+
+            HashMap<String, String> params = new HashMap<>();
+
+            params.put("store_id", String.valueOf(store_id));
+            params.put("company_id", String.valueOf(company_id));
+            params.put("audit_id", String.valueOf(audit_id));
+            params.put("user_id", String.valueOf(user_id));
 
 
-            JSONParser jsonParser = new JSONParser();
+            JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/saveScoreStoreBayer" ,"POST", params);
             // check your log for json response
@@ -455,8 +412,6 @@ public class Product extends Activity {
         }
 
     }
-
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
