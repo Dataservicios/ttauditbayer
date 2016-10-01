@@ -772,13 +772,15 @@ public class Aspirina extends Activity {
          * **/
         protected void onPostExecute(Boolean result) {
             // dismiss the dialog once product deleted
-
+            hidepDialog();
             if (result){
                 // loadLoginActivity();
                 //new loadPoll72().execute();
 
                 finish();
 
+            } else {
+                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente",Toast.LENGTH_LONG).show();
             }
         }
     }

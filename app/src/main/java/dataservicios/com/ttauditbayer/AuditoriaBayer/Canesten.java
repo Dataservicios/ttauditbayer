@@ -772,7 +772,7 @@ public class Canesten extends Activity {
          * **/
         protected void onPostExecute(Boolean result) {
             // dismiss the dialog once product deleted
-
+            hidepDialog();
             if (result){
                 // loadLoginActivity();
                 //new loadPoll72().execute();
