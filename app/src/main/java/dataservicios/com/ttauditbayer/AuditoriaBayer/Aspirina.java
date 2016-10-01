@@ -33,6 +33,7 @@ import dataservicios.com.ttauditbayer.R;
 import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParser;
+import dataservicios.com.ttauditbayer.util.JSONParserX;
 import dataservicios.com.ttauditbayer.util.SessionManager;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -750,21 +751,31 @@ public class Aspirina extends Activity {
             // TODO Auto-generated method stub
             //cargaTipoPedido();
 
-            InsertAuditPollsProduct(String.valueOf(poll_id),"0",String.valueOf(is_recomieda),comentario);
+//            InsertAuditPollsProduct(String.valueOf(poll_id),"0",String.valueOf(is_recomieda),comentario);
+//            InsertAuditPollsOtions(String.valueOf(poll_id_2), "0", "0", comentarioOtros);
+//            if(is_recomieda==0){
+//                //Enviando por defecto estock segun el swich que marco
+//                InsertAuditPollsProduct(String.valueOf(poll_id_3), "0", String.valueOf(stock), "");
+//            } else if(is_recomieda==1) {
+//                //Enviando por defecto estock 1
+//                InsertAuditPollsProduct(String.valueOf(poll_id_3),"0","1","");
+//            }
+////            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
+////            startActivity(intent);
+////            finish();
+//            return true;
 
-            InsertAuditPollsOtions(String.valueOf(poll_id_2), "0", "0", comentarioOtros);
+
+            if(!InsertAuditPollsProduct(poll_id,0,is_recomieda,comentario)) return false;
+            if(!InsertAuditPollsOtions(poll_id_2,product_id,1,0,0,totalOption,comentarioOtros)) return false;
             if(is_recomieda==0){
-
-
                 //Enviando por defecto estock segun el swich que marco
-                InsertAuditPollsProduct(String.valueOf(poll_id_3), "0", String.valueOf(stock), "");
+                if(!InsertAuditPollsProduct(poll_id_3, 0, stock, "")) return false;
             } else if(is_recomieda==1) {
                 //Enviando por defecto estock 1
-                InsertAuditPollsProduct(String.valueOf(poll_id_3),"0","1","");
+                if(!InsertAuditPollsProduct(poll_id_3,0,1,"")) return  false;
             }
-//            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
-//            startActivity(intent);
-//            finish();
+
             return true;
         }
         /**
@@ -786,101 +797,201 @@ public class Aspirina extends Activity {
     }
 
 
-
-
-    private void InsertAuditPollsProduct(String poll_id, String status , String result,String comentario) {
+    private boolean InsertAuditPollsProduct(int poll_id, int status , int result,String comentario) {
         int success;
         try {
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("poll_id", poll_id));
-            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
-            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
-            params.add(new BasicNameValuePair("sino", "1"));
-            params.add(new BasicNameValuePair("coment", String.valueOf(comentario)));
-            params.add(new BasicNameValuePair("result", result));
-            params.add(new BasicNameValuePair("company_id", String.valueOf(GlobalConstant.company_id)));
-            params.add(new BasicNameValuePair("idroute", String.valueOf(rout_id)));
-            params.add(new BasicNameValuePair("idaudit", String.valueOf(audit_id)));
-            params.add(new BasicNameValuePair("status", status));
+            HashMap<String, String> params = new HashMap<>();
+
+            params.put("poll_id", String.valueOf(poll_id));
+            params.put("store_id", String.valueOf(store_id));
+            params.put("product_id", String.valueOf(product_id));
+            params.put("sino", "1");
+            params.put("coment", String.valueOf(comentario));
+            params.put("result", String.valueOf(result));
+            params.put("company_id", String.valueOf(GlobalConstant.company_id));
+            params.put("idroute", String.valueOf(rout_id));
+            params.put("idaudit", String.valueOf(audit_id));
+            params.put("status", String.valueOf(status));
 
 
-
-            JSONParser jsonParser = new JSONParser();
+            JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPollsProduct" ,"POST", params);
             // check your log for json response
-            Log.d("Login attempt", json.toString());
-            // json success, tag que retorna el json
-            success = json.getInt("success");
-            if (success == 1) {
-                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
-            }else{
-                Log.d(LOG_TAG, json.getString("message"));
-                // return json.getString("message");
+            if (json == null) {
+                Log.d(LOG_TAG, "Está en nullo");
+                return false;
+            } else{
+                success = json.getInt("success");
+                if (success == 1) {
+                    Log.d(LOG_TAG, "Se insertó registro correctamente");
+                }else{
+                    Log.d(LOG_TAG, "no insertó registro, registro duplicado");
+                    // return json.getString("message");
+                    // return false;
+                }
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            Log.d(LOG_TAG, " Error " + Log.getStackTraceString(e));
+            return false;
         }
 
+        return true;
     }
 
 
 
-    private void InsertAuditPollsOtions(String poll_id, String status,String result,String comentario) {
+    private boolean InsertAuditPollsOtions(int poll_id,int product_id, int product_type, int status,int result,String options,String comentario) {
         int success;
         try {
 
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("poll_id", poll_id));
-            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
-
-            params.add(new BasicNameValuePair("options", "1"));
-            params.add(new BasicNameValuePair("limits", "0"));
-
-            params.add(new BasicNameValuePair("media", "0"));
-
-
-            params.add(new BasicNameValuePair("coment", "1"));
-            params.add(new BasicNameValuePair("coment_options", "0"));
-            // params.add(new BasicNameValuePair("coment_options", "0"));
-            params.add(new BasicNameValuePair("comentario_options", ""));
-            params.add(new BasicNameValuePair("limite", ""));
-            params.add(new BasicNameValuePair("opcion", totalOption));
-
-            params.add(new BasicNameValuePair("sino", "0"));
-            params.add(new BasicNameValuePair("product", "1"));
-
-
-            params.add(new BasicNameValuePair("comentario", String.valueOf(comentario)));
-            params.add(new BasicNameValuePair("result", result));
-            params.add(new BasicNameValuePair("idCompany", String.valueOf(GlobalConstant.company_id)));
-            params.add(new BasicNameValuePair("idRuta", String.valueOf(rout_id)));
-            params.add(new BasicNameValuePair("idAuditoria", String.valueOf(audit_id)));
-
-            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
-            params.add(new BasicNameValuePair("status", status));
+            HashMap<String, String> params = new HashMap<>();
+            params.put("poll_id", String.valueOf(poll_id));
+            params.put("poll_id", String.valueOf(poll_id));
+            params.put("store_id", String.valueOf(store_id));
+            params.put("options", "1");
+            params.put("limits", "0");
+            params.put("media", "0");
+            params.put("coment", "1");
+            params.put("coment_options", "0");
+            params.put("comentario_options", "");
+            params.put("limite", "");
+            params.put("opcion", options);
+            params.put("sino", "0");
+            params.put("product", String.valueOf(product_type));
+            params.put("comentario", String.valueOf(comentario));
+            params.put("result",  String.valueOf(result));
+            params.put("idCompany", String.valueOf(GlobalConstant.company_id));
+            params.put("idRuta", String.valueOf(rout_id));
+            params.put("idAuditoria", String.valueOf(audit_id));
+            params.put("product_id", String.valueOf(product_id));
+            params.put("status",  String.valueOf(status));
 
 
-            JSONParser jsonParser = new JSONParser();
+
+
+
+            JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPolls" ,"POST", params);
             JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditBayer" ,"POST", params);
             // check your log for json response
-            Log.d("Login attempt", json.toString());
-            // json success, tag que retorna el json
-            success = json.getInt("success");
-            if (success == 1) {
-                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
-            }else{
-                Log.d(LOG_TAG, json.getString("message"));
-                // return json.getString("message");
+            if (json == null) {
+                Log.d(LOG_TAG, "Está en nullo");
+                return false;
+            } else{
+                success = json.getInt("success");
+                if (success == 1) {
+                    Log.d(LOG_TAG, "Se insertó registro correctamente");
+                }else{
+                    Log.d(LOG_TAG, "no insertó registro, registro duplicado");
+                    // return json.getString("message");
+                    // return false;
+                }
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            Log.d(LOG_TAG, " Error " + Log.getStackTraceString(e));
+            return false;
         }
+
+        return true;
     }
+
+
+
+//    private void InsertAuditPollsProduct(String poll_id, String status , String result,String comentario) {
+//        int success;
+//        try {
+//
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("poll_id", poll_id));
+//            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
+//            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
+//            params.add(new BasicNameValuePair("sino", "1"));
+//            params.add(new BasicNameValuePair("coment", String.valueOf(comentario)));
+//            params.add(new BasicNameValuePair("result", result));
+//            params.add(new BasicNameValuePair("company_id", String.valueOf(GlobalConstant.company_id)));
+//            params.add(new BasicNameValuePair("idroute", String.valueOf(rout_id)));
+//            params.add(new BasicNameValuePair("idaudit", String.valueOf(audit_id)));
+//            params.add(new BasicNameValuePair("status", status));
+//
+//
+//
+//            JSONParser jsonParser = new JSONParser();
+//            // getting product details by making HTTP request
+//            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPollsProduct" ,"POST", params);
+//            // check your log for json response
+//            Log.d("Login attempt", json.toString());
+//            // json success, tag que retorna el json
+//            success = json.getInt("success");
+//            if (success == 1) {
+//                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
+//            }else{
+//                Log.d(LOG_TAG, json.getString("message"));
+//                // return json.getString("message");
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//    private void InsertAuditPollsOtions(String poll_id, String status,String result,String comentario) {
+//        int success;
+//        try {
+//
+//
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("poll_id", poll_id));
+//            params.add(new BasicNameValuePair("store_id", String.valueOf(store_id)));
+//
+//            params.add(new BasicNameValuePair("options", "1"));
+//            params.add(new BasicNameValuePair("limits", "0"));
+//
+//            params.add(new BasicNameValuePair("media", "0"));
+//
+//
+//            params.add(new BasicNameValuePair("coment", "1"));
+//            params.add(new BasicNameValuePair("coment_options", "0"));
+//            // params.add(new BasicNameValuePair("coment_options", "0"));
+//            params.add(new BasicNameValuePair("comentario_options", ""));
+//            params.add(new BasicNameValuePair("limite", ""));
+//            params.add(new BasicNameValuePair("opcion", totalOption));
+//
+//            params.add(new BasicNameValuePair("sino", "0"));
+//            params.add(new BasicNameValuePair("product", "1"));
+//
+//
+//            params.add(new BasicNameValuePair("comentario", String.valueOf(comentario)));
+//            params.add(new BasicNameValuePair("result", result));
+//            params.add(new BasicNameValuePair("idCompany", String.valueOf(GlobalConstant.company_id)));
+//            params.add(new BasicNameValuePair("idRuta", String.valueOf(rout_id)));
+//            params.add(new BasicNameValuePair("idAuditoria", String.valueOf(audit_id)));
+//
+//            params.add(new BasicNameValuePair("product_id", String.valueOf(product_id)));
+//            params.add(new BasicNameValuePair("status", status));
+//
+//
+//            JSONParser jsonParser = new JSONParser();
+//            // getting product details by making HTTP request
+//            //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditPolls" ,"POST", params);
+//            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonInsertAuditBayer" ,"POST", params);
+//            // check your log for json response
+//            Log.d("Login attempt", json.toString());
+//            // json success, tag que retorna el json
+//            success = json.getInt("success");
+//            if (success == 1) {
+//                Log.d(LOG_TAG, json.getString("Ingresado correctamente"));
+//            }else{
+//                Log.d(LOG_TAG, json.getString("message"));
+//                // return json.getString("message");
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }
