@@ -31,8 +31,6 @@ dependencies {
     compile 'com.android.support:support-v4:21.+'
     compile 'com.mcxiaoke.volley:library:1.0.6'
     compile 'com.google.android.gms:play-services:6.1.+'
-
     //compile 'org.apache.httpcomponents:httpmime:4.2.5'
     //compile files('libs/httpmime-4.2.5')
-
 }

@@ -95,7 +95,7 @@ public class BaseActivity extends Activity {
         // Find People
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
          //Photos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         // Photos
        // navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(3, -1)));
         // Communities, Will add a counter here
@@ -240,27 +240,27 @@ public class BaseActivity extends Activity {
 //                startActivity(intent);
                 break;
 
-            case 1:
-//                fragment = new CheckingFragment();
+//            case 1:
+////                fragment = new CheckingFragment();
+////                break;
+//
+//                pathFile = Environment.getExternalStorageDirectory().toString()+"/Pictures/" + getAlbunNameTemp()  ;
+//
+//                //File filePath = new File(pathFile);
+//                filePath = new File(pathFile);
+//
+//                if (filePath.isDirectory()) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_VIEW);
+//                    Uri myUri = Uri.parse(String.valueOf(filePath));
+//                    intent.setDataAndType(myUri , "resource/folder");
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(MyActivity,"El directorio no existe, no hay imagenes temporales",Toast.LENGTH_LONG).show();
+//                }
+//
 //                break;
-
-                pathFile = Environment.getExternalStorageDirectory().toString()+"/Pictures/" + getAlbunNameTemp()  ;
-
-                //File filePath = new File(pathFile);
-                filePath = new File(pathFile);
-
-                if (filePath.isDirectory()) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    Uri myUri = Uri.parse(String.valueOf(filePath));
-                    intent.setDataAndType(myUri , "resource/folder");
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MyActivity,"El directorio no existe, no hay imagenes temporales",Toast.LENGTH_LONG).show();
-                }
-
-                break;
-            case 2:
+            case 1:
                // fragment = new GraficosFragment();
                 //fragment = new PhotosFragment();
 
