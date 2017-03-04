@@ -28,10 +28,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import dataservicios.com.ttauditbayer.Model.Audit;
+import dataservicios.com.ttauditbayer.Model.PollDetail;
 import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
+import dataservicios.com.ttauditbayer.util.AuditUtil;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParser;
 import dataservicios.com.ttauditbayer.util.JSONParserX;
+import dataservicios.com.ttauditbayer.util.SessionManager;
 
 
 import org.apache.http.NameValuePair;
@@ -41,21 +44,25 @@ import org.apache.http.message.BasicNameValuePair;
  */
 public class Premiacion extends Activity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = Premiacion.class.getSimpleName();
+
+    private SessionManager session;
     private Activity MyActivity;
     private Button bt_guardar, bt_photo;
     private TextView tv_mensaje, tv_auditScore;
     private Integer store_id, road_id;
     private DatabaseHelper db;
     private List<Audit> audits = new ArrayList<Audit>() ;
-    private Switch sw_RecibePremio;
+    private Switch swSiNo;
     private LinearLayout lyControles;
     private EditText etComentario;
 
     private ProgressDialog pDialog;
-    int  is_recibe_premio=0;
+    int  is_sino=0;
     String comentario;
-    private int poll_id, audit_id ;
+    private int poll_id, audit_id,user_id ;
+
+    private PollDetail pollDetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -66,7 +73,7 @@ public class Premiacion extends Activity {
 
         bt_guardar = (Button) findViewById(R.id.btGuardar);
         //bt_photo = (Button) findViewById(R.id.btPhoto);
-        sw_RecibePremio = (Switch) findViewById(R.id.swRecibePremio);
+        swSiNo = (Switch) findViewById(R.id.swSiNo);
         lyControles = (LinearLayout)findViewById(R.id.lyControles);
         etComentario = (EditText) findViewById(R.id.etComentario);
        // bt_registrar = (Button) findViewById(R.id.btRegistrar);
@@ -76,7 +83,8 @@ public class Premiacion extends Activity {
         Bundle bundle = getIntent().getExtras();
         store_id = bundle.getInt("store_id");
         road_id = bundle.getInt("road_id");
-        poll_id = 523; //¿Recibio Premio? o acepto premio
+        //poll_id = 523; //¿Recibio Premio? o acepto premio
+        poll_id = GlobalConstant.poll_id[5]; //¿Recibio Premio? o acepto premio
         audit_id = 14;
         db =  new DatabaseHelper(MyActivity);
 
@@ -87,23 +95,26 @@ public class Premiacion extends Activity {
 
 
 
+        session = new SessionManager(getApplicationContext());
+        HashMap<String, String> user = session.getUserDetails();
+        user_id = Integer.valueOf(user.get(SessionManager.KEY_ID_USER)) ;
         String mensaje ="Tienda Premiada";
 
 
 
-        sw_RecibePremio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swSiNo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
 
-                    is_recibe_premio = 1;
+                    is_sino = 1;
 //                    bt_photo.setVisibility(View.VISIBLE);
 //                    bt_photo.setEnabled(true);
                      lyControles.setVisibility(View.INVISIBLE);
                      etComentario.setText("");
 
                 } else {
-                    is_recibe_premio = 0;
+                    is_sino = 0;
 //                    bt_photo.setVisibility(View.INVISIBLE);
 //                    bt_photo.setEnabled(false);
                     lyControles.setVisibility(View.VISIBLE);
@@ -130,8 +141,33 @@ public class Premiacion extends Activity {
 
 
                         comentario = etComentario.getText().toString();
-                        db.deleteAllAudits();
-                        db.deleteAllAuditForStoreId(store_id);
+
+                        //comentario = String.valueOf(etComent.getText()) ;
+
+                        pollDetail = new PollDetail();
+                        pollDetail.setPoll_id(poll_id);
+                        pollDetail.setStore_id(store_id);
+                        pollDetail.setSino(1);
+                        pollDetail.setOptions(0);
+                        pollDetail.setLimits(0);
+                        pollDetail.setMedia(1);
+                        pollDetail.setComment(1);
+                        pollDetail.setResult(is_sino);
+                        pollDetail.setLimite("0");
+                        pollDetail.setComentario(comentario);
+                        pollDetail.setAuditor(user_id);
+                        pollDetail.setProduct_id(0);
+                        pollDetail.setCategory_product_id(0);
+                        pollDetail.setPublicity_id(0);
+                        pollDetail.setCompany_id(GlobalConstant.company_id);
+                        pollDetail.setCommentOptions(0);
+                        pollDetail.setSelectdOptions("");
+                        pollDetail.setSelectedOtionsComment("");
+                        pollDetail.setPriority("0");
+
+
+//                        db.deleteAllAudits();
+//                        db.deleteAllAuditForStoreId(store_id);
                         // finish();
                         new loadPoll().execute();
                         dialog.dismiss();
@@ -152,29 +188,11 @@ public class Premiacion extends Activity {
             }
         });
 
-//        bt_photo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                takePhoto();
-//            }
-//        });
+
 
     }
 
-    private void takePhoto() {
 
-        Intent i = new Intent( MyActivity, AndroidCustomGalleryActivity.class);
-        Bundle bolsa = new Bundle();
-
-        bolsa.putString("store_id",String.valueOf(store_id));
-        bolsa.putString("product_id","0");
-        bolsa.putString("poll_id",String.valueOf(poll_id));
-        bolsa.putString("company_id",String.valueOf(GlobalConstant.company_id));
-        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPoll");
-        bolsa.putString("tipo", "1");
-        i.putExtras(bolsa);
-        startActivity(i);
-    }
     private void showpDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
@@ -202,7 +220,8 @@ public class Premiacion extends Activity {
             // TODO Auto-generated method stub
             //cargaTipoPedido();
 
-           if(!InsertAuditPolls(poll_id, road_id , store_id ,audit_id, 0 , is_recibe_premio, comentario)) return false;
+          // if(!InsertAuditPolls(poll_id, road_id , store_id ,audit_id, 0 , is_sino, comentario)) return false;
+            if(!AuditUtil.insertPollDetail(pollDetail)) return false;
 
             return true;
         }
@@ -214,7 +233,10 @@ public class Premiacion extends Activity {
             hidepDialog();
             if (result){
                 // loadLoginActivity();
-                if(is_recibe_premio == 1){
+                db.deleteAllAudits();
+                db.deleteAllAuditForStoreId(store_id);
+
+                if(is_sino == 1){
                     Bundle argRuta = new Bundle();
                     argRuta.clear();
                     argRuta.putInt("store_id", store_id);

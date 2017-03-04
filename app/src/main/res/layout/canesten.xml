@@ -321,7 +321,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/tvStock"
-                            android:text="¿Tiene Stock Aspirina 500?"/>
+                            android:text="¿Tiene Stock ACanesten?"/>
                         <Switch
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

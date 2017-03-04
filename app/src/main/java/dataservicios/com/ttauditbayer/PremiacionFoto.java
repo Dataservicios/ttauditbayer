@@ -77,11 +77,16 @@ public class PremiacionFoto extends Activity {
         Intent i = new Intent( MyActivity, AndroidCustomGalleryActivity.class);
         Bundle bolsa = new Bundle();
 
-        bolsa.putString("store_id",String.valueOf(store_id));
-        bolsa.putString("product_id","0");
-        bolsa.putString("poll_id",String.valueOf(poll_id));
-        bolsa.putString("company_id",String.valueOf(GlobalConstant.company_id));
-        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPoll");
+        bolsa.putString("store_id", String.valueOf(store_id));
+        bolsa.putString("product_id", String.valueOf("0"));
+        bolsa.putString("publicities_id", String.valueOf("0"));
+        bolsa.putString("poll_id", String.valueOf(poll_id));
+        bolsa.putString("sod_ventana_id", String.valueOf("0"));
+        bolsa.putString("company_id", String.valueOf(GlobalConstant.company_id));
+        bolsa.putString("category_product_id", "0");
+        bolsa.putString("monto","");
+        bolsa.putString("razon_social","");
+        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPollAlicorp");
         bolsa.putString("tipo", "1");
         i.putExtras(bolsa);
         startActivity(i);

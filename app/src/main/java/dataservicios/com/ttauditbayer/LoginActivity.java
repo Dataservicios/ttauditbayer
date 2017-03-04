@@ -2,10 +2,12 @@ package dataservicios.com.ttauditbayer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -154,13 +156,21 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             int id_user ;
             try {
                 // Construyendo los parametros
+                TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+                tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                String imei = tm.getDeviceId();
+                String imei1 = tm.getLine1Number();
+                String simSerialNumber = tm.getSimSerialNumber();
+                // Construyendo los parametros
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("username", username));
                 params.add(new BasicNameValuePair("password", password));
+                params.add(new BasicNameValuePair("imei", simSerialNumber));
 
                 Log.d("request!", "starting");
                 // getting product details by making HTTP request
-                JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginUser" ,"POST", params);
+                //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginUser" ,"POST", params);
+                JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginMovil" ,"POST", params);
 
                 // check your log for json response
                 Log.d("Login attempt", json.toString());

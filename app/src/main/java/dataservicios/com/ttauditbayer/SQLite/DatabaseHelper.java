@@ -29,57 +29,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 13;
     // Database Name
     private static final String DATABASE_NAME = "db-bayer";
     // Table Names
-    private static final String TABLE_POLL = "poll";
-    private static final String TABLE_USER = "user";
-    private static final String TABLE_PRODUCTS = "products";
-    private static final String TABLE_PRODUCTS_SCORE = "products_score";
-    private static final String TABLE_POLLS_PRODUCT_STORE = "polls_product_store";
-    private static final String TABLE_PRESENCE_PRODUCTS = "presense_products";
-
-    private static final String TABLE_AUDITS = "audits";
+    protected static final String TABLE_POLL = "poll";
+    protected static final String TABLE_USER = "user";
+    protected static final String TABLE_PRODUCTS = "products";
+    protected static final String TABLE_PRODUCTS_SCORE = "products_score";
+    protected static final String TABLE_POLLS_PRODUCT_STORE = "polls_product_store";
+    protected static final String TABLE_PRESENCE_PRODUCTS = "presense_products";
+    protected static final String TABLE_MEDIAS = "medias";
+    protected static final String TABLE_AUDITS = "audits";
 
 
 
     //Name columns common
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
+    protected static final String KEY_ID = "id";
+    protected static final String KEY_NAME = "name";
 
     //Name columns user
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PASSWORD = "password";
+    protected static final String KEY_EMAIL = "email";
+    protected static final String KEY_PASSWORD = "password";
 
     //Name columns poll
-    private static final String KEY_QUESTION = "name_question";
-    private static final String KEY_ID_AUDITORIA = "auditoria_id";
+    protected static final String KEY_QUESTION = "name_question";
+    protected static final String KEY_ID_AUDITORIA = "auditoria_id";
 
     //Name columns Products
-    private static final String KEY_CODE = "code";
-    private static final String KEY_IMAGEN = "image";
-    private static final String KEY_COMPANY_ID = "company_id";
-    private static final String KEY_CATEGORY_ID = "category_id";
-    private static final String KEY_CATEGORY_NAME = "category_name";
+    protected static final String KEY_CODE = "code";
+    protected static final String KEY_IMAGEN = "image";
+    protected static final String KEY_COMPANY_ID = "company_id";
+    protected static final String KEY_CATEGORY_ID = "category_id";
+    protected static final String KEY_CATEGORY_NAME = "category_name";
 
     //Name column Presense Product
-    private static final String KEY_STORY_ID = "store_id";
-    private static final String KEY_PRODUCT_ID = "product_id";
+    protected static final String KEY_STORY_ID = "store_id";
+    protected static final String KEY_PRODUCT_ID = "product_id";
 
     //Name column  TABLE_POLLS_PRODUCT_STORE
-    private static final String KEY_STORE_TYPE= "store_type";
+    protected static final String KEY_STORE_TYPE= "store_type";
 
     //Name column  products_score
-    private static final String KEY_TOTAL_PRODUCTS= "total_products";
-    private static final String KEY_TOTAL_EXHIBITIONS= "total_exhibitions";
-    private static final String KEY_AWARDS= "awards";
+    protected static final String KEY_TOTAL_PRODUCTS= "total_products";
+    protected static final String KEY_TOTAL_EXHIBITIONS= "total_exhibitions";
+    protected static final String KEY_AWARDS= "awards";
 
     //Name column Table product
-    private  static final String KEY_ACTIVE = "active";
+    protected  static final String KEY_ACTIVE = "active";
 
     //Name column Audit
-    private static final String KEY_SCORE = "score";
+    protected static final String KEY_SCORE = "score";
+
+    //Name column Table medias
+    protected   static final String KEY_TIPO = "tipo";
+    protected   static final String KEY_NAME_FILE = "archivo";
+    protected   static final String KEY_TYPE = "type";
+    protected   static final String KEY_MONTO = "monto";
+    protected   static final String KEY_RAZON_SOCIAL = "razon_social";
+
+    protected   static final String KEY_CATEGORY_PRODUCT_ID = "category_product_id";
+
+    protected static final String KEY_STORE = "store_id";
+    protected static final String KEY_STORE_ID = "store_id";
+    protected static final String KEY_POLL_ID = "poll_id";
+    protected static final String KEY_PUBLICITY_ID = "publicity_id";
+    protected static final String KEY_DATE_CREATED= "created_at";
+    protected static final String KEY_DATE_UPDATE= "update_at";
 
     //Nname
 
@@ -143,6 +159,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_QUESTION + " TEXT , "
             + KEY_STORE_TYPE + " TEXT )";
 
+    private static final String CREATE_TABLE_MEDIAS  = "CREATE TABLE "
+            + TABLE_MEDIAS + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_STORE + " INTEGER ,"
+            + KEY_POLL_ID + " INTEGER, "
+            + KEY_PUBLICITY_ID + " INTEGER, "
+            + KEY_PRODUCT_ID + " INTEGER, "
+            + KEY_CATEGORY_PRODUCT_ID + " INTEGER, "
+            + KEY_COMPANY_ID + " INTEGER, "
+            + KEY_NAME_FILE + " TEXT, "
+            + KEY_MONTO + " TEXT, "
+            + KEY_RAZON_SOCIAL + " TEXT, "
+            + KEY_TYPE + " INTEGER, "
+            + KEY_DATE_CREATED + " TEXT )";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -158,6 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_AUDITS);
         db.execSQL(CREATE_TABLE_POLLS_PRODUCT_STORE);
         db.execSQL(CREATE_TABLE_PRODUCTS_SCORE);
+        db.execSQL(CREATE_TABLE_MEDIAS);
     }
 
     @Override
@@ -170,6 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_AUDITS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_POLLS_PRODUCT_STORE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS_SCORE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIAS);
 
         // create new tables
         onCreate(db);

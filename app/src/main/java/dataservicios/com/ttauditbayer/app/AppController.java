@@ -2,19 +2,22 @@ package dataservicios.com.ttauditbayer.app;
 
 
 import android.app.Application;
+import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-
+import dataservicios.com.ttauditbayer.Services.UpdateServices;
 import dataservicios.com.ttauditbayer.util.LruBitmapCache;
-
 
 public class AppController extends Application {
 
 	public static final String TAG = AppController.class.getSimpleName();
+
+	private boolean serviceRunningFlag;
 
 	private RequestQueue mRequestQueue;
 	private ImageLoader mImageLoader;
@@ -24,11 +27,20 @@ public class AppController extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		Log.d(TAG, "onCreated");
+		startService(new Intent(this, UpdateServices.class));
 		mInstance = this;
 	}
 
+
+
 	public static synchronized AppController getInstance() {
 		return mInstance;
+	}
+
+	public void setServiceRunningFlag(boolean serviceRunningFlag) {
+		this.serviceRunningFlag = serviceRunningFlag;
 	}
 
 	public RequestQueue getRequestQueue() {
@@ -63,5 +75,13 @@ public class AppController extends Application {
 		if (mRequestQueue != null) {
 			mRequestQueue.cancelAll(tag);
 		}
+	}
+
+
+	@Override
+	public void onTerminate() {
+		super.onTerminate();
+		Log.i(TAG, "onTerminated");
+		stopService(new Intent(this, UpdateServices.class));
 	}
 }

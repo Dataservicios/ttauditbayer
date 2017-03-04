@@ -44,6 +44,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,6 +53,8 @@ import dataservicios.com.ttauditbayer.Model.Audit;
 import dataservicios.com.ttauditbayer.Model.ProductScore;
 import dataservicios.com.ttauditbayer.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditbayer.app.AppController;
+import dataservicios.com.ttauditbayer.util.AuditUtil;
+import dataservicios.com.ttauditbayer.util.GPSTracker;
 import dataservicios.com.ttauditbayer.util.GlobalConstant;
 import dataservicios.com.ttauditbayer.util.JSONParserX;
 import dataservicios.com.ttauditbayer.util.SessionManager;
@@ -90,6 +93,10 @@ public class DetallePdv extends FragmentActivity {
     Activity MyActivity = (Activity) this;
 
     private DatabaseHelper db;
+
+    Audit mAudit ;
+    GPSTracker gpsTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -129,6 +136,8 @@ public class DetallePdv extends FragmentActivity {
         id_user = user.get(SessionManager.KEY_ID_USER);
 
         db = new DatabaseHelper(getApplicationContext());
+
+        gpsTracker = new GPSTracker(MyActivity);
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Cargando...");
@@ -172,28 +181,8 @@ public class DetallePdv extends FragmentActivity {
                         String strDate = sdf.format(c.getTime());
                         GlobalConstant.fin = strDate;
 
-//                        JSONObject paramsCloseAudit = new JSONObject();
-//                        try {
-//
-//
-//                            paramsCloseAudit.put("latitud_close", lat);
-//                            paramsCloseAudit.put("longitud_close", lon);
-//                            paramsCloseAudit.put("latitud_open", GlobalConstant.latitude_open);
-//                            paramsCloseAudit.put("longitud_open",  GlobalConstant.latitude_open);
-//                            paramsCloseAudit.put("tiempo_inicio",  GlobalConstant.inicio);
-//                            paramsCloseAudit.put("tiempo_fin",  GlobalConstant.fin);
-//                            paramsCloseAudit.put("tduser", id_user);
-//                            paramsCloseAudit.put("id", idPDV);
-//                            paramsCloseAudit.put("idruta", IdRuta);
-//
-//
-//                            insertaTiemporAuditoria(paramsCloseAudit);
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
 
-                        new closeAuudit().execute();
+                        new loadPoll().execute();
 
                         dialog.dismiss();
 
@@ -311,7 +300,7 @@ public class DetallePdv extends FragmentActivity {
     }
 
 
-    class closeAuudit extends AsyncTask<Void, Integer , Boolean> {
+    class loadPoll extends AsyncTask<Void , Integer , Boolean> {
         /**
          * Antes de comenzar en el hilo determinado, Mostrar progresión
          * */
@@ -325,9 +314,26 @@ public class DetallePdv extends FragmentActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO Auto-generated method stub
-            //cargaTipoPedido();
 
-            if(!insertCloseAudit(idPDV,IdRuta, Integer.valueOf(id_user) ,lat,lon)) return false;
+
+
+            String time_close = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss").format(new Date());
+            mAudit = new Audit();
+            mAudit.setCompany_id(GlobalConstant.company_id);
+            mAudit.setStore_id(idPDV);
+            mAudit.setId(0);
+            mAudit.setRoute_id(IdRuta);
+            mAudit.setUser_id(Integer.valueOf(id_user));
+            mAudit.setLatitude_close(String.valueOf(gpsTracker.getLatitude()));
+            mAudit.setLongitude_close(String.valueOf(gpsTracker.getLongitude()));
+            mAudit.setLatitude_open(String.valueOf(GlobalConstant.latitude_open));
+            mAudit.setLongitude_open(String.valueOf(GlobalConstant.longitude_open));
+            mAudit.setTime_open(GlobalConstant.inicio);
+            mAudit.setTime_close(time_close);
+
+
+            if(!AuditUtil.closeAuditRoadAll(mAudit)) return false;
+
 
             return true;
         }
@@ -336,10 +342,8 @@ public class DetallePdv extends FragmentActivity {
          * **/
         protected void onPostExecute(Boolean result) {
             // dismiss the dialog once product deleted
-            hidepDialog();
-            if (result){
 
-               // Toast.makeText(MyActivity, "Se ", Toast.LENGTH_LONG).show();
+            if (result){
                 Bundle argument = new Bundle();
                 argument.clear();
                 argument.putInt("store_id", idPDV);
@@ -357,9 +361,9 @@ public class DetallePdv extends FragmentActivity {
 
                 finish();
             } else {
-                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente",Toast.LENGTH_LONG).show();
+                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente", Toast.LENGTH_LONG).show();
             }
-
+            hidepDialog();
         }
     }
 

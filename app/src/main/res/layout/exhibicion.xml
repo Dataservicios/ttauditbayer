@@ -91,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="Apronax 550"
                 android:padding="5dp"
+                android:tag="a"
                 android:id="@+id/cbA" />
 
             <CheckBox
@@ -98,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bephantene"
                 android:padding="5dp"
+                android:tag="b"
                 android:id="@+id/cbB" />
 
             <CheckBox
@@ -105,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="Canesten"
                 android:padding="5dp"
+                android:tag="c"
                 android:id="@+id/cbC" />
 
             <CheckBox
@@ -112,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:text="Aspirina 100"
                 android:padding="5dp"
+                android:tag="d"
                 android:id="@+id/cbD" />
 
             <CheckBox
@@ -119,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:text="Aspirina Forte"
                 android:padding="5dp"
+                android:tag="e"
                 android:id="@+id/cbE" />
 
             <CheckBox
@@ -126,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:text="Redoxon"
                 android:padding="5dp"
+                android:tag="f"
                 android:id="@+id/cbF" />
 
             <CheckBox
@@ -133,6 +139,7 @@
                 android:layout_height="wrap_content"
                 android:text="Berocca"
                 android:padding="5dp"
+                android:tag="g"
                 android:id="@+id/cbG" />
 
             <CheckBox
@@ -140,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="Supradin"
                 android:padding="5dp"
+                android:tag="h"
                 android:id="@+id/cbH" />
 
             <!--<CheckBox-->

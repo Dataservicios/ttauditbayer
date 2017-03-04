@@ -26,6 +26,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,9 +57,8 @@ public class AuditUtil {
      * @return
      */
     public boolean uploadMedia(Media media, int typeSend){
-
-
-        final String url_upload_image = GlobalConstant.dominio + "/insertImagesAlicorp";
+        HttpURLConnection httpConnection = null;
+        final String url_upload_image = GlobalConstant.dominio + "/insertImagesMayorista";
 
         String imag = media.getFile();
         int id = media.getId();
@@ -64,133 +66,144 @@ public class AuditUtil {
         int poll_id = media.getPoll_id();
         int product_id = media.getProduct_id();
         int publicity_id = media.getPublicity_id();
+        int category_product_id = media.getCategory_product_id();
         int store_id= media.getStore_id();
         int type = media.getType();
+        String monto = media.getMonto();
+        String razon_social = media.getRazonSocial();
         String hora_sistema = media.getCreated_at();
         String created_at = media.getCreated_at();
-        long totalSize = 0;
 
         File file = new File(BitmapLoader.getAlbumDirTemp(context).getAbsolutePath() + "/" + imag);
-
-
         if(!file.exists()){
             return true;
         }
-
-        Bitmap bbicon;
-        HttpResponse resp;
-        HttpClient httpClient = new DefaultHttpClient();
-        Log.i("FOO", "Notification started");
-        bbicon= BitmapFactory.decodeFile(String.valueOf(file));
+        Bitmap bbicon = null;
         Bitmap scaledBitmap;
+        bbicon = BitmapLoader.loadBitmap(file.getAbsolutePath(),300,300);
 
-        if(typeSend > 0){
+//        if(Build.MODEL.equals("MotoG3")){
+//            scaledBitmap = FileImagenManager.rotateImage(FileImagenManager.scaleDown(bbicon, 450 , true),0);
+//        } else {
+//            scaledBitmap = FileImagenManager.rotateImage(FileImagenManager.scaleDown(bbicon, 450 , true),90);
+//        }
 
-
-        }
         if(Build.MODEL.equals("MotoG3")){
-            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 390 , true),0);
+            //scaledBitmap = BitmapLoader.scaleDown() BitmapLoader.rotateImage(bbicon,0);
+            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 540 , true),0);
         } else {
-            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 390 , true),90);
+            //scaledBitmap = BitmapLoader.rotateImage(bbicon,90);
+            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 540 , true),90);
         }
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+        scaledBitmap.compress(Bitmap.CompressFormat.JPEG,90, bos);
+        //bbicon.compress(Bitmap.CompressFormat.JPEG,100, bos);
 
-        InputStream in = new ByteArrayInputStream(bos.toByteArray());
-
-        ContentBody foto = new ByteArrayBody(bos.toByteArray(), file.getName());
-        HttpClient httpclient = new DefaultHttpClient();
-        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-        HttpPost httppost = new HttpPost(url_upload_image);
-        //MultipartEntity mpEntity = new MultipartEntity();
-        AndroidMultiPartEntity mpEntity = new AndroidMultiPartEntity(new AndroidMultiPartEntity.ProgressListener() {
-            @Override
-            public void transferred(long num) {
-                //notification.contentView.setProgressBar(R.id.progressBar1, 100,(int) ((num / (float) totalSize) * 100), true);
-                // notificationManager.notify(1, notification);
-            }
-        });
-
-
-
-        httppost.setEntity(mpEntity);
         try {
+            ContentBody foto = new ByteArrayBody(bos.toByteArray(), file.getName());
+            //ContentBody foto = new ByteArrayBody(bos.toByteArray(), file.getName());
+            //MultipartEntity mpEntity = new MultipartEntity();
+            AndroidMultiPartEntity mpEntity = new AndroidMultiPartEntity(new AndroidMultiPartEntity.ProgressListener() {
+                @Override
+                public void transferred(long num) {
+                    //notification.contentView.setProgressBar(R.id.progressBar1, 100,(int) ((num / (float) totalSize) * 100), true);
+                    // notificationManager.notify(1, notification);
+                }
+            });
 
-            totalSize =  mpEntity.getContentLength();
             mpEntity.addPart("fotoUp", foto);
             mpEntity.addPart("archivo", new StringBody(String.valueOf(file.getName())));
             mpEntity.addPart("store_id", new StringBody(String.valueOf(store_id)));
             mpEntity.addPart("product_id", new StringBody(String.valueOf(product_id)));
             mpEntity.addPart("poll_id", new StringBody(String.valueOf(poll_id)));
             mpEntity.addPart("publicities_id", new StringBody(String.valueOf(publicity_id)));
+            mpEntity.addPart("category_product_id", new StringBody(String.valueOf(category_product_id)));
             mpEntity.addPart("company_id", new StringBody(String.valueOf(company_id)));
             mpEntity.addPart("tipo", new StringBody(String.valueOf(type)));
+            mpEntity.addPart("monto", new StringBody(String.valueOf(monto)));
+            mpEntity.addPart("razon_social", new StringBody(String.valueOf(razon_social)));
             mpEntity.addPart("horaSistema", new StringBody(String.valueOf(hora_sistema)));
 
-            Log.i("FOO", "About to call httpClient.execute");
-            resp = httpClient.execute(httppost);
-            // resp.getEntity().getContent();
-            if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            URL url = new URL(url_upload_image);
+            httpConnection = (HttpURLConnection) url.openConnection();
+            httpConnection.setReadTimeout(10000);
+            httpConnection.setConnectTimeout(15000);
+            httpConnection.setRequestMethod("POST");
+            httpConnection.setUseCaches(false);
+            httpConnection.setDoInput(true);
+            httpConnection.setDoOutput(true);
+            httpConnection.setRequestProperty("Connection", "Keep-Alive");
+            httpConnection.addRequestProperty("Content-length", mpEntity.getContentLength()+"");
+            httpConnection.addRequestProperty(mpEntity.getContentType().getName(), mpEntity.getContentType().getValue());
+            OutputStream os = httpConnection.getOutputStream();
+            mpEntity.writeTo(httpConnection.getOutputStream());
+            os.close();
+            httpConnection.connect();
 
-                Log.i(LOG_TAG, "Screw up with http - " + resp.getStatusLine().getStatusCode());
-                file.delete();
+            if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                Log.d("UPLOAD", "HTTP 200 OK." + httpConnection.getResponseCode()+" "+httpConnection.getResponseMessage()+".");
+                //return readStream(httpConnection.getInputStream());
+                //This return returns the response from the upload.
+                return  true ;
 
             } else {
-
-                Log.i(LOG_TAG, "Screw up with http - " + resp.getStatusLine().getStatusCode());
+                Log.d("UPLOAD", "HTTP "+httpConnection.getResponseCode()+" "+httpConnection.getResponseMessage()+".");
+                // String stream =  readStream(
+                // );
+                // Log.d("UPLOAD", "Response: "+stream);
+                // return stream;
                 return  false ;
             }
+
             //resp.getEntity().consumeContent();
             //return true;
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return  false;
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return  false ;
+        }finally {
+            if(httpConnection != null){
+                httpConnection.disconnect();
+            }
         }
-        return true;
+        //return true;
     }
 
-    /**
-     * Insert table poll_Details
-     * @param pollDetail Model PollDetail
-     * @return
-     */
+
     public static boolean insertPollDetail(PollDetail pollDetail) {
         int success;
         try {
 
             HashMap<String, String> params = new HashMap<>();
 
-            params.put("poll_id"        , String.valueOf(pollDetail.getPoll_id()));
-            params.put("store_id"       , String.valueOf(pollDetail.getStore_id()));
-            params.put("sino"           , String.valueOf(pollDetail.getSino()));
-            params.put("options"        , String.valueOf(pollDetail.getOptions()));
-            params.put("limits"         , String.valueOf(pollDetail.getLimits()));
-            params.put("media"          , String.valueOf(pollDetail.getMedia()));
-            params.put("coment"        , String.valueOf(pollDetail.getComment()));
-            params.put("result"         , String.valueOf(pollDetail.getResult()));
-            params.put("limite"         , String.valueOf(pollDetail.getLimite()));
-            params.put("comentario"     , String.valueOf(pollDetail.getComentario()));
-            params.put("auditor"        , String.valueOf(pollDetail.getAuditor()));
-            params.put("product_id"     , String.valueOf(pollDetail.getProduct_id()));
-            params.put("publicity_id"   , String.valueOf(pollDetail.getPublicity_id()));
-            params.put("company_id"     , String.valueOf(pollDetail.getCompany_id()));
-            params.put("commentOptions" , String.valueOf(pollDetail.getCommentOptions()));
-            params.put("selectedOptions" , String.valueOf(pollDetail.getSelectdOptions()));
+            params.put("poll_id"                , String.valueOf(pollDetail.getPoll_id()));
+            params.put("store_id"               , String.valueOf(pollDetail.getStore_id()));
+            params.put("sino"                   , String.valueOf(pollDetail.getSino()));
+            params.put("options"                , String.valueOf(pollDetail.getOptions()));
+            params.put("limits"                 , String.valueOf(pollDetail.getLimits()));
+            params.put("media"                  , String.valueOf(pollDetail.getMedia()));
+            params.put("coment"                 , String.valueOf(pollDetail.getComment()));
+            params.put("result"                 , String.valueOf(pollDetail.getResult()));
+            params.put("limite"                 , String.valueOf(pollDetail.getLimite()));
+            params.put("comentario"             , String.valueOf(pollDetail.getComentario()));
+            params.put("auditor"                , String.valueOf(pollDetail.getAuditor()));
+            params.put("product_id"             , String.valueOf(pollDetail.getProduct_id()));
+            params.put("publicity_id"           , String.valueOf(pollDetail.getPublicity_id()));
+            params.put("company_id"             , String.valueOf(pollDetail.getCompany_id()));
+            params.put("category_product_id"    , String.valueOf(pollDetail.getCategory_product_id()));
+            params.put("commentOptions"         , String.valueOf(pollDetail.getCommentOptions()));
+            params.put("selectedOptions"        , String.valueOf(pollDetail.getSelectdOptions()));
             params.put("selectedOptionsComment" , String.valueOf(pollDetail.getSelectedOtionsComment()));
-            params.put("priority" , String.valueOf(pollDetail.getPriority()));
+            params.put("priority"               , String.valueOf(pollDetail.getPriority()));
 
 
 
             JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/json/prueba.json" ,"POST", params);
-            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/savePollDetails" ,"POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/savePollDetailsReg" ,"POST", params);
             // check your log for json response
             Log.d("Login attempt", json.toString());
             // json success, tag que retorna el json
@@ -201,10 +214,11 @@ public class AuditUtil {
                 success = json.getInt("success");
                 if (success == 1) {
                     Log.d(LOG_TAG, "Se insertó registro correctamente");
+                    // return true ;
                 }else{
                     Log.d(LOG_TAG, "no insertó registro");
                     // return json.getString("message");
-                    // return false;
+                    return false;
                 }
             }
 
@@ -212,14 +226,10 @@ public class AuditUtil {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return true ;
     }
 
-    /**
-     *
-     * @param pdv
-     * @return
-     */
+
     public static boolean updateDataStore(Pdv pdv) {
         int success;
         try {
@@ -327,11 +337,12 @@ public class AuditUtil {
             paramsData.put("tduser", String.valueOf(audit.getUser_id()));
             paramsData.put("id", String.valueOf(audit.getStore_id()));
             paramsData.put("idruta", String.valueOf(audit.getRoute_id()));
+            paramsData.put("company_id", String.valueOf(GlobalConstant.company_id));
             Log.d("request", "starting");
             JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
             //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/json/prueba.json", "POST", paramsData);
-            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/insertaTiempo", "POST", paramsData);
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/insertaTiempoNew", "POST", paramsData);
             if (json == null) {
                 Log.d("JSON result", "Está en nullo");
                 return false;
@@ -392,6 +403,7 @@ public class AuditUtil {
                             pdv.setDireccion(obj.getString("address"));
                             pdv.setDistrito(obj.getString("district"));
                             pdv.setType(obj.getString("type"));
+                            pdv.setCadenaRuc(obj.getString("cadenaRuc"));
 //                            pdv.setRegion(obj.getString("region"));
 //                            pdv.setTypeBodega(obj.getString("tipo_bodega"));
 //                            pdv.setComment(obj.getString("comment"));

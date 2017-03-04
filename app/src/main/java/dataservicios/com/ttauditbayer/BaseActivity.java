@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -269,11 +270,24 @@ public class BaseActivity extends Activity {
                 filePath = new File(pathFile);
 
                 if (filePath.isDirectory()) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    Uri myUri = Uri.parse(String.valueOf(filePath));
-                    intent.setDataAndType(myUri , "resource/folder");
-                    startActivity(intent);
+
+                    try {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Uri myUri = Uri.parse(String.valueOf(filePath));
+                        intent.setDataAndType(myUri , "resource/folder");
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        Toast.makeText(MyActivity,"No se encuentra instalada la aplicación",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("market://details?id=com.estrongs.android.pop&hl=es"));
+                        startActivity(intent);
+                    }finally {
+
+                    }
+
                 } else {
                     Toast.makeText(MyActivity,"El directorio no existe, no hay backup de imágenes",Toast.LENGTH_LONG).show();
                 }

@@ -141,11 +141,10 @@ public class Product extends Activity {
 //                if (product_id.equals("537")){
 //                    intent = new Intent(MyActivity, Gynocanesten.class);
 //                }
-                //Supradyn
-//                if (product_id.equals("536")){
-//                    intent = new Intent(MyActivity, Supradyn.class);
-//                }
-
+//                Supradyn
+                if (product_id.equals("536")){
+                    intent = new Intent(MyActivity, Supradyn.class);
+                }
 
 //                //Redoxon
                 if (product_id.equals("539")){
@@ -314,7 +313,6 @@ public class Product extends Activity {
             // dismiss the dialog once product deleted
 
             if (result){
-
 //                if (awards == 1) {
 //                    new saveScore().execute();
 //
@@ -334,8 +332,6 @@ public class Product extends Activity {
                     Intent intent = new Intent(MyActivity, VariableImportante.class);
                     intent.putExtras(argPDV);
                     startActivity(intent);
-
-
                     finish();
 //                }
 

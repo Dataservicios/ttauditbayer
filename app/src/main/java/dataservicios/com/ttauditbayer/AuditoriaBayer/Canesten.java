@@ -159,9 +159,13 @@ public class Canesten extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 560; //STOcK
+//        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
+//        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
+//        poll_id_3 = 560; //STOcK
+
+        poll_id = GlobalConstant.poll_id[2]; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = GlobalConstant.poll_id[3]; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = GlobalConstant.poll_id[4]; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -183,38 +187,7 @@ public class Canesten extends Activity {
         ly_stock.setEnabled(true);
         ly_stock.setVisibility(View.VISIBLE);
 
-//        if(tipo.equals("CADENA")) {
-//
-//            if(cadenaruc.equals("INKAFARMA")){
-//                cbTienda.setText("Cor Asa");
-//            }
-//            if(cadenaruc.equals("Fasa-Mifarma")){
-//               // cbTienda.setText("Cor Asa 100mg");
-//                cbTienda.setEnabled(false);
-//                cbTienda.setVisibility(View.INVISIBLE);
-//
-//            }
-//            if(cadenaruc.equals("ARCANGEL")){
-//                cbTienda.setText("Cardiopress");
-//            }
-//
-//            if(cadenaruc.equals("B&S")){
-//                cbTienda.setText("Microass");
-//            }
-//
-//            etTienda.setText("0");
-//            etTienda.setEnabled(false);
-//            etTienda.setVisibility(View.VISIBLE);
-//
-//        } else if(tipo.equals("HORIZONTAL")) {
-//
-//            cbTienda.setEnabled(false);
-//            cbTienda.setVisibility(View.INVISIBLE);
-//
-//            etTienda.setText("0");
-//            etTienda.setEnabled(false);
-//            etTienda.setVisibility(View.INVISIBLE);
-//        }
+
 
         cbProducto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -241,20 +214,7 @@ public class Canesten extends Activity {
             }
         });
 
-//        cbTienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if ( isChecked )
-//                {
-//                    etTienda.setText("1");
-//                    etTienda.setEnabled(true);
-//                    etTienda.requestFocus();
-//                } else{
-//                    etTienda.setText("0");
-//                    etTienda.setEnabled(false);
-//                }
-//            }
-//        });
+
 
         cbA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -414,12 +374,6 @@ public class Canesten extends Activity {
 
 
 
-//        bt_photo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                takePhoto();
-//            }
-//        });
 
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -655,39 +609,10 @@ public class Canesten extends Activity {
                 builder.show();
                 builder.setCancelable(false);
 
-
-
-
             }
         });
 
-
-
-
-
     }
-
-    private void takePhoto() {
-
-        Intent i = new Intent( MyActivity, AndroidCustomGalleryActivity.class);
-        Bundle bolsa = new Bundle();
-
-
-
-        bolsa.putString("store_id",String.valueOf(store_id));
-        bolsa.putString("product_id",String.valueOf(product_id));
-        bolsa.putString("poll_id",String.valueOf(poll_id));
-        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPoll");
-        bolsa.putString("tipo", "1");
-        i.putExtras(bolsa);
-        startActivity(i);
-
-
-    }
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -751,22 +676,7 @@ public class Canesten extends Activity {
             // TODO Auto-generated method stub
             //cargaTipoPedido();
 
-//            InsertAuditPollsProduct(String.valueOf(poll_id),"0",String.valueOf(is_recomieda),comentario);
-//
-//            InsertAuditPollsOtions(String.valueOf(poll_id_2), "0", "0", comentarioOtros);
-//            if(is_recomieda==0){
-//
-//
-//                //Enviando por defecto estock segun el swich que marco
-//                InsertAuditPollsProduct(String.valueOf(poll_id_3), "0", String.valueOf(stock), "");
-//            } else if(is_recomieda==1) {
-//                //Enviando por defecto estock 1
-//                InsertAuditPollsProduct(String.valueOf(poll_id_3),"0","1","");
-//            }
-////            Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LOGIN");
-////            startActivity(intent);
-////            finish();
-//            return true;
+
 
             if(!InsertAuditPollsProduct(poll_id,0,is_recomieda,comentario)) return false;
             if(!InsertAuditPollsOtions(poll_id_2,product_id,1,0,0,totalOption,comentarioOtros)) return false;
@@ -792,6 +702,8 @@ public class Canesten extends Activity {
 
                 finish();
 
+            } else {
+                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente",Toast.LENGTH_LONG).show();
             }
         }
     }

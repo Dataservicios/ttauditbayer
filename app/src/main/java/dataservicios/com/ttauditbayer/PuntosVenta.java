@@ -2,7 +2,9 @@ package dataservicios.com.ttauditbayer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,7 +68,7 @@ public class PuntosVenta extends Activity {
     private PdvsAdapter adapter;
     private int IdRuta ;
     private String fechaRuta;
-    private Button bt_MapaRuta;
+    private Button bt_MapaRuta,btMapaRutasAll;
 
     private Activity MyActivity =  (Activity) this;
     private JSONObject params;
@@ -118,6 +120,9 @@ public class PuntosVenta extends Activity {
 
         bt_MapaRuta = (Button) findViewById(R.id.btMapaRuta);
 
+        //bt_MapaRuta = (Button) findViewById(R.id.btMapaRuta);
+        btMapaRutasAll = (Button) findViewById(R.id.btMapaRutaAll);
+
         bt_MapaRuta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +133,32 @@ public class PuntosVenta extends Activity {
                 Intent intent = new Intent(MyActivity,MapaRuta.class);
                 intent.putExtras(argRuta);
                 startActivity(intent);
+            }
+        });
+
+        btMapaRutasAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle argRuta = new Bundle();
+                argRuta.putInt("id", IdRuta);
+
+
+                try {
+                    Intent intent = new Intent();
+                    intent.setComponent(new ComponentName("com.dataservicios.ttauditrutas", "com.dataservicios.ttauditrutas.MapaRuta"));
+                    intent.putExtras(argRuta);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Toast.makeText(MyActivity,"No se encuentra instalada la aplicación", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=com.dataservicios.ttauditrutas"));
+                    startActivity(intent);
+                }finally {
+
+                }
             }
         });
         listView = (ListView) findViewById(R.id.list);

@@ -60,7 +60,7 @@
                 android:layout_below="@+id/tvSeEncuentra"
                 android:layout_marginTop="1dip"
                 android:layout_toRightOf="@+id/thumbnail"
-                android:id="@+id/swRecibePremio"
+                android:id="@+id/swSiNo"
                 android:text=""
                 android:layout_gravity="center"
                 android:textOn="@string/sw_si"

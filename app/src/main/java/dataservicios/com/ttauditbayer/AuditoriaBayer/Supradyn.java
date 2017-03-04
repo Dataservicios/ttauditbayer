@@ -150,10 +150,13 @@ public class Supradyn extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 196; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 197; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 198; //STOcK
+//        poll_id = 196; //SE RECOMIENDA EL PRODUCTO
+//        poll_id_2 = 197; //QUE PRODUCTO RECOMENDO
+//        poll_id_3 = 198; //STOcK
 
+        poll_id = GlobalConstant.poll_id[2]; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = GlobalConstant.poll_id[3]; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = GlobalConstant.poll_id[4]; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -180,7 +183,7 @@ public class Supradyn extends Activity {
             if(cadenaruc.equals("INKAFARMA")){
                 cbTienda.setText("Biocord ");
             }
-            if(cadenaruc.equals("Fasa-Mifarma")){
+            if(cadenaruc.equals("MIFARMA")){
                 cbTienda.setText("Infor x30");
 
             }
@@ -196,8 +199,8 @@ public class Supradyn extends Activity {
             etTienda.setEnabled(false);
             etTienda.setVisibility(View.VISIBLE);
 
-        } else if(tipo.equals("HORIZONTAL")) {
-
+        //} else if(tipo.equals("HORIZONTAL")) {
+        } else if(tipo.equals("HORIZONTAL") || tipo.equals("DETALLISTA") || tipo.equals("MINI CADENAS")  || tipo.equals("SUB DISTRIBUIDOR")) {
             cbTienda.setEnabled(false);
             cbTienda.setVisibility(View.INVISIBLE);
 
@@ -332,41 +335,7 @@ public class Supradyn extends Activity {
 
             }
         });
-//        sw_recomienda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    is_recomieda = 1;
-//                    ly_stock.setEnabled(false);
-//                    ly_stock.setVisibility(View.INVISIBLE);
-//
-//                    ly_productos.setVisibility(View.INVISIBLE);
-//                    ly_productos.setEnabled(false);
-//
-//                    cbTienda.setChecked(false);
-//                    cbA.setChecked(false);
-//                    cbB.setChecked(false);
-//                    cbC.setChecked(false);
-//                   cbD.setChecked(false);
-//
-//                } else {
-//                    is_recomieda = 0;
-//                    //if(product_id == 534){
-//                        ly_stock.setEnabled(true);
-//                        ly_stock.setVisibility(View.VISIBLE);
-//                    //}
-//
-//                    ly_productos.setVisibility(View.VISIBLE);
-//                    ly_productos.setEnabled(true);
-//
-//                    cbTienda.setChecked(false);
-//                    cbA.setChecked(false);
-//                    cbB.setChecked(false);
-//                    cbC.setChecked(false);
-//                    cbD.setChecked(false);
-//                }
-//            }
-//        });
+
 
         sw_stock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -381,12 +350,7 @@ public class Supradyn extends Activity {
             }
         });
 
-//        bt_photo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                takePhoto();
-//            }
-//        });
+
 
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -461,22 +425,22 @@ public class Supradyn extends Activity {
                     }else  {
                         if(cadenaruc.equals("INKAFARMA")){
                             vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "o";
+                            oTienda = String.valueOf(poll_id_2) + "eo";
 
                         }
-                        if(cadenaruc.equals("Fasa-Mifarma")){
+                        if(cadenaruc.equals("MIFARMA")){
                             vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "p";
+                            oTienda = String.valueOf(poll_id_2) + "ep";
 
                         }
                         if(cadenaruc.equals("ARCANGEL")){
                             vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "q";
+                            oTienda = String.valueOf(poll_id_2) + "eq";
                         }
 
                         if(cadenaruc.equals("B&S")){
                             vTienda = 1;
-                            oTienda = String.valueOf(poll_id_2) + "r";
+                            oTienda = String.valueOf(poll_id_2) + "er";
                         }
 
                         oTienda = oTienda + "-" +  etTienda.getText().toString();
@@ -491,7 +455,7 @@ public class Supradyn extends Activity {
                         return;
                     }else  {
                         vA = 1;
-                        oA = String.valueOf(poll_id_2) + "s" + "-" + etA.getText().toString();
+                        oA = String.valueOf(poll_id_2) + "es" + "-" + etA.getText().toString();
                     }
                 }
                 if (cbB.isChecked()) {
@@ -502,7 +466,7 @@ public class Supradyn extends Activity {
                         return;
                     }else  {
                         vB = 1;
-                        oB = String.valueOf(poll_id_2) + "t"  + "-" + etB.getText().toString();
+                        oB = String.valueOf(poll_id_2) + "et"  + "-" + etB.getText().toString();
                         pB = etB.getText().toString();
                     }
 
@@ -515,7 +479,7 @@ public class Supradyn extends Activity {
                         return;
                     }else  {
                         vC = 1;
-                        oC = String.valueOf(poll_id_2) + "u" + "-" + etC.getText().toString();
+                        oC = String.valueOf(poll_id_2) + "eu" + "-" + etC.getText().toString();
                         pC = etC.getText().toString();
                     }
 
@@ -529,7 +493,7 @@ public class Supradyn extends Activity {
                         return;
                     }else  {
                         vD = 1;
-                        oD = String.valueOf(poll_id_2) + "w" + "-" + etD.getText().toString();
+                        oD = String.valueOf(poll_id_2) + "ew" + "-" + etD.getText().toString();
                         pD = etD.getText().toString();
                     }
                 }
@@ -543,7 +507,7 @@ public class Supradyn extends Activity {
                         return;
                     }else  {
                         vE = 1;
-                        oE = String.valueOf(poll_id_2) + "y" + "-" + etE.getText().toString();
+                        oE = String.valueOf(poll_id_2) + "ai" + "-" + etE.getText().toString();
                         pE = etE.getText().toString();
                     }
                 }
@@ -621,27 +585,6 @@ public class Supradyn extends Activity {
 
 
     }
-
-    private void takePhoto() {
-
-        Intent i = new Intent( MyActivity, AndroidCustomGalleryActivity.class);
-        Bundle bolsa = new Bundle();
-
-
-
-        bolsa.putString("store_id",String.valueOf(store_id));
-        bolsa.putString("product_id",String.valueOf(product_id));
-        bolsa.putString("poll_id",String.valueOf(poll_id));
-        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPoll");
-        bolsa.putString("tipo", "1");
-        i.putExtras(bolsa);
-        startActivity(i);
-
-
-    }
-
-
-
 
 
     @Override
@@ -739,6 +682,8 @@ public class Supradyn extends Activity {
 
                 finish();
 
+            }  else {
+            Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente",Toast.LENGTH_LONG).show();
             }
         }
     }

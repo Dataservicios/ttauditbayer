@@ -156,9 +156,13 @@ public class AspirinaForte extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 560; //STOcK
+//        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
+//        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
+//        poll_id_3 = 560; //STOcK
+
+        poll_id = GlobalConstant.poll_id[2]; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = GlobalConstant.poll_id[3]; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = GlobalConstant.poll_id[4]; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);
@@ -616,25 +620,6 @@ public class AspirinaForte extends Activity {
                         db.updateProductActive(product_id, 1);
 
 
-//                        //////////////////////////////////////////////modificado///////////////////////////////////////////
-//                        ProductScore ps = new ProductScore();
-//                        if(is_recomieda==1) {
-//
-//                            ps = db.getProductScoreForStore(store_id);
-//                            int total_products = 0 ;
-//                            total_products = 1  + ps.getTotalProducts();
-//                            db.updateProductScoreForTotalProducts(store_id,total_products);
-//                        }
-//
-//                        //////////////////////////////////////////////end///////////////////////////////////////////
-
-//                        if(is_exhibidor==1) {
-//
-//                            ps = db.getProductScoreForStore(store_id);
-//                            int total_exhibidores = 0 ;
-//                            total_exhibidores = 1  + ps.getTotalExhibitions();
-//                            db.updateProductScoreForTotalExhibitions(store_id,total_exhibidores);
-//                        }
 
                         List<ProductScore> listProductScore = new ArrayList<ProductScore>();
                         listProductScore = db.getAllProductsScore();
@@ -654,34 +639,14 @@ public class AspirinaForte extends Activity {
                 builder.setCancelable(false);
 
 
-
-
             }
         });
 
 
 
-
-
     }
 
-    private void takePhoto() {
 
-        Intent i = new Intent( MyActivity, AndroidCustomGalleryActivity.class);
-        Bundle bolsa = new Bundle();
-
-
-
-        bolsa.putString("store_id",String.valueOf(store_id));
-        bolsa.putString("product_id",String.valueOf(product_id));
-        bolsa.putString("poll_id",String.valueOf(poll_id));
-        bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPoll");
-        bolsa.putString("tipo", "1");
-        i.putExtras(bolsa);
-        startActivity(i);
-
-
-    }
 
 
 

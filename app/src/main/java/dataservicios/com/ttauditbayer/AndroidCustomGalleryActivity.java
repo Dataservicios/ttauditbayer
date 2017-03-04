@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +16,9 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
+import dataservicios.com.ttauditbayer.Services.UploadService;
+import dataservicios.com.ttauditbayer.adapter.ImageAdapter;
+import dataservicios.com.ttauditbayer.util.GlobalConstant;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,14 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import dataservicios.com.ttauditbayer.Services.UploadService;
-import dataservicios.com.ttauditbayer.adapter.ImageAdapter;
-import dataservicios.com.ttauditbayer.util.GlobalConstant;
-
-//import org.apache.http.entity.mime.MultipartEntity;
-//import org.apache.http.entity.mime.content.ContentBody;
-//import org.apache.http.entity.mime.content.FileBody;
-//import org.apache.http.entity.mime.content.InputStreamBody;
 
 /**
  * Created by user on 06/02/2015.
@@ -46,10 +39,9 @@ public class AndroidCustomGalleryActivity extends Activity {
 
     private static final int TAKE_PICTURE = 1;
     private String mCurrentPhotoPath;
-    private static final String JPEG_FILE_PREFIX = "_Bayer_";
-    private static final String JPEG_FILE_SUFFIX = ".jpg";
 
 
+    private String url_insert_image ;
 
 
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
@@ -58,7 +50,7 @@ public class AndroidCustomGalleryActivity extends Activity {
     File[] listFile;
     ArrayList<String> names_file = new ArrayList<String>();
     Activity MyActivity ;
-    String store_id,product_id,tipo,url_insert_image,poll_id ;
+    String store_id,publicities_id,tipo, invoices_id,product_id,sod_ventana_id , poll_id,company_id,category_product_id,monto,razon_social;
 
     /** Called when the activity is first created. */
     @Override
@@ -73,9 +65,15 @@ public class AndroidCustomGalleryActivity extends Activity {
 
 
         store_id = bundle.getString("store_id");
+        publicities_id = bundle.getString("publicities_id");
         product_id = bundle.getString("product_id");
         poll_id = bundle.getString("poll_id");
+        company_id = bundle.getString("company_id");
+        category_product_id = bundle.getString("category_product_id");
+        sod_ventana_id = bundle.getString("sod_ventana_id");
         url_insert_image = bundle.getString("url_insert_image");
+        monto = bundle.getString("monto");
+        razon_social = bundle.getString("razon_social");
         tipo = bundle.getString("tipo");
 
 
@@ -99,19 +97,17 @@ public class AndroidCustomGalleryActivity extends Activity {
             public void onClick(View v)
             {
                 // create intent with ACTION_IMAGE_CAPTURE action
-               // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
 
                 Bundle bundle = getIntent().getExtras();
                 String idPDV = bundle.getString("idPDV");
 
                 // Create an image file name
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = String.format("%06d", Integer.parseInt(store_id)) + "_" + GlobalConstant.company_id  +JPEG_FILE_PREFIX + timeStamp;
+                String imageFileName = String.format("%06d", Integer.parseInt(store_id))+ "_" + GlobalConstant.company_id + GlobalConstant.JPEG_FILE_PREFIX + timeStamp;
                 File albumF = getAlbumDir();
                 // to save picture remove comment
-                File file = new File(albumF,imageFileName+JPEG_FILE_SUFFIX);
+                File file = new File(albumF,imageFileName+GlobalConstant.JPEG_FILE_SUFFIX);
 
                 Uri photoPath = Uri.fromFile(file);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoPath);
@@ -129,10 +125,6 @@ public class AndroidCustomGalleryActivity extends Activity {
             public void onClick(View v)
             {
 
-//                Bundle bundle = getIntent().getExtras();
-//                String idPDV = bundle.getString("idPDV");
-//                String idPoll = bundle.getString("idPoll");
-//                String tipo = bundle.getString("tipo");
 
 
                 File file= new File(Environment.getExternalStorageDirectory().toString()+"/Pictures/" + getAlbumName());
@@ -150,21 +142,18 @@ public class AndroidCustomGalleryActivity extends Activity {
 
                         for (int i = 0; i < count; i++) {
 
-                            //LinearLayout itemLayout = (LinearLayout)imagegrid.getChildAt(i); // Find by under LinearLayout
+                           // LinearLayout itemLayout = (LinearLayout)imagegrid.getChildAt(i); // Find by under LinearLayout
                             RelativeLayout itemLayout = (RelativeLayout)imagegrid.getChildAt(i); // Find by under LinearLayout
-
                             CheckBox checkbox = (CheckBox)itemLayout.findViewById(R.id.itemCheckBox);
                             if(checkbox.isChecked())
                             {
                                 contador ++;
                                 // Log.d("Item "+String.valueOf(i), checkbox.getTag().toString());
                                 //Toast.makeText(MyActivity,checkbox.getTag().toString() ,Toast.LENGTH_LONG).show();
-
                                 if (  listFile[i].getName().substring(0,6).equals(String.format("%06d", Integer.parseInt(store_id)) )) {
                                     String name = listFile[i].getName();
                                     names_file.add(name);
                                     //  holder_counter++;
-
                                     try {
                                         copyFile(getAlbumDir() + "/" + listFile[i].getName(), getAlbumDirTemp() + "/" + listFile[i].getName());
                                         copyFile(getAlbumDir() + "/" + listFile[i].getName(), getAlbumDirBackup() + "/" + listFile[i].getName());
@@ -172,15 +161,13 @@ public class AndroidCustomGalleryActivity extends Activity {
                                         e.printStackTrace();
                                     }
                                 }
-
                                 listFile[i].delete();
-
                             }
                         }
 
                         if(contador > 0){
 
-                           // Toast.makeText(MyActivity, "Seleccionó " + String.valueOf(contador) + " imágenes", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MyActivity, "Seleccionó " + String.valueOf(contador) + " imágenes", Toast.LENGTH_LONG).show();
                         } else{
                             Toast.makeText(MyActivity, "Debe selecionar una imagen", Toast.LENGTH_LONG).show();
                             return;
@@ -206,8 +193,13 @@ public class AndroidCustomGalleryActivity extends Activity {
                 argPDV.putString("store_id",store_id );
                 argPDV.putString("product_id",product_id );
                 argPDV.putString("poll_id",poll_id );
-                argPDV.putString("company_id",String.valueOf(GlobalConstant.company_id));
+                argPDV.putString("publicities_id",publicities_id );
+                argPDV.putString("company_id",company_id);
+                argPDV.putString("category_product_id",category_product_id);
+                argPDV.putString("sod_ventana_id",sod_ventana_id);
                 argPDV.putString("url_insert_image",url_insert_image );
+                argPDV.putString("monto",monto );
+                argPDV.putString("razon_social",razon_social );
                 argPDV.putString("tipo",tipo);
 
                 intent.putStringArrayListExtra("names_file", names_file);
@@ -237,14 +229,7 @@ public class AndroidCustomGalleryActivity extends Activity {
                 // app icon in action bar clicked; goto parent activity.
                 onBackPressed();
                 return true;
-//                Intent intent = new Intent(this, AgenteDetailActivity.class);
-//                Bundle bolsa = new Bundle();
-//                bolsa.putString("id", aid);
-//                intent.putExtras(bolsa);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
-//                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -254,7 +239,7 @@ public class AndroidCustomGalleryActivity extends Activity {
 
     /* Photo album for this application */
     private String getAlbumName() {
-        return getString(R.string.album_name);
+       return getString(R.string.album_name);
        // return GlobalConstant.albunName;
     }
 
@@ -290,29 +275,6 @@ public class AndroidCustomGalleryActivity extends Activity {
     }
 
 
-    private File getAlbumDirBackup() {
-        File storageDir = null;
-
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
-            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbunNameBackup());
-
-            if (storageDir != null) {
-                if (! storageDir.mkdirs()) {
-                    if (! storageDir.exists()){
-                        Log.d(getAlbunNameBackup(), "failed to create directory");
-                        return null;
-                    }
-                }
-            }
-
-        } else {
-            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
-        }
-
-        return storageDir;
-    }
-
     private File getAlbumDirTemp() {
         File storageDir = null;
 
@@ -336,8 +298,6 @@ public class AndroidCustomGalleryActivity extends Activity {
         return storageDir;
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -350,6 +310,28 @@ public class AndroidCustomGalleryActivity extends Activity {
         }
     }
 
+    private File getAlbumDirBackup() {
+        File storageDir = null;
+
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbunNameBackup());
+
+            if (storageDir != null) {
+                if (! storageDir.mkdirs()) {
+                    if (! storageDir.exists()){
+                        Log.d(getAlbunNameBackup(), "failed to create directory");
+                        return null;
+                    }
+                }
+            }
+
+        } else {
+            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
+        }
+
+        return storageDir;
+    }
 
     private void handleBigCameraPhoto() {
 
@@ -363,8 +345,14 @@ public class AndroidCustomGalleryActivity extends Activity {
 
             bolsa.putString("store_id",store_id );
             bolsa.putString("product_id",product_id );
-            bolsa.putString("url_insert_image",url_insert_image );
             bolsa.putString("poll_id",poll_id );
+            bolsa.putString("publicities_id",publicities_id );
+            bolsa.putString("company_id",company_id);
+            bolsa.putString("category_product_id",category_product_id);
+            bolsa.putString("sod_ventana_id",sod_ventana_id);
+            bolsa.putString("monto",monto );
+            bolsa.putString("razon_social",razon_social );
+            bolsa.putString("url_insert_image",url_insert_image );
             bolsa.putString("tipo",tipo);
 
 
@@ -391,25 +379,28 @@ public class AndroidCustomGalleryActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         String store_id = bundle.getString("store_id");
 
-        //File file= new File(Environment.getExternalStorageDirectory().toString()+ GlobalConstant.directory_images);
         File file= new File(Environment.getExternalStorageDirectory().toString()+ GlobalConstant.directory_images + getAlbumName());
 
         if (file.isDirectory())
         {
             listFile = file.listFiles();
 
-            for (int i = 0; i < listFile.length; i++)
-            {
-                if (  listFile[i].getName().substring(0,6).equals(String.format("%06d", Integer.parseInt(store_id)) ))
-                {
-                    f.add(listFile[i].getAbsolutePath());
-                }
 
+
+            if (listFile != null){
+                for (int i = 0; i < listFile.length; i++)
+                {
+                    if (  listFile[i].getName().substring(0,6).equals(String.format("%06d", Integer.parseInt(store_id)) ))
+                    {
+                        f.add(listFile[i].getAbsolutePath());
+                    }
+
+                }
             }
+
+
         }
     }
-
-
 
 
     public void copyFile(String selectedImagePath, String string) throws IOException {
@@ -424,10 +415,7 @@ public class AndroidCustomGalleryActivity extends Activity {
         }
         in.close();
         out.close();
-//        Toast customToast = new Toast(getBaseContext());
-//        customToast = Toast.makeText(getBaseContext(), "Image Transferred", Toast.LENGTH_LONG);
-//        customToast.setGravity(Gravity.CENTER| Gravity.CENTER, 0, 0);
-//        customToast.show();
+
     }
 
     public void onBackPressed() {

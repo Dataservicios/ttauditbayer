@@ -159,9 +159,13 @@ public class Aspirina extends Activity {
 
 //        poll_id = 72 , solo para exhibiciones de bayer, directo de la base de datos
 
-        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
-        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
-        poll_id_3 = 560; //STOcK
+//        poll_id = 558; //SE RECOMIENDA EL PRODUCTO
+//        poll_id_2 = 559; //QUE PRODUCTO RECOMENDO
+//        poll_id_3 = 560; //STOcK
+
+        poll_id = GlobalConstant.poll_id[2]; //SE RECOMIENDA EL PRODUCTO
+        poll_id_2 = GlobalConstant.poll_id[3]; //QUE PRODUCTO RECOMENDO
+        poll_id_3 = GlobalConstant.poll_id[4]; //STOcK
 
 
         pDialog = new ProgressDialog(MyActivity);

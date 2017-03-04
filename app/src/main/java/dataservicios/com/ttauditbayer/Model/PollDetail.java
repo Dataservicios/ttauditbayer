@@ -13,11 +13,13 @@ public class PollDetail {
     int media;
     int comment ;
     int result;
-    int limite ;
+    String limite ;
     String comentario ;
     int auditor ;
     int product_id;
+    int category_product_id;
     int publicity_id;
+    int category_id;
     int company_id;
     int created_at;
     int commentOptions;
@@ -97,11 +99,11 @@ public class PollDetail {
         this.result = result;
     }
 
-    public int getLimite() {
+    public String getLimite() {
         return limite;
     }
 
-    public void setLimite(int limite) {
+    public void setLimite(String limite) {
         this.limite = limite;
     }
 
@@ -145,6 +147,14 @@ public class PollDetail {
         this.company_id = company_id;
     }
 
+    public int getCategory_product_id() {
+        return category_product_id;
+    }
+
+    public void setCategory_product_id(int category_product_id) {
+        this.category_product_id = category_product_id;
+    }
+
     public int getCreated_at() {
         return created_at;
     }
@@ -183,5 +193,13 @@ public class PollDetail {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 }

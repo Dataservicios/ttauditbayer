@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -679,26 +680,33 @@ public class MainActivity extends Activity {
     //  Chequeando permisos de usuario Runtime
     private boolean checkAndRequestPermissions() {
 
-        int writepermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int callpermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.CALL_PHONE);
-        int locationpermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.ACCESS_FINE_LOCATION);
+        int locationPermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.ACCESS_FINE_LOCATION);
+        int cameraPermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.CAMERA);
+        int writeExternalStoragePermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int callPhonePermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.CALL_PHONE);
+        int readPhoneStatePermission = ContextCompat.checkSelfPermission(MyActivity, Manifest.permission.READ_PHONE_STATE);
 
         List<String> listPermissionsNeeded = new ArrayList<>();
 
-        if (locationpermission != PackageManager.PERMISSION_GRANTED) {
+        if (locationPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        if (writepermission != PackageManager.PERMISSION_GRANTED) {
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
         }
 
-        if (writepermission != PackageManager.PERMISSION_GRANTED) {
+        if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
 
-        if (callpermission != PackageManager.PERMISSION_GRANTED) {
+        if (callPhonePermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CALL_PHONE);
         }
+
+        if (readPhoneStatePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(MyActivity,listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
             return false;
@@ -707,16 +715,30 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         boolean respuestas = false ;
         if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS) {
 
 
             if (grantResults.length > 0) {
 
-                if ( grantResults[0] == PackageManager.PERMISSION_GRANTED &&  grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED && grantResults[3] == PackageManager.PERMISSION_GRANTED) {
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED && grantResults[3] == PackageManager.PERMISSION_GRANTED ) {
+//                    loadLoginActivity();
+//
+//                }  else {
+//                    alertDialogBasico();
+//                }
+                boolean permissionsApp = true ;
+                for(int i=0; i < grantResults.length; i++) {
+                    if(grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        //alertDialogBasico();
+                        permissionsApp = false;
+                        break;
+                    }
+                }
+
+                if (permissionsApp==true) {
                     loadLoginActivity();
 
                 }  else {
@@ -725,6 +747,7 @@ public class MainActivity extends Activity {
 
             }
         }
+
     }
 
     public void alertDialogBasico() {
@@ -743,4 +766,7 @@ public class MainActivity extends Activity {
         builder.show();
 
     }
+
+
+
 }

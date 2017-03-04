@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "dataservicios.com.ttauditbayer"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 46
-        versionName "6.3.2"
+        versionCode 52
+        versionName "6.3.8"
         multiDexEnabled true
     }
     buildTypes {
